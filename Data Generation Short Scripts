@@ -1,0 +1,21 @@
+1. for i in range(6,11):exec('Location(id="loc%s"%i, name="Location %s"%i, country="Pakistan").save()')
+2. for i in range(3,7):exec('Fee(id="fee%s"%i, amount="$%s"%(i*100) ).save()')
+3. for i in range(3,7):exec('Salary(id="salary%s"%i, amount="$%s"%(i*100) ).save()')
+4. for i in range(3,7):exec('Grant(id="grant%s"%i, amount="$%s"%(i*150) ).save()')
+5. for i in range(2,7):exec('Expense(id="expense%s"%i, amount="$%s"%(i*140), description="Damages of %s furnitures"%i ).save()')
+6. for i in range(2,7):exec('Qualifications(id="qual%s"%i, minimum="%s tools\n%s techniques" % (i,i+5) ).save()')
+7. for i in range(2,7):exec('Department(id="%s"%i, name="Department %s" %i, university = Location.objects.get(id="loc%s"%i) ).save()')
+8. for i in range(2,7):exec('Field(id="%s"%i, name="Field %s" %i, department = Department.objects.get(id="%s"%i) ).save()')
+9. for i in range(3,6):exec('SubmissionForm(id="form%s"%i, title="About %s Jobs" %i, required_docs="Degree", steps_to_apply="Follow Youtube Channel for more information" ).save()')
+
+10. for i in range(3,6):exec('Tenure(id="tenure_%s"%i, start_date=datetime.date(2018,10,i), duration=datetime.timedelta(days=i*15)).save()')
+11. for i in range(6,11):exec('About(id="about_%s"%i, title="About the %s" %i, description ="Dont Play with %s games" %i).save()')
+12. for i in range(6,11):exec('Specialization(id="special_%s"%i, title="About the %s" %i, description ="Dont Play with %s games" %i).save()')
+13. for i in range(2,11):exec('Contact(id="contact_%s"%i, email="email_%s@email.com"%i, phone="%s" % (i*1000)).save()')
+14. for i in range(2,6):exec('Student(id="student_%s"%i, name="Student %s"%i, email="student%s@email.com" %i, age=i+18, password="%s%s%s" %(i,i+10,i*3), experience="4", ).save()')
+
+15. for i in range(2,6):exec('Professor(id="professor_%s"%i, name="professor %s"%i, email="professor%s@email.com" %i, age=i+18, password="%s%s%s" %(i,i+10,i*3) , related_university = Location.objects.get(id="loc%s"%i)).save()')
+
+16. for i in range(2,6):exec('Professor.objects.get(id="professor_%s"%i).expertise.add(Specialization.objects.get(id="special_%s" % (i+4)))')
+
+
