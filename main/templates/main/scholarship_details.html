@@ -1,0 +1,129 @@
+{% extends 'main/base.html' %}
+
+
+{% block title %}
+    {{ scholarship.information.title }}
+{% endblock %}
+
+
+{% block body %}
+
+    {% if scholarship %}
+        <div class="align_center"><h2>{{scholarship.information.title}}</h2></div>
+
+            <table class="centerTable">
+
+                <tr>
+                    <th>Description</th>
+                    <td class="row_space">{{scholarship.information.description}}</td>
+                </tr>
+
+                {% if scholarship.funding %}
+                    <tr>
+                        <th>Funding Amount</th>
+                        <td class="row_space">{{scholarship.funding}}</td>
+                    </tr>
+                {% endif %}
+
+                <tr>
+                    <th>Positions</th>
+                    <td class="row_space">{{scholarship.number_of_positions}}</td>
+                </tr>
+
+                <tr>
+                    <th>Last Date </th>
+                    <td class="row_space">{{scholarship.deadline | date}}</td>
+                </tr>
+
+                <tr>
+                    <th>Tenure </th>
+                    <td class="row_space">{{scholarship.duration.start_date | date}} - {{scholarship.duration.get_end_date | date}}</td>
+                </tr>
+
+                <tr>
+                    <th>Sponsors</th>
+                    <td class="row_space">
+                        {% for each in scholarship.sponsors.all%}
+                            {{each.name}} <br>
+                        {% endfor %}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Host Universities</th>
+                    <td class="row_space">
+                        {% for each in scholarship.host_universities.all%}
+                            {{each.name}},
+                                {% if each.city %}
+                                        {{each.city}},
+                                {% endif %}
+                            {{each.country}} <br>
+                        {% endfor %}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Knowledge Areas</th>
+                    <td class="row_space">
+                        {% for each in scholarship.fields_of_interest.all%}
+                            {{each.title}} <br>
+                        {% endfor %}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Contacts</th>
+                    <td class="row_space">
+                        {% for each in scholarship.contacts.all%}
+                            {{each.email}}, {{email.phone}} <br>
+                        {% endfor %}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Granted Amount</th>
+                    <td class="row_space">{{scholarship.amount_granted.amount}}</td>
+                </tr>
+
+                 <tr>
+                    <th>Inclusions</th>
+                    <td class="row_space">{{scholarship.perks_offered}}</td>
+                </tr>
+
+                 <tr>
+                    <th>Original Source</th>
+                    <td class="row_space">{{scholarship.source}}</td>
+                </tr>
+
+                <tr>
+                    <th>Requirements</th>
+                    <td class="row_space">{{scholarship.criteria.minimum}}</td>
+                </tr>
+
+                <tr>
+                    <th>Required Documents</th>
+                    <td class="row_space">{{scholarship.application_form.required_docs}}</td>
+                </tr>
+
+                 <tr>
+                    <th>Applying Guide</th>
+                    <td class="row_space">{{scholarship.application_form.steps_to_apply}}</td>
+                </tr>
+
+                {% if scholarship.scholarship_maintenance_criteria %}
+
+                <tr>
+                    <th>Maintenance Criteria</th>
+                    <td class="row_space">{{scholarship.scholarship_maintenance_criteria}}</td>
+                </tr>
+                {% endif %}
+
+
+
+
+            </table>
+
+    {% endif %}
+
+<a class="link" href="{% url 'main:scholarship_listing'%}"> Back</a>
+{% endblock %}

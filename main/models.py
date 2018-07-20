@@ -209,6 +209,9 @@ class Tenure(models.Model):
     def __unicode__(self):
         return "%s - %s" % (self.start_date, self.start_date + self.duration)
 
+    def get_end_date(self):
+        return self.start_date + self.duration
+
 
 class About(models.Model):
 

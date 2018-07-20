@@ -1,0 +1,30 @@
+div.align_center{
+text-align:center;
+}
+
+a.link{
+text-decoration: none;
+font-size: 20px;
+color: rgb(11,123,21);
+}
+
+a.link:hover{
+color: red;
+}
+
+.centerTable {
+margin: 0px auto;
+}
+
+.row_space{
+padding: 1%;
+}
+
+ul li{
+list-style-type:none;
+}
+
+#gradient{
+background: linear-gradient(to right, rgb(109,154,213), rgb(234,123,33));
+}
+

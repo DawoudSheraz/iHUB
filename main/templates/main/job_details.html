@@ -1,0 +1,116 @@
+{% extends 'main/base.html' %}
+
+{% block title%}
+    {{student_job_position.job.title}}
+{% endblock %}
+
+
+{% block body%}
+
+    {% if student_job_position %}
+        <div class="align_center"><h2 > {{student_job_position.job.title}} </h2> </div>
+
+
+        <table class="centerTable">
+
+            <tr>
+                <td class="row_space"> Job Details</td>
+                <td>
+                    Type :  {{student_job_position.job.type}} <br> <br>
+                    Description :  {{student_job_position.job.description}} <br> <br>
+                    Function :  {{student_job_position.job.function}} <br> <br>
+
+                    {% if student_job_position.job.expectations%}
+                        Expectations :  {{student_job_position.job.expectations}} <br><br>
+
+                    {% endif%}
+
+                </td>
+
+            </tr>
+
+             <tr>
+                    <td class="row_space">Knowledge Areas:</td>
+                    <td>
+                         {%for skill in student_job_position.skills_covered.all%}
+                    {{skill}},
+                        {%endfor%}
+                    </td>
+                </tr>
+
+
+            <tr>
+                <td class="row_space">Duration : </td>
+                <td> {{student_job_position.duration.start_date | date}} - {{student_job_position.duration.get_end_date | date}}</td>
+            </tr>
+
+
+            <tr>
+                <td class="row_space"> Minimum Requirements : </td>
+
+                <td> {{student_job_position.requirements.minimum}}</td>
+            </tr>
+
+           {% if student_job_position.requirements.preferred %}
+            <tr>
+                <td class="row_space"> Preferred Requirements : </td>
+
+                <td> {{student_job_position.requirements.preferred}}</td>
+            </tr>
+
+            {% endif %}
+
+            <tr>
+                    <td class="row_space">Contact: </td>
+                    <td>
+                         {%for contact in student_job_position.contacts.all%}
+                                {{contact.email}}, {{contact.phone}} <br>
+                        {%endfor%}
+                    </td>
+
+            </tr>
+
+            <tr>
+                <td class="row_space">Required Documents: </td>
+                <td class="row_space"> {{student_job_position.submission_form.required_docs}}</td>
+            </tr>
+
+            <tr>
+                <td class="row_space">Applying Guide: </td>
+                <td class="row_space"> {{student_job_position.submission_form.steps_to_apply}}</td>
+            </tr>
+
+            <tr>
+
+                <td class="row_space"> Experience: {{student_job_position.experience_required}}</td>
+                <td class="row_space">Deadline: {{student_job_position.deadline | date}} </td>
+                <td >Source: {{student_job_position.source}} </td>
+
+            </tr>
+
+               <tr>
+                <td class="row_space">
+                        Venue: {{student_job_position.job_location.name}},
+
+                        {% if student_job_position.job_location.city%}
+                            {{student_job_position.job_location.city}},
+                        {% endif %}
+
+                        {{student_job_position.job_location.country}}
+
+                    </td>
+
+                <td class="row_space">Provided by: {{student_job_position.job_provider.name}}</td>
+                <td class="row_space">Salary: {{student_job_position.salary.amount}}</td>
+                 {% if student_job_position.fee%}
+                 <td>Submission Fee: {{student_job_position.fee.amount}}</td>
+                 {%endif%}
+            </tr>
+        </table>
+
+    {% endif %}
+
+<a class="link" href="{% url 'main:job_listing'%}"> Back</a>
+
+
+{% endblock %}

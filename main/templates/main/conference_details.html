@@ -1,0 +1,111 @@
+{% extends "main/base.html"%}
+
+{% block title%}
+   {{conference.info.title}}
+{% endblock %}
+
+{% block body %}
+
+    {% if conference %}
+            <h3 ><div class="align_center">{{conference.info.title}} </div>  </h3>
+            <table class="centerTable">
+
+                <tr>
+                    <td class="row_space">Description: {{conference.info.description}}</td>
+
+
+                </tr>
+
+                <tr>
+
+                    <td class="row_space">{{conference.duration.start_date | date}} - {{conference.duration.get_end_date | date}}</td>
+
+                </tr>
+
+                <tr>
+                     <td class="row_space">Call for Papers deadline: {{conference.call_for_paper_deadline | date}}</td>
+                </tr>
+
+
+                <tr>
+                    {% if conference.key_speakers %}
+                    <td class="row_space">Key Speakers : {{conference.key_speakers}}</td>
+                    {% endif %}
+                </tr>
+
+                <tr>
+                    <td class="row_space">Information Source: {{conference.source}}</td>
+                </tr>
+
+                <tr>
+                    <td class="row_space">
+                        Venue: {{conference.conference_venue.name}},
+
+                        {% if conference.conference_venue.city%}
+                            {{conference.conference_venue.city}},
+                        {% endif %}
+
+                        {{conference.conference_venue.country}}
+
+                    </td>
+
+                </tr>
+
+                <tr>
+                       <td class="row_space">
+                        Ranking: {{conference.ranking}}
+
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td class="row_space">Knowledge Areas Covered:
+
+                         {%for skill in conference.fields_of_interest.all%}
+                    {{skill}},
+                        {%endfor%}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="row_space">Sponsors:
+
+                         {%for sponsor in conference.sponsors.all%}
+                                {{sponsor.name}},
+                        {%endfor%}
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td class="row_space">Contacts: <br>
+
+                         {%for contact in conference.contacts.all%}
+                                {{contact.email}}, {{contact.phone}} <br>
+                        {%endfor%}
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td class="row_space">Expenses Covered:
+
+                            {%for expense in conference.covered_expenses.all%}
+                                {{expense.amount}} , {{expense.description}} <br>
+                            {% endfor %}
+
+                    </td>
+                </tr>
+
+
+
+
+
+            </table>
+
+<a class="link" href="{%url 'main:conference_listing'%}">Back</a>
+
+    {% endif %}
+
+{% endblock %}

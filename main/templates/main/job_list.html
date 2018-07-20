@@ -1,0 +1,33 @@
+
+{%extends 'main/base.html'%}
+
+{%block title %}
+    Student Job Positions
+{% endblock %}
+
+
+{%block body%}
+
+    {% if job_list %}
+
+    <table border="1" class="centerTable">
+
+        {% for each in job_list%}
+
+        <tr >
+            <td class="row_space"><a href="{% url 'main:job_details' each.id %}" class="link align_center" id="{{each.id}}"> {{each.job.title}}</a> </td>
+            <td class="align_center row_space"> {{each.duration.start_date | date}}</td>
+
+        </tr>
+
+        {% endfor %}
+
+
+    </table>
+
+    {% endif %}
+
+<a class="link" href="{%url 'main:index'%}">Back</a>
+
+{% endblock %}
+

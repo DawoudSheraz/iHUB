@@ -1,0 +1,38 @@
+
+{%extends 'main/base.html'%}
+
+{%block title %}
+    Conferences
+{% endblock %}
+
+
+{%block body%}
+
+    {% if conference_list %}
+
+    <table border="1" class="centerTable">
+
+        {% for each in conference_list%}
+
+        <tr >
+            <td class="row_space"><a href="{% url 'main:conference_details' each.id%}" class="link align_center" id="{{each.id}}"> {{each.info.title}}</a> </td>
+            <td class="align_center row_space"> {{each.duration.start_date | date}}</td>
+
+            <td class="align_center row_space">
+            {%for skill in each.fields_of_interest.all%}
+                    {{skill}},
+            {%endfor%}
+            </td>
+        </tr>
+
+        {% endfor %}
+
+
+    </table>
+
+    {% endif %}
+
+<a class="link" href="{%url 'main:index'%}">Back</a>
+
+{% endblock %}
+

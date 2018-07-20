@@ -1,0 +1,31 @@
+{% extends 'main/base.html'%}
+
+{% block title%}
+    Scholarships
+{% endblock %}
+
+
+{% block body %}
+
+
+    {% if scholarship_list %}
+
+    <table border="1" class="centerTable">
+
+        {% for each in scholarship_list%}
+
+        <tr >
+            <td class="row_space"><a href="{% url 'main:scholarship_details' each.id %}" class="link align_center" id="{{each.id}}"> {{each.information.title}}</a> </td>
+            <td class="align_center row_space"> {{each.duration.start_date | date}}</td>
+
+        </tr>
+
+        {% endfor %}
+
+
+    </table>
+
+    {% endif %}
+
+<a class="link" href="{%url 'main:index'%}">Back</a>
+{% endblock %}
