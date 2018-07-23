@@ -7,6 +7,12 @@ urlpatterns = [
 
     url(r'^$', views.index_view, name="index"),
 
+    url(r'^login/$', views.login_view, name="login"),
+
+    url(r'^login/input/$', views.user_login, name='sign_check'),
+
+    url(r'^logout/$', views.user_logout, name='logout'),
+
     url(r'^conferences/$'
         , views.conference_list_view
         , name="conference_listing"),

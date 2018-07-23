@@ -1,12 +1,59 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from models import *
 
 
 def index_view(request):
     return render(request, "main/index.html")
+
+
+def login_view(request):
+    """
+    Returns html page to take user input, redirects to index if session exist
+
+    """
+    if 'user_name' in request.session:
+        return render(request, "main/index.html")
+    return render(request, "main/login.html")
+
+
+def user_login(request):
+
+    """
+    Checks if a user exists and login the valid user
+    """
+
+    if 'user_name' in request.session:
+        return render(request, "main/index.html")
+    try:
+        email = request.POST['email']
+        password = request.POST['password']
+        user = User.objects.get(email=email, password=password)
+        request.session['user_name'] = user.name
+        return redirect('/main/')
+
+    # If value not defines
+    except KeyError:
+        return render(request, 'main/login.html')
+    except User.DoesNotExist:       # IF User doesn't exist
+        return render(request, 'main/login.html', context={
+            'error': True
+        })
+
+
+def user_logout(request):
+
+    """
+    Logout the user by removing session
+    """
+
+    try:
+        del request.session['user_name']
+        return redirect('/main/')
+    except:
+        return redirect('/main/login')
 
 
 def job_position_list_view(request):
@@ -87,6 +134,8 @@ def get_scholarship_by_id(request, sch_id):
 
     try:
         scholarship = Scholarship.objects.get(id=sch_id)
+
+        request.session['conf'] = scholarship.id
 
         return render(request, 'main/scholarship_details.html', context={
             'scholarship': scholarship

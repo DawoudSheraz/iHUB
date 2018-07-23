@@ -283,7 +283,7 @@ class User(models.Model):
 
 class Student(User):
 
-    experience = models.FloatField(default=0.0)
+    experience = models.FloatField(default=1.0)
     skills = models.ManyToManyField(to=Specialization
                                     , related_name="skills")
 
