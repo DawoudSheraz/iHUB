@@ -13,11 +13,11 @@
 <body >
 
     <header>
-        {% if request.session.user_name %}
+        {% if user.username %}
             <nav class="navbar navbar-default">
             <div class="container-fluid">
                     <ul class="nav navbar-nav navbar-right">
-                        <li> <a href="#" class="bg-info">{{request.session.user_name}} </a></li>
+                        <li> <a href="#" class="bg-info">{{user.username}} </a></li>
                         <li><a href="{% url 'main:logout'%}">  <span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                     </ul>
             </div>
