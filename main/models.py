@@ -262,24 +262,24 @@ class Contact(models.Model):
         db_table = "contact"
 
 
-class ProfileUserAdapter(models.Model):
+# class ProfileUserAdapter(models.Model):
+#
+#     """
+#     Acts as adapter between User Auth and Profile class
+#     """
+#
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#
+#     class Meta:
+#         db_table = "profile_user_adapter"
 
-    """
-    Acts as adapter between User Auth and Profile class
-    """
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = "profile_user_adapter"
-
-
-class Profile(ProfileUserAdapter):
+class Profile(models.Model):
 
     """
     User Account Model
     """
-
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_id = CharField(max_length=50, primary_key=True)
     name = CharField(max_length=50)
     age = models.IntegerField(blank=True, null=True)
