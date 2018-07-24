@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
+from django.contrib import auth
 from models import *
 
 
@@ -14,7 +15,7 @@ def login_view(request):
     Returns html page to take user input, redirects to index if session exist
 
     """
-    if 'user_name' in request.session:
+    if request.user.is_authenticated():
         return render(request, "main/index.html")
     return render(request, "main/login.html")
 
@@ -25,35 +26,32 @@ def user_login(request):
     Checks if a user exists and login the valid user
     """
 
-    if 'user_name' in request.session:
+    if request.user.is_authenticated():
         return render(request, "main/index.html")
     try:
-        email = request.POST['email']
+        username = request.POST['username']
         password = request.POST['password']
-        user = User.objects.get(email=email, password=password)
-        request.session['user_name'] = user.name
-        return redirect('/main/')
-
+        user = auth.authenticate(request, username=username, password=password)
+        if user:
+            auth.login(request, user)
+            return redirect('/main/')
+        else:
+            return render(request, 'main/login.html', context={
+                'error': True
+            })
     # If value not defines
     except KeyError:
         return render(request, 'main/login.html')
-    except User.DoesNotExist:       # IF User doesn't exist
-        return render(request, 'main/login.html', context={
-            'error': True
-        })
 
 
 def user_logout(request):
 
     """
-    Logout the user by removing session
+    logs out a user
     """
 
-    try:
-        del request.session['user_name']
-        return redirect('/main/')
-    except:
-        return redirect('/main/login')
+    auth.logout(request)
+    return redirect('/main/')
 
 
 def job_position_list_view(request):

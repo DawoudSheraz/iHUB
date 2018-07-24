@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.db.models import CharField, ForeignKey
+from django.contrib.auth.models import User
 
 
 class Job(models.Model):
@@ -261,27 +262,37 @@ class Contact(models.Model):
         db_table = "contact"
 
 
-class User(models.Model):
+class ProfileUserAdapter(models.Model):
+
+    """
+    Acts as adapter between User Auth and Profile class
+    """
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = "profile_user_adapter"
+
+
+class Profile(ProfileUserAdapter):
 
     """
     User Account Model
     """
 
-    id = CharField(max_length=50, primary_key=True)
+    profile_id = CharField(max_length=50, primary_key=True)
     name = CharField(max_length=50)
-    email = models.EmailField()
-    password = models.CharField(max_length=20)
     age = models.IntegerField(blank=True, null=True)
     gender = CharField(max_length=10, blank=True, null=True)
 
     class Meta:
-        db_table = "user"
+        db_table = "profile"
 
     def __unicode__(self):
         return self.name
 
 
-class Student(User):
+class Student(Profile):
 
     experience = models.FloatField(default=1.0)
     skills = models.ManyToManyField(to=Specialization
@@ -291,7 +302,7 @@ class Student(User):
         db_table = "student"
 
 
-class Professor(User):
+class Professor(Profile):
 
     related_university = ForeignKey(to=Location
                                     , on_delete=models.CASCADE
