@@ -1,4 +1,5 @@
 import datetime
+from datetime import timedelta
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from models import *
@@ -41,6 +42,16 @@ def check_scholarship_deadline(sender, instance, **kwargs):
     if instance.deadline > instance.duration.start_date:
         instance.deadline = instance.duration.start_date \
                             - datetime.timedelta(days=60)
+
+
+@receiver(pre_save, sender=Tenure, dispatch_uid='tenure_duration_check')
+def check_tenure_duration(sender, instance, **kwargs):
+    """
+    IF duration is given to be negative, change it to be positive.
+    """
+    if instance.duration.total_seconds() < 0:
+        instance.duration = timedelta(seconds
+                                      =abs(instance.duration.total_seconds()))
 
 
 

@@ -25,7 +25,6 @@ def user_login(request):
     """
     Checks if a user exists and login the valid user
     """
-
     if request.user.is_authenticated():
         return render(request, "main/index.html")
     try:
