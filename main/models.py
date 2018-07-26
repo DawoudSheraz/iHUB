@@ -261,6 +261,9 @@ class Contact(models.Model):
     class Meta:
         db_table = "contact"
 
+    def __unicode__(self):
+        return self.email
+
 
 # class ProfileUserAdapter(models.Model):
 #

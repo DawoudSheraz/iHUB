@@ -36,7 +36,7 @@ def check_scholarship_deadline(sender, instance, **kwargs):
     Checks if scholarship application submission deadline is before start.
 
     IF deadline is after the start date, the deadline is adjusted
-    by the server to 36 days prior the start date
+    by the server to 60 days prior the start date
     """
     if instance.deadline > instance.duration.start_date:
         instance.deadline = instance.duration.start_date \
