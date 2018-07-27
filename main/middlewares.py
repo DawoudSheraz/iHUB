@@ -33,7 +33,7 @@ class CustomAuthenticationMiddleware(object):
 
     def process_request(self, request):
 
-        print("process_request : CustomAuthentication")
+        # print("process_request : CustomAuthentication")
         # If user logged in
         if request.user.is_authenticated():
 
