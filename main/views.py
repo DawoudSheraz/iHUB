@@ -30,7 +30,10 @@ def user_login(request):
     try:
         username = request.POST['username']
         password = request.POST['password']
-        user = auth.authenticate(request, username=username, password=password)
+        user = auth.authenticate(request
+                                 , username=username
+                                 , password=password
+                                 , email=username)
         if user:
             auth.login(request, user)
             return redirect('/main/')
