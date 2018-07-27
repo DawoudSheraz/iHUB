@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'customAuth.apps.CustomauthConfig',
 ]
 
 MIDDLEWARE = [
@@ -112,12 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = [
-    'main.auth_backend.CustomAuthBackend',
-    'django.contrib.auth.backends.ModelBackend',
-
-]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -137,6 +130,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-
-# AUTH_USER_MODEL = 'myapp.MyUser'
 
