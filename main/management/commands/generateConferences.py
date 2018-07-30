@@ -1,5 +1,4 @@
 import datetime
-from datetime import timedelta
 from django.core.management.base import BaseCommand, CommandError
 from main.models import Conference, About, Tenure, Location\
     ,Specialization, Contact, Sponsor, Expense
@@ -10,11 +9,15 @@ class Command(BaseCommand):
     help = "Generates 20 Conferences, starting from the index given as input"
 
     def add_arguments(self, parser):
-
+        """
+        Argument to specify the start index for id added
+        """
         parser.add_argument('start_index', type=int)
 
     def handle(self, *args, **options):
-
+        """
+        starting from index, create 20 conferences.
+        """
         start_point = options['start_index']
 
         skill_list = []
@@ -55,8 +58,10 @@ class Command(BaseCommand):
             contact_list.append(contact)
             skill_list.append(skill)
 
+        # To generate conference and their related 1-1 or 1-M fields
         for counter in range(start_point, start_point + 20):
 
+            # 1-1 About field. No About with such id should exist
             about, about_created = About.objects\
                 .get_or_create(id='conf_%s' % counter
                                , title='Conference %s' % counter
@@ -94,6 +99,7 @@ class Command(BaseCommand):
                 raise CommandError(self.stderr.write(
                         'Error Saving Conference' % conference.id))
 
+            # Adding all the M2M data generated in the first for loop
             conference.covered_expenses.add(*expense_list)
             conference.sponsors.add(*sponsor_list)
             conference.contacts.add(*contact_list)
