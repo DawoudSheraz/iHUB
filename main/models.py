@@ -208,7 +208,7 @@ class Tenure(models.Model):
         db_table = "tenure"
 
     def __unicode__(self):
-        return "%s - %s" % (self.start_date, self.start_date + self.duration)
+        return "%s :%s - %s" % (self.id, self.start_date, self.start_date + self.duration)
 
     def get_end_date(self):
         return self.start_date + self.duration
