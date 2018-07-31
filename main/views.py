@@ -3,7 +3,9 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect
 from django.contrib import auth
+from django.contrib.auth.models import User
 from models import *
+from forms import StudentForm, ProfessorForm
 
 
 def index_view(request):
@@ -18,6 +20,38 @@ def login_view(request):
     if request.user.is_authenticated():
         return render(request, "main/index.html")
     return render(request, "main/login.html")
+
+
+def edit_user(request):
+    """
+    Editing the logged in user through ModelForm.
+    """
+    # If user logged in, then only editing is allowed
+    if request.user.is_authenticated():
+        user = User.objects.get(username=request.user.username)
+        if user.is_staff:
+            return redirect('/main/')
+        try:
+            student = user.profile.student
+            if request.POST:
+                form = StudentForm(instance=student, data=request.POST)
+                if form.is_valid():
+                    form.save()
+            else:
+                form = StudentForm(instance=student)
+
+        except:
+            professor = user.profile.professor
+            if request.POST:
+                form = ProfessorForm(instance=professor, data=request.POST)
+                if form.is_valid():
+                    form.save()
+            else:
+                form = ProfessorForm(instance=professor)
+
+        return render(request, 'main/user_edit.html', {'form': form})
+
+    return redirect('/main/')
 
 
 def user_login(request):

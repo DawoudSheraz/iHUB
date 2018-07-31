@@ -18,8 +18,6 @@ class CustomAuthenticationMiddleware(object):
 
     def __call__(self, request):
 
-        # response = self.get_response(request)
-
         # Process_request called explicitly
         response = self.process_request(request)
 
@@ -27,8 +25,6 @@ class CustomAuthenticationMiddleware(object):
         if response is None:
             response = self.get_response(request)
 
-        # response = self.process_template_response(request, response)
-        # response = self.process_response(request, response)
         return response
 
     def process_request(self, request):
