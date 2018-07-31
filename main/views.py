@@ -29,25 +29,27 @@ def edit_user(request):
     # If user logged in, then only editing is allowed
     if request.user.is_authenticated():
         user = User.objects.get(username=request.user.username)
+
+        # If user is admin, redirect
         if user.is_staff:
             return redirect('/main/')
-        try:
-            student = user.profile.student
-            if request.POST:
-                form = StudentForm(instance=student, data=request.POST)
-                if form.is_valid():
-                    form.save()
-            else:
-                form = StudentForm(instance=student)
 
+        # Check if user is Student/Professor
+        # and assign instance and form accordingly
+        try:
+            instance = user.profile.student
+            form = StudentForm
         except:
-            professor = user.profile.professor
-            if request.POST:
-                form = ProfessorForm(instance=professor, data=request.POST)
-                if form.is_valid():
-                    form.save()
-            else:
-                form = ProfessorForm(instance=professor)
+            instance = user.profile.professor
+            form = ProfessorForm
+
+        # If previously submitted data, save update
+        if request.POST:
+            form = form(instance=instance, data=request.POST)
+            if form.is_valid():
+                form.save()
+        else:
+            form = form(instance=instance)
 
         return render(request, 'main/user_edit.html', {'form': form})
 

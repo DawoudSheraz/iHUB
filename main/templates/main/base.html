@@ -13,27 +13,26 @@
 <body >
 
     <header>
-        {% if user.username %}
+
             <nav class="navbar navbar-default">
             <div class="container-fluid">
                     <ul class="nav navbar-nav navbar-right">
-                        <li> <a href="{% url 'main:edit_user'%}" class="bg-info">{{user.username}} </a></li>
-                        <li><a href="{% url 'main:logout'%}">  <span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-                    </ul>
-            </div>
-        </nav>
 
-        {% else %}
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                    <ul class="nav navbar-nav navbar-right">
+                        {% if user.username %}
+                            <li> <a href="{% url 'main:edit_user'%}" class="bg-info">{{user.username}} </a></li>
+                            <li><a href="{% url 'main:logout'%}">  <span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        {% else %}
                         <li><a href="{% url 'main:login'%}">  <span class="glyphicon glyphicon-log-in"></span>  Login</a></li>
+                        {% endif %}
                     </ul>
             </div>
         </nav>
 
 
-        {% endif %}
+
+
+
+
 
     </header>
 
