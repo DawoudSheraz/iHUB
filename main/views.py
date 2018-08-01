@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 from django.contrib import auth
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
@@ -71,7 +71,6 @@ def sign_up_student(request):
 
         # If both user and student forms have data
         if user_form.is_valid() and student_form.is_valid():
-
             # Save Auth USer
             user = user_form.save()
 
@@ -80,10 +79,12 @@ def sign_up_student(request):
             student.user = user
 
             student.profile_id = '%s_%s' % (student.name
-                                            , user_form.cleaned_data.get('username'))
+                                            , user_form.cleaned_data.get(
+                'username'))
 
             # Create form with instance student and data from POST
-            student_form = StudentSignUpForm(instance=student, data=request.POST)
+            student_form = StudentSignUpForm(instance=student,
+                                             data=request.POST)
             student_form.save()
 
             # Authenticate the User
@@ -112,7 +113,6 @@ def sign_up_professor(request):
 
         # If both user and professor forms have data
         if user_form.is_valid() and professor_form.is_valid():
-
             # Save Auth USer
             user = user_form.save()
 
@@ -121,10 +121,12 @@ def sign_up_professor(request):
             professor.user = user
 
             professor.profile_id = '%s_%s' % (professor.name
-                                            , user_form.cleaned_data.get('username'))
+                                              , user_form.cleaned_data.get(
+                'username'))
 
             # Create form with instance professor and data from POST
-            professor_form = ProfessorSignUpForm(instance=professor, data=request.POST)
+            professor_form = ProfessorSignUpForm(instance=professor,
+                                                 data=request.POST)
             professor_form.save()
 
             # Authenticate the User
@@ -141,8 +143,68 @@ def sign_up_professor(request):
                   , {'professor_form': professor_form, 'user_form': user_form})
 
 
-def user_login(request):
+@login_required
+def add_conference(request):
+    """
+    New Conference Addition
+    """
+    if request.method == 'POST':
 
+        # Create Forms with data from POST request
+        about_form = AboutForm(request.POST)
+        conference_form = ConferenceForm(request.POST)
+        duration_form = TenureForm(request.POST)
+        location_form = LocationForm(request.POST)
+
+        # Check if entered data is valid
+        if about_form.is_valid()\
+            and conference_form.is_valid()\
+            and duration_form.is_valid()\
+            and location_form.is_valid():
+
+            # Duration & Location are checked through get_or_create
+            # as they are 1-M related to Conference
+            tenure = Tenure.objects.get_or_create(id='conf_%s' % about_form.cleaned_data.get('title')
+                                                  , start_date=duration_form.cleaned_data.get('start_date')
+                                                  , duration=duration_form.cleaned_data.get('duration'))[0]
+
+            venue = Location.objects.get_or_create(id=location_form.cleaned_data.get('name')
+                                                   , name=location_form.cleaned_data.get('name')
+                                                   , country=location_form.cleaned_data.get('country')
+                                                   , city=location_form.cleaned_data.get('city'))[0]
+
+            # About instance is created, populated with id
+            # and then passed to form to save the object
+            about = About()
+            about.id = about_form.cleaned_data.get('title')
+            about_form = AboutForm(instance=about, data=request.POST)
+            about = about_form.save()
+
+            # Conference object created, the relationship objects are defined
+            # and then, the instance is passed to form with POST data
+            conf = Conference()
+            conf.id = about.id.replace(' ', '_')
+            conf.conference_venue = venue
+            conf.duration = tenure
+            conf.info = about
+            conference_form = ConferenceForm(instance=conf, data=request.POST)
+            conf = conference_form.save()
+            return render_to_response('main/index.html')
+
+    else:
+        about_form = AboutForm()
+        conference_form = ConferenceForm()
+        duration_form = TenureForm()
+        location_form = LocationForm()
+
+    return render(request, 'main/add_conf.html'
+                  , {'about_form': about_form
+                     , 'conference_form': conference_form
+                     , 'duration_form': duration_form
+                     , 'location_form': location_form})
+
+
+def user_login(request):
     """
     Checks if a user exists and login the valid user
     """
@@ -168,7 +230,6 @@ def user_login(request):
 
 
 def user_logout(request):
-
     """
     logs out a user
     """
@@ -178,7 +239,6 @@ def user_logout(request):
 
 
 def job_position_list_view(request):
-
     job_list = StudentPosition.objects.order_by('-duration__start_date')
 
     return render(request, 'main/job_list.html', context={
@@ -209,7 +269,6 @@ def scholarship_list_view(request):
 
 
 def get_conference_by_id(request, conf_id):
-
     """
     Get conference using id.
 
@@ -223,7 +282,7 @@ def get_conference_by_id(request, conf_id):
         return render(request
                       , "main/conference_details.html"
                       , context={
-                        'conference': conference}
+                'conference': conference}
                       )
 
     except Conference.DoesNotExist:
@@ -231,7 +290,6 @@ def get_conference_by_id(request, conf_id):
 
 
 def get_job_by_id(request, job_id):
-
     """
     Get Student Job Position using id.
     """
@@ -241,7 +299,7 @@ def get_job_by_id(request, job_id):
         return render(request
                       , "main/job_details.html"
                       , context={
-                        'student_job_position': student_job_position}
+                'student_job_position': student_job_position}
                       )
 
     except StudentPosition.DoesNotExist:
@@ -263,7 +321,3 @@ def get_scholarship_by_id(request, sch_id):
         })
     except Scholarship.DoesNotExist:
         return scholarship_list_view(request)
-
-
-
-
