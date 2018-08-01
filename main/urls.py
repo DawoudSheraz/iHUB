@@ -27,6 +27,10 @@ urlpatterns = [
         , views.conference_list_view
         , name="conference_listing"),
 
+    url(r'^conferences/add$'
+        , views.add_conference
+        , name="add_conference"),
+
     url(r'^conference/(?P<conf_id>[0-9a-zA-z_]+)/$'
         , views.get_conference_by_id
         , name="conference_details"),
