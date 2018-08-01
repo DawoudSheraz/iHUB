@@ -69,6 +69,27 @@ class LocationForm(ModelForm):
         fields = ['name', 'city', 'country']
 
 
+class SubmissionFormView(ModelForm):
+
+    class Meta:
+        model = SubmissionForm
+        fields = ['required_docs', 'steps_to_apply']
+
+
+class QualificationsForm(ModelForm):
+
+    class Meta:
+        model = Qualifications
+        fields = ['minimum', 'preferred']
+
+
+class GrantForm(ModelForm):
+
+    class Meta:
+        model = Grant
+        fields = ['amount']
+
+
 class ConferenceForm(ModelForm):
 
     class Meta:
@@ -76,6 +97,16 @@ class ConferenceForm(ModelForm):
         fields = ['call_for_paper_deadline', 'key_speakers'
                   , 'source', 'ranking', 'fields_of_interest'
                   , 'sponsors', 'contacts', 'covered_expenses']
+
+
+class ScholarshipForm(ModelForm):
+
+    class Meta:
+        model = Scholarship
+        fields = ['funding', 'number_of_positions', 'deadline', 'source'
+                  , 'scholarship_maintenance_criteria', 'perks_offered'
+                  , 'fields_of_interest', 'contacts', 'sponsors'
+                    , 'host_universities']
 
 
 

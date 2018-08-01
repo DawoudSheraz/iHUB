@@ -24,6 +24,7 @@
                     <ul class="nav navbar-nav navbar-right">
 
                         {% if user.username %}
+                            <li> <a href="{% url 'main:add_scholarship'%}" class="bg-warning"> + Scholarship </a></li>
                             <li> <a href="{% url 'main:add_conference'%}" class="bg-danger"> + Conference </a></li>
                             <li> <a href="{% url 'main:edit_user'%}" class="bg-info">{{user.username}} </a></li>
                             <li><a href="{% url 'main:logout'%}">  <span class="glyphicon glyphicon-log-out"></span> Logout</a></li>

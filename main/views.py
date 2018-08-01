@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from models import *
 from forms import *
+from . import forms
 
 
 def index_view(request):
@@ -202,6 +203,79 @@ def add_conference(request):
                      , 'conference_form': conference_form
                      , 'duration_form': duration_form
                      , 'location_form': location_form})
+
+
+@login_required
+def add_scholarship(request):
+
+    if request.method == 'POST':
+
+        about_form = AboutForm(request.POST)
+        duration_form = TenureForm(request.POST)
+        grant_form = GrantForm(request.POST)
+        app_form = SubmissionFormView(request.POST)
+        requirements_form = QualificationsForm(request.POST)
+        scholarship_form = ScholarshipForm(request.POST)
+
+        if about_form.is_valid()\
+            and duration_form.is_valid()\
+            and grant_form.is_valid()\
+            and app_form.is_valid()\
+            and requirements_form.is_valid()\
+            and scholarship_form.is_valid():
+
+            tenure = Tenure.objects.get_or_create(id='sch_%s' % about_form.cleaned_data.get('title')
+                                                  , start_date=duration_form.cleaned_data.get('start_date')
+                                                  , duration=duration_form.cleaned_data.get('duration'))[0]
+
+            grant = Grant.objects.get_or_create(id=grant_form.cleaned_data.get('amount')
+                                                , amount=grant_form.cleaned_data.get('amount'))[0]
+
+            qualifications = Qualifications.objects.get_or_create(
+                id='sch_%s' % about_form.cleaned_data.get('title')
+                , minimum=requirements_form.cleaned_data.get('minimum')
+                , preferred=requirements_form.cleaned_data.get('preferred')
+            )[0]
+
+            about = About()
+            about.id = about_form.cleaned_data.get('title')
+            about_form = AboutForm(instance=about, data=request.POST)
+            about = about_form.save()
+
+            application = SubmissionForm()
+            application.id = about.title
+            application.title = about.title
+            requirements_form = forms.SubmissionFormView(instance=application, data=request.POST)
+            application = requirements_form.save()
+
+            scholarship = Scholarship()
+            scholarship.id = about.id.replace(' ', '_')
+            scholarship.duration = tenure
+            scholarship.amount_granted = grant
+            scholarship.information = about
+            scholarship.application_form = application
+            scholarship.criteria = qualifications
+
+            scholarship_form = ScholarshipForm(instance=scholarship, data=request.POST)
+            scholarship = scholarship_form.save()
+            return render_to_response('main/index.html')
+
+    else:
+        about_form = AboutForm()
+        duration_form = TenureForm()
+        grant_form = GrantForm()
+        app_form = SubmissionFormView()
+        requirements_form = QualificationsForm()
+        scholarship_form = ScholarshipForm()
+
+    return render(request, 'main/add_sch.html',
+                  {'about_form': about_form
+                      , 'duration_form': duration_form
+                   , 'grant_form': grant_form
+                   , 'app_form': app_form
+                   , 'requirements_form': requirements_form
+                   , 'scholarship_form': scholarship_form
+                   })
 
 
 def user_login(request):

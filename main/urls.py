@@ -47,6 +47,10 @@ urlpatterns = [
         , views.scholarship_list_view
         , name="scholarship_listing"),
 
+    url(r'^scholarships/add/$'
+        , views.add_scholarship
+        , name="add_scholarship"),
+
     url(r'^scholarship/(?P<sch_id>[0-9a-zA-z_]+)/$'
         , views.get_scholarship_by_id
         , name="scholarship_details"),
