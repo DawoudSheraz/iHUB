@@ -1,6 +1,8 @@
 from django.core.validators import validate_email
 from django.http.response import HttpResponse
 from django.contrib.auth import logout
+from django.shortcuts import render
+from django.contrib.auth.models import User
 
 
 class CustomAuthenticationMiddleware(object):
@@ -59,6 +61,45 @@ class CustomAuthenticationMiddleware(object):
 
     def process_exception(self, request, exception):
         print ("process_exception: CustomAuthentication")
+
+
+class UserProfileChecker(object):
+
+    """
+    Checks if signed In user has an associated profile.
+
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+        # One-time configuration and initialization.
+
+    def __call__(self, request):
+
+        # Process_request called explicitly
+        response = self.process_request(request)
+
+        # if none returned, get the initial response for the request
+        if response is None:
+            response = self.get_response(request)
+
+        return response
+
+    def process_request(self, request):
+
+        if request.user.is_authenticated:
+            user = User.objects.get(username=request.user.username)
+
+            if user.is_superuser:
+                return None
+            try:
+                profile = user.profile
+                return None
+            except:
+                return render(request, 'main/choose_user.html')
+        return None
+
+
 
 
 

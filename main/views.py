@@ -3,13 +3,19 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect
 from django.contrib import auth
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from models import *
-from forms import StudentForm, ProfessorForm
+from forms import *
 
 
 def index_view(request):
     return render(request, "main/index.html")
+
+
+def user_select_view(request):
+    return render(request, "main/choose_user.html")
 
 
 def login_view(request):
@@ -22,38 +28,117 @@ def login_view(request):
     return render(request, "main/login.html")
 
 
+@login_required
 def edit_user(request):
     """
     Editing the logged in user through ModelForm.
     """
-    # If user logged in, then only editing is allowed
-    if request.user.is_authenticated():
-        user = User.objects.get(username=request.user.username)
+    user = User.objects.get(username=request.user.username)
 
-        # If user is admin, redirect
-        if user.is_staff:
-            return redirect('/main/')
+    # If user is admin, redirect
+    if user.is_staff:
+        return redirect('/main/')
 
-        # Check if user is Student/Professor
-        # and assign instance and form accordingly
-        try:
-            instance = user.profile.student
-            form = StudentForm
-        except:
-            instance = user.profile.professor
-            form = ProfessorForm
+    # Check if user is Student/Professor
+    # and assign instance and form accordingly
+    try:
+        instance = user.profile.student
+        form = StudentForm
+    except:
+        instance = user.profile.professor
+        form = ProfessorForm
 
-        # If previously submitted data, save update
-        if request.POST:
-            form = form(instance=instance, data=request.POST)
-            if form.is_valid():
-                form.save()
-        else:
-            form = form(instance=instance)
+    # If previously submitted data, save update
+    if request.POST:
+        form = form(instance=instance, data=request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = form(instance=instance)
 
-        return render(request, 'main/user_edit.html', {'form': form})
+    return render(request, 'main/user_edit.html', {'form': form})
 
-    return redirect('/main/')
+
+def sign_up_student(request):
+    """
+    New Student is created, verified and redirected
+    """
+
+    if request.method == 'POST':
+
+        student_form = StudentSignUpForm(request.POST)
+        user_form = UserSignUpForm(request.POST)
+
+        # If both user and student forms have data
+        if user_form.is_valid() and student_form.is_valid():
+
+            # Save Auth USer
+            user = user_form.save()
+
+            # Create Empty student and set its credentials
+            student = Student()
+            student.user = user
+
+            student.profile_id = '%s_%s' % (student.name
+                                            , user_form.cleaned_data.get('username'))
+
+            # Create form with instance student and data from POST
+            student_form = StudentSignUpForm(instance=student, data=request.POST)
+            student_form.save()
+
+            # Authenticate the User
+            username = user_form.cleaned_data.get('username')
+            raw_password = user_form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return render(request, 'main/index.html')
+    else:
+        student_form = StudentSignUpForm()
+        user_form = UserSignUpForm()
+
+    return render(request, 'main/signup_student.html'
+                  , {'student_form': student_form, 'user_form': user_form})
+
+
+def sign_up_professor(request):
+    """
+    New Professor is created, verified and redirected
+    """
+
+    if request.method == 'POST':
+
+        professor_form = ProfessorSignUpForm(request.POST)
+        user_form = UserSignUpForm(request.POST)
+
+        # If both user and professor forms have data
+        if user_form.is_valid() and professor_form.is_valid():
+
+            # Save Auth USer
+            user = user_form.save()
+
+            # Create Empty professor and set its credentials
+            professor = Professor()
+            professor.user = user
+
+            professor.profile_id = '%s_%s' % (professor.name
+                                            , user_form.cleaned_data.get('username'))
+
+            # Create form with instance professor and data from POST
+            professor_form = ProfessorSignUpForm(instance=professor, data=request.POST)
+            professor_form.save()
+
+            # Authenticate the User
+            username = user_form.cleaned_data.get('username')
+            raw_password = user_form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return render(request, 'main/index.html')
+    else:
+        professor_form = ProfessorSignUpForm()
+        user_form = UserSignUpForm()
+
+    return render(request, 'main/signup_professor.html'
+                  , {'professor_form': professor_form, 'user_form': user_form})
 
 
 def user_login(request):

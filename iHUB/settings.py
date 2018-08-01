@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'main.middlewares.CustomAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'main.middlewares.UserProfileChecker',
 ]
 
 ROOT_URLCONF = 'iHUB.urls'
@@ -137,6 +138,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_URL = '/main/login/'
 
 # AUTH_USER_MODEL = 'myapp.MyUser'
 
