@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+
+
+{% block title %}
+    User Selection
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="text-center">
+     <a class="btn btn-danger" href="{% url 'main:signup_student'%}"> Continue as Student</a>
+    </div>
+
+    <br><br>
+
+    <div class="text-center">
+     <a href="{% url 'main:signup_professor'%}" class="btn btn-primary"> Continue as Professor</a>
+    </div>
+
+
+
+{% endblock %}

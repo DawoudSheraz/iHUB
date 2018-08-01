@@ -11,6 +11,14 @@ urlpatterns = [
 
     url(r'^edit/$', views.edit_user, name="edit_user"),
 
+    url(r'^signup/select/student/$', views.sign_up_student
+        , name="signup_student"),
+
+    url(r'^signup/select/professor/$', views.sign_up_professor
+        , name="signup_professor"),
+
+    url(r'^signup/select$', views.user_select_view, name="user_select"),
+
     url(r'^login/input/$', views.user_login, name='sign_check'),
 
     url(r'^logout/$', views.user_logout, name='logout'),
