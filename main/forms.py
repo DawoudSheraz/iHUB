@@ -109,5 +109,16 @@ class ScholarshipForm(ModelForm):
                     , 'host_universities']
 
 
+class SelectGenderForm(forms.Form):
+
+    _selected_action = forms.CharField(widget=forms.MultipleHiddenInput)
+    gender = forms.ChoiceField((
+            ('Male', 'Male')
+            , ('Female', 'Female')
+            , ('X', 'X')))
+
+
+
+
 
 

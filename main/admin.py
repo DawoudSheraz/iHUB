@@ -2,7 +2,10 @@
 from __future__ import unicode_literals
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from .models import *
+from forms import SelectGenderForm
 
 # app = apps.get_app_config('main')
 #
@@ -55,6 +58,32 @@ class JobAdmin(ModelAdmin):
 
     list_display = ['title', 'type']
 
+    actions = ['convert_into_part_time', 'convert_into_full_time']
+
+    def convert_into_part_time(self, request, queryset):
+        rows_changed = queryset.update(type='part time')
+        if rows_changed == 1:
+            message = "1 job was"
+        else:
+            message = "%s jobs were" % rows_changed
+
+        self.message_user(request, '%s updated successfully' % message)
+
+    def convert_into_full_time(self, request, queryset):
+        rows_changed = queryset.update(type='full time')
+        if rows_changed == 1:
+            message = "1 job was"
+        else:
+            message = "%s jobs were" % rows_changed
+
+        self.message_user(request, '%s updated successfully' % message)
+
+    convert_into_part_time.short_description = \
+        "Change selected Jobs' type into part time"
+
+    convert_into_full_time.short_description = \
+        "Change selected Jobs' type into full time"
+
 
 @admin.register(Qualifications)
 class QualificationAdmin(ModelAdmin):
@@ -77,6 +106,36 @@ class ProfileAdmin(ModelAdmin):
     search_fields = ('name', )
     list_display = ('name', 'gender')
 
+    actions = ['change_gender']
+
+    def change_gender(self, request, queryset):
+        form = None
+        # For submitted form
+        if 'update' in request.POST:
+            form = SelectGenderForm(request.POST)
+            if form.is_valid():
+                # Get value of new gender and update query set
+                gender = form.cleaned_data['gender']
+                rows_updated = queryset.update(gender=gender)
+
+                if rows_updated == 1:
+                    message = "1 user was"
+                else:
+                    message = "%s users were" % rows_updated
+                self.message_user(request, "%s updated Successfully" % message)
+
+                return HttpResponseRedirect(request.get_full_path())
+
+        if form is None:
+            form = SelectGenderForm(initial={'_selected_action': request.POST.getlist(admin.ACTION_CHECKBOX_NAME)})
+
+        return render(request, 'admin/change_gender.html', {
+            'users': queryset
+            , 'select_form': form,
+        })
+
+    change_gender.short_description = "Change Gender of Selected Users"
+
 
 @admin.register(Student)
 class StudentAdmin(ProfileAdmin):
@@ -89,6 +148,7 @@ class ProfessorAdmin(ProfileAdmin):
 
     list_filter = ('related_university',)
     list_display = ('name', 'gender', 'institute')
+    raw_id_fields = ('related_university', )
 
 
 @admin.register(Scholarship)
@@ -109,7 +169,8 @@ class StudentPositionAdmin(ModelAdmin):
 
     list_display = ('job_title', 'deadline', 'experience_required')
 
-    search_fields = ('job__title', 'job_location__name', 'skills_covered__title')
+    search_fields = ('job__title', 'job_location__name'
+                     , 'skills_covered__title')
 
 
 
