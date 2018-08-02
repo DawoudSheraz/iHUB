@@ -13,7 +13,9 @@ class Job(models.Model):
     """
 
     title = CharField(max_length=50)
-    type = CharField(max_length=50)
+    type = CharField(max_length=50, choices=(('full time', 'full time'),
+                                             ('part time', 'part time')
+                                             ))
     description = CharField(max_length=100)
     function = CharField(max_length=100)
     expectations = CharField(max_length=100, null=True, blank=True)
@@ -28,7 +30,7 @@ class Job(models.Model):
         """
         How the data should be shown on the admin portal
         """
-        return "%s: %s" % (self.id, self.title)
+        return self.title
 
 
 class Location(models.Model):
@@ -36,7 +38,6 @@ class Location(models.Model):
     """
     Modelling a Real World location (Hotel, University etc.).
     """
-
 
     name = CharField(max_length=60)
     city = CharField(max_length=30, blank=True, null=True)
@@ -99,7 +100,7 @@ class Expense(models.Model):
         db_table = "expense"
 
     def __unicode__(self):
-        return "%s: %s" % (self.id, self.amount)
+        return self.amount
 
 
 class Qualifications(models.Model):
@@ -199,7 +200,7 @@ class Tenure(models.Model):
         db_table = "tenure"
 
     def __unicode__(self):
-        return "%s :%s - %s" % (self.id, self.start_date, self.start_date + self.duration)
+        return "%s - %s" % (self.start_date, self.start_date + self.duration)
 
     def get_end_date(self):
         return self.start_date + self.duration
@@ -273,7 +274,12 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = CharField(max_length=50)
     age = models.IntegerField(blank=True, null=True)
-    gender = CharField(max_length=10, blank=True, null=True)
+    gender = CharField(max_length=10, blank=True, null=True
+                       , choices=(
+            ('Male', 'Male')
+            , ('Female', 'Female')
+            , ('X', 'X'))
+                       )
 
     skills = models.ManyToManyField(to=Specialization
                                     , related_name="skills")
@@ -299,6 +305,9 @@ class Professor(Profile):
                                     , on_delete=models.CASCADE
                                     , related_name="related_university")
 
+    def institute(self):
+        return self.related_university.name
+
     class Meta:
         db_table = "professor"
 
@@ -309,7 +318,12 @@ class StudentPosition(models.Model):
     Student Job Position Model
     """
 
-    experience_required = CharField(max_length=20)
+    experience_required = CharField(max_length=20, choices=(
+        ('0-1 Years', '0-1 Years')
+        , ('2-3 Years', '2-3 Years')
+        , ('4-5 Years', '4-5 Years')
+        , ('5+ Years', '5+ Years')
+    ))
     deadline = models.DateTimeField()
     source = models.TextField()
 
@@ -350,6 +364,9 @@ class StudentPosition(models.Model):
         db_table = "student_job_position"
 
     def __unicode__(self):
+        return self.job.title
+
+    def job_title(self):
         return self.job.title
 
 
@@ -403,6 +420,12 @@ class Scholarship(models.Model):
     sponsors = models.ManyToManyField(to=Sponsor,
                                       related_name="funders")
 
+    def scholarship_title(self):
+        return self.information.title
+
+    def start_date(self):
+        return self.duration.start_date
+
 
 class Conference(models.Model):
 
@@ -439,6 +462,15 @@ class Conference(models.Model):
 
     def __unicode__(self):
         return self.info.title
+
+    def conference_title(self):
+        return self.info.title
+
+    def start_date(self):
+        return self.duration.start_date
+
+    def location(self):
+        return self.conference_venue.name
 
 
 class Schedule(models.Model):
