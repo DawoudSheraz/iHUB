@@ -79,10 +79,6 @@ def sign_up_student(request):
             student = Student()
             student.user = user
 
-            student.profile_id = '%s_%s' % (student.name
-                                            , user_form.cleaned_data.get(
-                'username'))
-
             # Create form with instance student and data from POST
             student_form = StudentSignUpForm(instance=student,
                                              data=request.POST)
@@ -120,10 +116,6 @@ def sign_up_professor(request):
             # Create Empty professor and set its credentials
             professor = Professor()
             professor.user = user
-
-            professor.profile_id = '%s_%s' % (professor.name
-                                              , user_form.cleaned_data.get(
-                'username'))
 
             # Create form with instance professor and data from POST
             professor_form = ProfessorSignUpForm(instance=professor,
@@ -165,26 +157,22 @@ def add_conference(request):
 
             # Duration & Location are checked through get_or_create
             # as they are 1-M related to Conference
-            tenure = Tenure.objects.get_or_create(id='conf_%s' % about_form.cleaned_data.get('title')
-                                                  , start_date=duration_form.cleaned_data.get('start_date')
+            tenure = Tenure.objects.get_or_create(start_date=duration_form.cleaned_data.get('start_date')
                                                   , duration=duration_form.cleaned_data.get('duration'))[0]
 
-            venue = Location.objects.get_or_create(id=location_form.cleaned_data.get('name')
-                                                   , name=location_form.cleaned_data.get('name')
+            venue = Location.objects.get_or_create(name=location_form.cleaned_data.get('name')
                                                    , country=location_form.cleaned_data.get('country')
                                                    , city=location_form.cleaned_data.get('city'))[0]
 
             # About instance is created, populated with id
             # and then passed to form to save the object
-            about = About()
-            about.id = about_form.cleaned_data.get('title')
-            about_form = AboutForm(instance=about, data=request.POST)
+            # about = About()
+            # about_form = AboutForm(instance=about, data=request.POST)
             about = about_form.save()
 
             # Conference object created, the relationship objects are defined
             # and then, the instance is passed to form with POST data
             conf = Conference()
-            conf.id = about.id.replace(' ', '_')
             conf.conference_venue = venue
             conf.duration = tenure
             conf.info = about
@@ -224,32 +212,27 @@ def add_scholarship(request):
             and requirements_form.is_valid()\
             and scholarship_form.is_valid():
 
-            tenure = Tenure.objects.get_or_create(id='sch_%s' % about_form.cleaned_data.get('title')
-                                                  , start_date=duration_form.cleaned_data.get('start_date')
+            tenure = Tenure.objects.get_or_create(start_date=duration_form.cleaned_data.get('start_date')
                                                   , duration=duration_form.cleaned_data.get('duration'))[0]
 
-            grant = Grant.objects.get_or_create(id=grant_form.cleaned_data.get('amount')
-                                                , amount=grant_form.cleaned_data.get('amount'))[0]
+            grant = Grant.objects.get_or_create(amount=grant_form.cleaned_data.get('amount'))[0]
 
             qualifications = Qualifications.objects.get_or_create(
-                id='sch_%s' % about_form.cleaned_data.get('title')
-                , minimum=requirements_form.cleaned_data.get('minimum')
+                minimum=requirements_form.cleaned_data.get('minimum')
                 , preferred=requirements_form.cleaned_data.get('preferred')
             )[0]
 
-            about = About()
-            about.id = about_form.cleaned_data.get('title')
-            about_form = AboutForm(instance=about, data=request.POST)
+            # about = About()
+            # about.id = about_form.cleaned_data.get('title')
+            # about_form = AboutForm(instance=about, data=request.POST)
             about = about_form.save()
 
             application = SubmissionForm()
-            application.id = about.title
             application.title = about.title
             requirements_form = forms.SubmissionFormView(instance=application, data=request.POST)
             application = requirements_form.save()
 
             scholarship = Scholarship()
-            scholarship.id = about.id.replace(' ', '_')
             scholarship.duration = tenure
             scholarship.amount_granted = grant
             scholarship.information = about
@@ -258,7 +241,7 @@ def add_scholarship(request):
 
             scholarship_form = ScholarshipForm(instance=scholarship, data=request.POST)
             scholarship = scholarship_form.save()
-            return render_to_response('main/index.html')
+            return render_to_response('/main/index.html')
 
     else:
         about_form = AboutForm()
@@ -351,12 +334,11 @@ def get_conference_by_id(request, conf_id):
     :return: detail page, or redirects if not found
     """
     try:
-        conference = Conference.objects.get(id=conf_id)
+        conference = Conference.objects.get(pk=conf_id)
 
         return render(request
                       , "main/conference_details.html"
-                      , context={
-                'conference': conference}
+                      , {'conference': conference}
                       )
 
     except Conference.DoesNotExist:
@@ -368,12 +350,11 @@ def get_job_by_id(request, job_id):
     Get Student Job Position using id.
     """
     try:
-        student_job_position = StudentPosition.objects.get(id=job_id)
+        student_job_position = StudentPosition.objects.get(pk=job_id)
 
         return render(request
                       , "main/job_details.html"
-                      , context={
-                'student_job_position': student_job_position}
+                      , {'student_job_position': student_job_position}
                       )
 
     except StudentPosition.DoesNotExist:
@@ -386,12 +367,13 @@ def get_scholarship_by_id(request, sch_id):
     """
 
     try:
-        scholarship = Scholarship.objects.get(id=sch_id)
+        scholarship = Scholarship.objects.get(pk=sch_id)
 
         request.session['conf'] = scholarship.id
 
-        return render(request, 'main/scholarship_details.html', context={
-            'scholarship': scholarship
-        })
+        return render(request, 'main/scholarship_details.html'
+                      , {
+                          'scholarship': scholarship
+                      })
     except Scholarship.DoesNotExist:
         return scholarship_list_view(request)

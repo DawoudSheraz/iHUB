@@ -26,26 +26,22 @@ class Command(BaseCommand):
 
             # Generating or getting the existing M2M Fields of Conference
             skill = Specialization.objects \
-                .get_or_create(id='skill_%s' % count
-                               , title='Skill %s' % count
+                .get_or_create(title='Skill %s' % count
                                , description='All About %s' % count
                                )[0]
 
             contact = Contact.objects \
-                .get_or_create(id='contact %s' % count
-                               , email='contact%s@email.com' % count
+                .get_or_create(email='contact%s@email.com' % count
                                , phone='0900-%s%s%s-01'
                                        % (count, count * 2, count * 5)
                                )[0]
 
             sponsor = Sponsor.objects \
-                .get_or_create(id='sponsor %s' % count
-                               , name='Sponsor %s' % count
+                .get_or_create(name='Sponsor %s' % count
                                )[0]
 
             venue = Location.objects\
-                .get_or_create(id='loc_%s' % count
-                               , name='Location %s' % count
+                .get_or_create(name='Location %s' % count
                                , city='City %s' % count
                                , country='Pakistan')[0]
 
@@ -58,8 +54,7 @@ class Command(BaseCommand):
 
             # 1-1 About field. No About with such id should exist
             about, about_created = About.objects \
-                .get_or_create(id='sch_%s' % counter
-                               , title='Scholarship %s' % counter
+                .get_or_create( title='Scholarship %s' % counter
                                , description='Scholarship %s is all about %s things'
                                            % (counter, counter + 10))
 
@@ -69,8 +64,7 @@ class Command(BaseCommand):
                         'About Object %s already Exists' % about.id)))
 
             form, form_created = SubmissionForm.objects\
-                .get_or_create(id='sch_%s' % counter
-                               , title='Scholarship %s' % counter
+                .get_or_create(title='Scholarship %s' % counter
                                , required_docs='Transcript'
                                , steps_to_apply='Follow Website')
 
@@ -80,19 +74,17 @@ class Command(BaseCommand):
                         'SubmissionForm Object %s already Exists' % form.id)))
 
             tenure = Tenure.objects\
-                .get_or_create(id='tenure_sch_%s' % counter
-                               , start_date=datetime.datetime.now()
+                .get_or_create( start_date=datetime.datetime.now()
                                , duration=datetime.timedelta(days=365))[0]
 
-            grant = Grant.objects.get_or_create(id='sch_%s' % counter
-                                                , amount='$%s%s'
+            grant = Grant.objects.get_or_create(amount='$%s%s'
                                                          % (counter, counter/2))[0]
 
             requirements = Qualifications.objects\
-                .get_or_create(id='sch_%s' % counter, minimum='Python, C++'
+                .get_or_create(minimum='Python, C++'
                                , preferred='Minimum + AR')[0]
 
-            scholarship = Scholarship(id='sch_%s' % counter, funding=counter % 100
+            scholarship = Scholarship(funding=counter % 100
                                       , number_of_positions=counter
                                       , source='Website'
                                       , perks_offered='Lunch'
