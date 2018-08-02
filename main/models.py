@@ -12,7 +12,6 @@ class Job(models.Model):
     Job model class,focusing on attributes like job type, expectations.
     """
 
-    id = CharField(max_length=50, primary_key=True)
     title = CharField(max_length=50)
     type = CharField(max_length=50)
     description = CharField(max_length=100)
@@ -38,7 +37,7 @@ class Location(models.Model):
     Modelling a Real World location (Hotel, University etc.).
     """
 
-    id = CharField(max_length=50, primary_key=True)
+
     name = CharField(max_length=60)
     city = CharField(max_length=30, blank=True, null=True)
     country = CharField(max_length=20)
@@ -52,7 +51,6 @@ class Location(models.Model):
 
 class Fee(models.Model):
 
-    id = CharField(max_length=50, primary_key=True)
     amount = CharField(max_length=30)
 
     class Meta:
@@ -64,7 +62,6 @@ class Fee(models.Model):
 
 class Salary(models.Model):
 
-    id = CharField(max_length=50, primary_key=True)
     amount = CharField(max_length=30)
 
     class Meta:
@@ -80,7 +77,6 @@ class Grant(models.Model):
     Educational Grant
     """
 
-    id = CharField(max_length=50, primary_key=True)
     amount = CharField(max_length=30)
 
     class Meta:
@@ -96,7 +92,6 @@ class Expense(models.Model):
     Expense model, emphasizing amount and reason why that amount was required
     """
 
-    id = CharField(max_length=50, primary_key=True)
     amount = CharField(max_length=30)
     description = CharField(max_length=50, null=True, blank=True)
 
@@ -113,7 +108,6 @@ class Qualifications(models.Model):
     qualification Model, that defines minimum & preferred requirements.
     """
 
-    id = CharField(max_length=50, primary_key=True)
     minimum = CharField(max_length=100)
     preferred = CharField(max_length=100, blank=True, null=True)
 
@@ -124,44 +118,44 @@ class Qualifications(models.Model):
         return self.minimum
 
 
-class Department(models.Model):
-
-    """
-    Modelling department inside a University
-    """
-
-    id = CharField(max_length=50, primary_key=True)
-    name = CharField(max_length=50)
-    university = ForeignKey(to=Location
-                            , on_delete=models.CASCADE
-                            , related_name="university"
-                            , blank=True
-                            , null=True)
-
-    class Meta:
-        db_table = "department"
-
-    def __unicode__(self):
-        return self.name
-
-
-class Field(models.Model):
-
-    """
-    Modelling a specialization inside a University Department.
-    """
-
-    id = CharField(max_length=50, primary_key=True)
-    name = CharField(max_length=50)
-    department = ForeignKey(to=Department
-                            , on_delete=models.CASCADE
-                            , related_name="department")
-
-    class Meta:
-        db_table = "field"
-
-    def __unicode__(self):
-        return self.name
+# class Department(models.Model):
+#
+#     """
+#     Modelling department inside a University
+#     """
+#
+#     id = CharField(max_length=50, primary_key=True)
+#     name = CharField(max_length=50)
+#     university = ForeignKey(to=Location
+#                             , on_delete=models.CASCADE
+#                             , related_name="university"
+#                             , blank=True
+#                             , null=True)
+#
+#     class Meta:
+#         db_table = "department"
+#
+#     def __unicode__(self):
+#         return self.name
+#
+#
+# class Field(models.Model):
+#
+#     """
+#     Modelling a specialization inside a University Department.
+#     """
+#
+#     id = CharField(max_length=50, primary_key=True)
+#     name = CharField(max_length=50)
+#     department = ForeignKey(to=Department
+#                             , on_delete=models.CASCADE
+#                             , related_name="department")
+#
+#     class Meta:
+#         db_table = "field"
+#
+#     def __unicode__(self):
+#         return self.name
 
 
 class SubmissionForm(models.Model):
@@ -170,7 +164,6 @@ class SubmissionForm(models.Model):
     Required and steps to submit a form for Job, Conference etc.
     """
 
-    id = CharField(max_length=50, primary_key=True)
     title = CharField(max_length=30)
     required_docs = CharField(max_length=200)
     steps_to_apply = CharField(max_length=200)
@@ -184,7 +177,6 @@ class SubmissionForm(models.Model):
 
 class Sponsor(models.Model):
 
-    id = CharField(max_length=50, primary_key=True)
     name = CharField(max_length=50)
 
     class Meta:
@@ -200,7 +192,6 @@ class Tenure(models.Model):
     Defining a time period, using start date and duration.
     """
 
-    id = CharField(max_length=50, primary_key=True)
     start_date = models.DateTimeField()
     duration = models.DurationField()
 
@@ -220,7 +211,6 @@ class About(models.Model):
     Modelling the information class
     """
 
-    id = CharField(max_length=50, primary_key=True)
     title = CharField(max_length=80)
     description = CharField(max_length=150)
 
@@ -237,9 +227,8 @@ class Specialization(models.Model):
     Models a Study Field
     """
 
-    id = CharField(max_length=50, primary_key=True)
     title = CharField(max_length=40)
-    description = CharField(max_length=100)
+    description = CharField(max_length=100, null=True, blank=True)
 
     class Meta:
         db_table = "specialization"
@@ -254,7 +243,6 @@ class Contact(models.Model):
     Contact Information
     """
 
-    id = CharField(max_length=50, primary_key=True)
     email = models.EmailField(null=True, blank=True)
     phone = CharField(max_length=20, null=True, blank=True)
 
@@ -283,10 +271,12 @@ class Profile(models.Model):
     User Account Model
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_id = CharField(max_length=50, primary_key=True)
     name = CharField(max_length=50)
     age = models.IntegerField(blank=True, null=True)
     gender = CharField(max_length=10, blank=True, null=True)
+
+    skills = models.ManyToManyField(to=Specialization
+                                    , related_name="skills")
 
     class Meta:
         db_table = "profile"
@@ -298,8 +288,6 @@ class Profile(models.Model):
 class Student(Profile):
 
     experience = models.FloatField(default=1.0)
-    skills = models.ManyToManyField(to=Specialization
-                                    , related_name="skills")
 
     class Meta:
         db_table = "student"
@@ -311,9 +299,6 @@ class Professor(Profile):
                                     , on_delete=models.CASCADE
                                     , related_name="related_university")
 
-    expertise = models.ManyToManyField(to=Specialization
-                                       , related_name="expertise")
-
     class Meta:
         db_table = "professor"
 
@@ -324,7 +309,6 @@ class StudentPosition(models.Model):
     Student Job Position Model
     """
 
-    id = CharField(max_length=50, primary_key=True)
     experience_required = CharField(max_length=20)
     deadline = models.DateTimeField()
     source = models.TextField()
@@ -381,7 +365,6 @@ class Scholarship(models.Model):
     def __unicode__(self):
         return self.information.title
 
-    id = CharField(max_length=50, primary_key=True)
     funding = models.FloatField(blank=True, null=True)
     number_of_positions = models.IntegerField(default=0)
     deadline = models.DateTimeField()
@@ -426,7 +409,6 @@ class Conference(models.Model):
     class Meta:
         db_table = "conference"
 
-    id = CharField(max_length=50, primary_key=True)
     call_for_paper_deadline = models.DateTimeField()
     key_speakers = models.TextField(blank=True, null=True)
     source = models.TextField()
@@ -465,7 +447,6 @@ class Schedule(models.Model):
     Defining a work on a particular day and time.
     """
 
-    id = CharField(max_length=50, primary_key=True)
     date = models.DateTimeField()
     description = CharField(max_length=100)
     related_conference = ForeignKey(to=Conference

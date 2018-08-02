@@ -16,7 +16,7 @@ class ProfessorForm(ModelForm):
 
     class Meta:
         model = Professor
-        fields = ['name', 'age', 'gender', 'related_university', 'expertise']
+        fields = ['name', 'age', 'gender', 'related_university', 'skills']
 
 
 class UserSignUpForm(UserCreationForm):
@@ -41,7 +41,7 @@ class ProfessorSignUpForm(ModelForm):
     class Meta:
         model = Professor
         fields = ['name', 'age', 'gender', 'related_university',
-                  'expertise']
+                  'skills']
 
 
 class TenureForm(ModelForm):

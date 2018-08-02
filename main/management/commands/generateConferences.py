@@ -30,26 +30,22 @@ class Command(BaseCommand):
 
             # Generating or getting the existing M2M Fields of Conference
             skill = Specialization.objects\
-                .get_or_create(id='skill_%s' % count
-                               , title='Skill %s' % count
+                .get_or_create(title='Skill %s' % count
                                , description='All About %s' % count
                                )[0]
 
             contact = Contact.objects \
-                .get_or_create(id='contact %s' % count
-                               , email='contact%s@email.com' % count
+                .get_or_create(email='contact%s@email.com' % count
                                , phone='0900-%s%s%s-01'
                                        % (count, count * 2, count * 5)
                                )[0]
 
             sponsor = Sponsor.objects \
-                .get_or_create(id='sponsor %s' % count
-                               , name='Sponsor %s' % count
+                .get_or_create(name='Sponsor %s' % count
                                )[0]
 
             expense = Expense.objects \
-                .get_or_create(id='expense_%s' % count
-                               , amount='$%s%s%s' % (count, count + 1, count - 10)
+                .get_or_create(amount='$%s%s%s' % (count, count + 1, count - 10)
                                , description='Travel & Related Stuff : %s' % count
                                )[0]
 
@@ -63,28 +59,20 @@ class Command(BaseCommand):
 
             # 1-1 About field. No About with such id should exist
             about, about_created = About.objects\
-                .get_or_create(id='conf_%s' % counter
-                               , title='Conference %s' % counter
+                .get_or_create(title='Conference %s' % counter
                                , description='Conference %s is all about %s things'
                                              % (counter, counter*2))
 
-            if about_created is False:
-                raise CommandError(self.stderr.write(
-                    self.style.ERROR('About Object %s already Exists' % about.id)))
-
             tenure = Tenure.objects\
-                .get_or_create(id='tenure_%s' % counter
-                               , start_date=datetime.datetime.now()
+                .get_or_create(start_date=datetime.datetime.now()
                                , duration=datetime.timedelta(days=15))[0]
 
             venue = Location.objects\
-                .get_or_create(id='loc_%s' % counter
-                               , name='Location %s' % counter
+                .get_or_create(name='Location %s' % counter
                                , city='City %s' % counter
                                , country='Pakistan')[0]
 
-            conference = Conference(id='conf_%s' % counter
-                                    , call_for_paper_deadline=datetime.datetime.now()
+            conference = Conference(call_for_paper_deadline=datetime.datetime.now()
                                     , key_speakers='Someone'
                                     , ranking='A*'
                                     , source='Web')
