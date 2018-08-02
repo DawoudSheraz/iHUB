@@ -124,44 +124,44 @@ class Qualifications(models.Model):
         return self.minimum
 
 
-class Department(models.Model):
-
-    """
-    Modelling department inside a University
-    """
-
-    id = CharField(max_length=50, primary_key=True)
-    name = CharField(max_length=50)
-    university = ForeignKey(to=Location
-                            , on_delete=models.CASCADE
-                            , related_name="university"
-                            , blank=True
-                            , null=True)
-
-    class Meta:
-        db_table = "department"
-
-    def __unicode__(self):
-        return self.name
-
-
-class Field(models.Model):
-
-    """
-    Modelling a specialization inside a University Department.
-    """
-
-    id = CharField(max_length=50, primary_key=True)
-    name = CharField(max_length=50)
-    department = ForeignKey(to=Department
-                            , on_delete=models.CASCADE
-                            , related_name="department")
-
-    class Meta:
-        db_table = "field"
-
-    def __unicode__(self):
-        return self.name
+# class Department(models.Model):
+#
+#     """
+#     Modelling department inside a University
+#     """
+#
+#     id = CharField(max_length=50, primary_key=True)
+#     name = CharField(max_length=50)
+#     university = ForeignKey(to=Location
+#                             , on_delete=models.CASCADE
+#                             , related_name="university"
+#                             , blank=True
+#                             , null=True)
+#
+#     class Meta:
+#         db_table = "department"
+#
+#     def __unicode__(self):
+#         return self.name
+#
+#
+# class Field(models.Model):
+#
+#     """
+#     Modelling a specialization inside a University Department.
+#     """
+#
+#     id = CharField(max_length=50, primary_key=True)
+#     name = CharField(max_length=50)
+#     department = ForeignKey(to=Department
+#                             , on_delete=models.CASCADE
+#                             , related_name="department")
+#
+#     class Meta:
+#         db_table = "field"
+#
+#     def __unicode__(self):
+#         return self.name
 
 
 class SubmissionForm(models.Model):
@@ -239,7 +239,7 @@ class Specialization(models.Model):
 
     id = CharField(max_length=50, primary_key=True)
     title = CharField(max_length=40)
-    description = CharField(max_length=100)
+    description = CharField(max_length=100, null=True, blank=True)
 
     class Meta:
         db_table = "specialization"
@@ -288,6 +288,9 @@ class Profile(models.Model):
     age = models.IntegerField(blank=True, null=True)
     gender = CharField(max_length=10, blank=True, null=True)
 
+    skills = models.ManyToManyField(to=Specialization
+                                    , related_name="skills")
+
     class Meta:
         db_table = "profile"
 
@@ -298,8 +301,6 @@ class Profile(models.Model):
 class Student(Profile):
 
     experience = models.FloatField(default=1.0)
-    skills = models.ManyToManyField(to=Specialization
-                                    , related_name="skills")
 
     class Meta:
         db_table = "student"
@@ -310,9 +311,6 @@ class Professor(Profile):
     related_university = ForeignKey(to=Location
                                     , on_delete=models.CASCADE
                                     , related_name="related_university")
-
-    expertise = models.ManyToManyField(to=Specialization
-                                       , related_name="expertise")
 
     class Meta:
         db_table = "professor"
