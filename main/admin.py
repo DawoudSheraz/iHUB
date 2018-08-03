@@ -5,7 +5,7 @@ from django.contrib.admin import ModelAdmin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .models import *
-from forms import SelectGenderForm
+from forms import SelectGenderForm, ChangeExperienceRequiredForm
 
 # app = apps.get_app_config('main')
 #
@@ -171,6 +171,46 @@ class StudentPositionAdmin(ModelAdmin):
 
     search_fields = ('job__title', 'job_location__name'
                      , 'skills_covered__title')
+
+    actions = ['change_experience_required']
+
+    def change_experience_required(self, request, queryset):
+
+        # On form submission
+        if 'update' in request.POST:
+            form = ChangeExperienceRequiredForm(request.POST)
+
+            # Checking Form Validity
+            if form.is_valid():
+                experience = form.cleaned_data['experience']
+                # Update all the entities
+                rows_updated = queryset.update(experience_required=experience)
+
+                if rows_updated == 1:
+                    message = "1 job was"
+                else:
+                    message = "%s jobs were" % rows_updated
+                self.message_user(request, "%s updated Successfully" % message)
+                return HttpResponseRedirect(request.get_full_path())
+
+        else:
+            #  Unsuccessful operation/ initially loaded page
+            form = ChangeExperienceRequiredForm(
+                initial={'_selected_action': request.POST.getlist(
+                    admin.ACTION_CHECKBOX_NAME)}
+            )
+
+        return render(request, 'admin/change_experience_required.html',
+                      {
+                          'select_form': form
+                          , 'student_positions': queryset
+                      })
+
+    change_experience_required.short_description = \
+        "Change experience required for selected student positions"
+
+
+
 
 
 

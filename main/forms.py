@@ -118,6 +118,18 @@ class SelectGenderForm(forms.Form):
             , ('X', 'X')))
 
 
+class ChangeExperienceRequiredForm(forms.Form):
+
+    _selected_action = forms.CharField(widget=forms.MultipleHiddenInput)
+    experience = forms.ChoiceField(
+        (
+            ('0-1 Years', '0-1 Years')
+            , ('2-3 Years', '2-3 Years')
+            , ('4-5 Years', '4-5 Years')
+            , ('5+ Years', '5+ Years')
+        )
+    )
+
 
 
 

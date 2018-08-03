@@ -1,0 +1,19 @@
+{% extends 'admin/base_site.html' %}
+
+{% block content %}
+
+<p>Select Experience Category</p>
+<form  method="post" action="">
+
+    {{select_form}}
+    {% csrf_token %}
+    <h3>Update will occur on Following : </h3>
+
+    <ul>{{ student_positions|unordered_list }}</ul>
+
+
+    <input type="hidden" name="action" value="change_experience_required" />
+    <input type="submit" name="update" value="Update" />
+</form>
+
+{% endblock %}
