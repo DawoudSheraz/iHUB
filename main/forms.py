@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from django import forms
+from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from main.models import *
@@ -129,6 +130,36 @@ class ChangeExperienceRequiredForm(forms.Form):
             , ('5+ Years', '5+ Years')
         )
     )
+
+
+class ScheduleInlineFormset(forms.models.BaseInlineFormSet):
+
+    def save_new(self, form, commit=True):
+
+        schedule = super(ScheduleInlineFormset, self).save_new(form)
+        return self.check_schedule_date(schedule, self.request)
+
+    def save_existing(self, form, instance, commit=True):
+
+        schedule = super(ScheduleInlineFormset, self).save_existing(form, instance)
+        return self.check_schedule_date(schedule, self.request)
+
+    # Checks the schedule date with conference dates and adjusts it accordingly
+    def check_schedule_date(self, schedule, request):
+        conf_start_date = schedule.related_conference.duration.start_date
+        conf_end_date = schedule.related_conference.duration.get_end_date()
+
+        # If date is b/w the conference start and end date, return object
+        if conf_start_date <= schedule.date <= conf_end_date:
+            return schedule
+        else:
+            messages.set_level(request, messages.WARNING)
+            messages.warning(request
+                             , 'Schedule (%s) date set to conference start date'
+                             % schedule.description)
+            schedule.date = conf_start_date
+            schedule.save()
+        return schedule
 
 
 

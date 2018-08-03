@@ -482,7 +482,7 @@ class Schedule(models.Model):
     date = models.DateTimeField()
     description = CharField(max_length=100)
     related_conference = ForeignKey(to=Conference
-                                    , related_name="related_conferences"
+                                    , related_name="schedule_list"
                                     , null=True
                                     , blank=True)
 
@@ -491,3 +491,10 @@ class Schedule(models.Model):
 
     def __unicode__(self):
         return "%s: %s" % (self.date, self.description)
+
+    def conference_title(self):
+
+        try:
+            return self.related_conference.info.title
+        except AttributeError:
+            return ""

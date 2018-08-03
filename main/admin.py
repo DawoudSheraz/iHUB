@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.contrib.admin import ModelAdmin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .models import *
-from forms import SelectGenderForm, ChangeExperienceRequiredForm
+from forms import SelectGenderForm, ChangeExperienceRequiredForm, ScheduleInlineFormset
 
 # app = apps.get_app_config('main')
 #
@@ -21,7 +21,44 @@ admin.site.register(Expense)
 admin.site.register(SubmissionForm)
 admin.site.register(Sponsor)
 admin.site.register(Specialization)
-admin.site.register(Schedule)
+
+
+class ScheduleInline(admin.TabularInline):
+
+    model = Schedule
+    extra = 1
+    formset = ScheduleInlineFormset
+
+    # custom formset, that checks for schedule date, is returned as a reference
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super(ScheduleInline, self).get_formset(request, obj, **kwargs)
+        formset.request = request
+        return formset
+
+
+@admin.register(Schedule)
+class ScheduleAdmin(ModelAdmin):
+
+    list_filter = ('related_conference__info__title',)
+    search_fields = ('related_conference__info__title', 'date')
+    list_display = ('date', 'conference_title', 'description', )
+
+    def save_model(self, request, obj, form, change):
+        try:
+            conf_start_date = obj.related_conference.duration.start_date
+            conf_end_date = obj.related_conference.duration.get_end_date()
+
+            if conf_start_date <= obj.date <= conf_end_date:
+                super(ScheduleAdmin, self).save_model(request, obj, form,
+                                                      change)
+            else:
+                messages.set_level(request, messages.ERROR)
+                messages.error(request
+                               , 'Schedule date not in bound of related conference duration'
+                               )
+        except AttributeError:
+            super(ScheduleAdmin, self).save_model(request, obj, form,
+                                                  change)
 
 
 @admin.register(Conference)
@@ -36,6 +73,8 @@ class ConferenceAdmin(ModelAdmin):
 
     filter_horizontal = ('contacts', 'sponsors'
                          , 'fields_of_interest', 'covered_expenses')
+
+    inlines = [ScheduleInline]
 
 
 @admin.register(Tenure)
@@ -159,6 +198,14 @@ class ScholarshipAdmin(ModelAdmin):
                      , 'fields_of_interest__title',)
 
     list_display = ('scholarship_title', 'start_date')
+
+    # readonly_fields = ('funding', )
+
+    # def save_model(self, request, obj, form, change):
+    #
+    #     obj.funding = obj.number_of_positions * \
+    #                   (float(obj.amount_granted.amount[1:]))
+    #     super(ScholarshipAdmin, self).save_model(request, obj, form, change)
 
 
 @admin.register(StudentPosition)
