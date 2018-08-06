@@ -7,10 +7,6 @@ from django.shortcuts import render
 from .models import *
 from forms import SelectGenderForm, ChangeExperienceRequiredForm, ScheduleInlineFormset
 
-# app = apps.get_app_config('main')
-#
-# for model_name, model in app.models.items():
-#     admin.site.register(model)
 
 admin.site.register(About)
 admin.site.register(Location)
@@ -198,14 +194,6 @@ class ScholarshipAdmin(ModelAdmin):
                      , 'fields_of_interest__title',)
 
     list_display = ('scholarship_title', 'start_date')
-
-    # readonly_fields = ('funding', )
-
-    # def save_model(self, request, obj, form, change):
-    #
-    #     obj.funding = obj.number_of_positions * \
-    #                   (float(obj.amount_granted.amount[1:]))
-    #     super(ScholarshipAdmin, self).save_model(request, obj, form, change)
 
 
 @admin.register(StudentPosition)

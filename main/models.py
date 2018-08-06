@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.db.models import CharField, ForeignKey
 from django.contrib.auth.models import User
+from . import validators
 
 
 class Job(models.Model):
@@ -52,7 +53,8 @@ class Location(models.Model):
 
 class Fee(models.Model):
 
-    amount = CharField(max_length=30)
+    amount = CharField(max_length=30, validators=[
+        validators.check_currency_format])
 
     class Meta:
         db_table = "fee"
@@ -63,7 +65,9 @@ class Fee(models.Model):
 
 class Salary(models.Model):
 
-    amount = CharField(max_length=30)
+    amount = CharField(max_length=30, validators=[
+        validators.check_currency_format]
+                       )
 
     class Meta:
         db_table = "salary"
@@ -78,7 +82,8 @@ class Grant(models.Model):
     Educational Grant
     """
 
-    amount = CharField(max_length=30)
+    amount = CharField(max_length=30, validators=[
+        validators.check_currency_format])
 
     class Meta:
         db_table = "grant"
@@ -93,7 +98,8 @@ class Expense(models.Model):
     Expense model, emphasizing amount and reason why that amount was required
     """
 
-    amount = CharField(max_length=30)
+    amount = CharField(max_length=30, validators=[
+        validators.check_currency_format])
     description = CharField(max_length=50, null=True, blank=True)
 
     class Meta:
