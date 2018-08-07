@@ -9,14 +9,33 @@ from forms import SelectGenderForm, ChangeExperienceRequiredForm, ScheduleInline
 
 
 admin.site.register(About)
-admin.site.register(Location)
 admin.site.register(Fee)
 admin.site.register(Salary)
 admin.site.register(Grant)
 admin.site.register(Expense)
 admin.site.register(SubmissionForm)
-admin.site.register(Sponsor)
-admin.site.register(Specialization)
+
+
+@admin.register(Location)
+class LocationAdmin(ModelAdmin):
+
+    list_display = ('name', 'country')
+    search_fields = ('name', 'city', 'country')
+    list_filter = ('country',)
+
+
+@admin.register(Sponsor)
+class SponsorAdmin(ModelAdmin):
+
+    list_display = ('name', )
+    search_fields = ('name', )
+
+
+@admin.register(Specialization)
+class SpecializationAdmin(ModelAdmin):
+
+    list_display = ('title', 'description')
+    search_fields = ('title', )
 
 
 class ScheduleInline(admin.TabularInline):
@@ -175,13 +194,13 @@ class ProfileAdmin(ModelAdmin):
 @admin.register(Student)
 class StudentAdmin(ProfileAdmin):
 
-    list_filter = ('gender', 'age', 'experience',)
+    list_filter = ('gender', 'age', 'experience', 'skills')
 
 
 @admin.register(Professor)
 class ProfessorAdmin(ProfileAdmin):
 
-    list_filter = ('related_university',)
+    list_filter = ('related_university', 'gender', 'skills')
     list_display = ('name', 'gender', 'institute')
     raw_id_fields = ('related_university', )
 
@@ -189,7 +208,7 @@ class ProfessorAdmin(ProfileAdmin):
 @admin.register(Scholarship)
 class ScholarshipAdmin(ModelAdmin):
 
-    list_filter = ('duration__start_date', 'deadline',)
+    list_filter = ('duration__start_date', 'deadline', 'fields_of_interest')
     search_fields = ('information__title', 'host_universities__name'
                      , 'fields_of_interest__title',)
 
