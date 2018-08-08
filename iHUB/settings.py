@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'customAuth.apps.CustomauthConfig',
     'django.contrib.admindocs',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

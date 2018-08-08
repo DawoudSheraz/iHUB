@@ -1,9 +1,11 @@
 from django.conf.urls import url
 from . import views
-
+from api_views import *
 
 app_name = "main"
 urlpatterns = [
+
+    # Template based URLs
 
     url(r'^$', views.index_view, name="index"),
 
@@ -54,5 +56,11 @@ urlpatterns = [
     url(r'^scholarship/(?P<sch_id>[0-9a-zA-z_]+)/$'
         , views.get_scholarship_by_id
         , name="scholarship_details"),
+
+    # API Urls
+
+    url(r'^api/conferences/'
+        , ListConferencesView.as_view()
+        , name='get_conferences'),
 
 ]
