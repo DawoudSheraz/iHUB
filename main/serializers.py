@@ -4,7 +4,6 @@ from .models import *
 
 
 class TenureSerializer(ModelSerializer):
-
     """
     Specifies how the Tenure data should be send in JSON
     """
@@ -15,7 +14,6 @@ class TenureSerializer(ModelSerializer):
 
 
 class LocationSerializer(ModelSerializer):
-
     class Meta:
         model = Location
         fields = ('name', 'city', 'country')
@@ -31,7 +29,6 @@ class LocationSerializer(ModelSerializer):
 
 
 class AboutSerializer(ModelSerializer):
-
     """
     About Model Serializer
     """
@@ -42,7 +39,6 @@ class AboutSerializer(ModelSerializer):
 
 
 class SpecializationSerializer(ModelSerializer):
-
     """
     Specialization model serializer, with only title field
     """
@@ -53,7 +49,6 @@ class SpecializationSerializer(ModelSerializer):
 
 
 class ContactSerializer(ModelSerializer):
-
     """
     Contact Model Serializer
     """
@@ -73,14 +68,12 @@ class ContactSerializer(ModelSerializer):
 
 
 class SponsorSerializer(ModelSerializer):
-
     class Meta:
         model = Sponsor
         fields = ('name',)
 
 
 class ExpenseSerializer(ModelSerializer):
-
     class Meta:
         model = Expense
         fields = ('amount', 'description')
@@ -96,10 +89,37 @@ class ExpenseSerializer(ModelSerializer):
 
 
 class ScheduleSerializer(ModelSerializer):
-
     class Meta:
         model = Schedule
         fields = ('date', 'description')
+
+
+class SubmissionFormSerializer(ModelSerializer):
+    class Meta:
+        model = SubmissionForm
+        fields = ('required_docs', 'steps_to_apply')
+
+
+class GrantSerializer(ModelSerializer):
+    class Meta:
+        model = Grant
+        fields = ('amount',)
+
+
+class QualificationSerializer(ModelSerializer):
+    class Meta:
+        model = Qualifications
+        fields = ('minimum', 'preferred')
+
+    def to_representation(self, instance):
+        """
+        Override the data representation by removing the
+        fields with null value from the data.
+        """
+        result = super(QualificationSerializer, self).to_representation(
+            instance)
+        return OrderedDict(
+            [(key, result[key]) for key in result if result[key] is not None])
 
 
 class ConferenceSerializer(ModelSerializer):
@@ -140,3 +160,41 @@ class ConferenceSerializer(ModelSerializer):
             [(key, result[key]) for key in result if result[key] is not None])
 
 
+class ScholarshipSerializer(ModelSerializer):
+    # OneToOne fields' Serializers
+
+    information = AboutSerializer()
+    application_form = SubmissionFormSerializer()
+
+    # ManyToOne Fields' Serializers
+
+    duration = TenureSerializer()
+    amount_granted = GrantSerializer()
+    criteria = QualificationSerializer()
+
+    # ManyToMany
+
+    fields_of_interest = SpecializationSerializer(many=True)
+    sponsors = SponsorSerializer(many=True)
+    host_universities = LocationSerializer(many=True)
+    contacts = ContactSerializer(many=True)
+
+    class Meta:
+        model = Scholarship
+        fields = ('information', 'funding'
+                  , 'amount_granted', 'deadline'
+                  , 'number_of_positions', 'source'
+                  , 'duration', 'application_form'
+                  , 'criteria'
+                  , 'fields_of_interest', 'host_universities'
+                  , 'contacts', 'sponsors'
+                  , 'perks_offered', 'scholarship_maintenance_criteria')
+
+    def to_representation(self, instance):
+        """
+        Override the data representation by removing the
+        fields with null value from the data.
+        """
+        result = super(ScholarshipSerializer, self).to_representation(instance)
+        return OrderedDict(
+            [(key, result[key]) for key in result if result[key] is not None])

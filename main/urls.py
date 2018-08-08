@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from . import views
-from api_views import *
+from views_api import *
 
 app_name = "main"
 urlpatterns = [
@@ -62,5 +62,9 @@ urlpatterns = [
     url(r'^api/conferences/'
         , ListConferencesView.as_view()
         , name='get_conferences'),
+
+    url(r'^api/scholarships/'
+        , ListScholarshipView.as_view()
+        , name='get_scholarships')
 
 ]
