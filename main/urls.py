@@ -65,6 +65,10 @@ urlpatterns = [
 
     url(r'^api/scholarships/'
         , ListScholarshipView.as_view()
-        , name='get_scholarships')
+        , name='get_scholarships'),
+
+    url(r'^api/student_positions/'
+        , ListStudentPositionView.as_view()
+        , name='get_student_positions'),
 
 ]

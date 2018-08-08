@@ -106,6 +106,34 @@ class GrantSerializer(ModelSerializer):
         fields = ('amount',)
 
 
+class FeeSerializer(ModelSerializer):
+
+    class Meta:
+        model = Fee
+        fields = ('amount',)
+
+
+class SalarySerializer(ModelSerializer):
+    class Meta:
+        model = Salary
+        fields = ('amount',)
+
+class JobSerializer(ModelSerializer):
+
+    class Meta:
+        model = Job
+        fields = ('title', 'type', 'description', 'function', 'expectations')
+
+    def to_representation(self, instance):
+        """
+        Override the data representation by removing the
+        fields with null value from the data.
+        """
+        result = super(JobSerializer, self).to_representation(instance)
+        return OrderedDict(
+            [(key, result[key]) for key in result if result[key] is not None])
+
+
 class QualificationSerializer(ModelSerializer):
     class Meta:
         model = Qualifications
@@ -120,6 +148,15 @@ class QualificationSerializer(ModelSerializer):
             instance)
         return OrderedDict(
             [(key, result[key]) for key in result if result[key] is not None])
+
+
+class ProfessorSerializer(ModelSerializer):
+
+    related_university = LocationSerializer()
+
+    class Meta:
+        model = Professor
+        fields = ('name', 'related_university')
 
 
 class ConferenceSerializer(ModelSerializer):
@@ -161,6 +198,7 @@ class ConferenceSerializer(ModelSerializer):
 
 
 class ScholarshipSerializer(ModelSerializer):
+
     # OneToOne fields' Serializers
 
     information = AboutSerializer()
@@ -196,5 +234,43 @@ class ScholarshipSerializer(ModelSerializer):
         fields with null value from the data.
         """
         result = super(ScholarshipSerializer, self).to_representation(instance)
+        return OrderedDict(
+            [(key, result[key]) for key in result if result[key] is not None])
+
+
+class StudentPositionSerializer(ModelSerializer):
+
+    # OneToOne
+    job = JobSerializer()
+    submission_form = SubmissionFormSerializer()
+
+    # ManyToOne
+    job_location = LocationSerializer()
+    duration = TenureSerializer()
+    requirements = QualificationSerializer()
+    fee = FeeSerializer()
+    salary = SalarySerializer()
+    job_provider = ProfessorSerializer()
+
+    # ManyToMany
+    skills_covered = SpecializationSerializer(many=True)
+    contacts = ContactSerializer(many=True)
+
+    class Meta:
+        model = StudentPosition
+        fields = ('job', 'experience_required'
+                  , 'submission_form', 'job_location'
+                  , 'deadline', 'duration'
+                  , 'requirements', 'job_provider'
+                  , 'source'
+                  , 'fee', 'salary'
+                  , 'skills_covered', 'contacts')
+
+    def to_representation(self, instance):
+        """
+        Override the data representation by removing the
+        fields with null value from the data.
+        """
+        result = super(StudentPositionSerializer, self).to_representation(instance)
         return OrderedDict(
             [(key, result[key]) for key in result if result[key] is not None])

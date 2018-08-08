@@ -13,3 +13,9 @@ class ListScholarshipView(generics.ListAPIView):
 
     serializer_class = ScholarshipSerializer
     queryset = Scholarship.objects.order_by('-duration__start_date')
+
+
+class ListStudentPositionView(generics.ListAPIView):
+
+    serializer_class = StudentPositionSerializer
+    queryset = StudentPosition.objects.order_by('-duration__start_date')
