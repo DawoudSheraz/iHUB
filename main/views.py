@@ -3,20 +3,13 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect, render_to_response
 from django.contrib import auth
+from django.views.generic import ListView, DetailView
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from models import *
 from forms import *
 from . import forms
-
-
-def index_view(request):
-    return render(request, "main/index.html")
-
-
-def user_select_view(request):
-    return render(request, "main/choose_user.html")
 
 
 def login_view(request):
@@ -325,16 +318,16 @@ def scholarship_list_view(request):
     })
 
 
-def get_conference_by_id(request, conf_id):
+def get_conference_by_id(request, id):
     """
     Get conference using id.
 
     :param request: HTTP request
-    :param conf_id: the id against which conference is searched
+    :param id: the id against which conference is searched
     :return: detail page, or redirects if not found
     """
     try:
-        conference = Conference.objects.get(pk=conf_id)
+        conference = Conference.objects.get(pk=id)
 
         return render(request
                       , "main/conference_details.html"
@@ -377,3 +370,35 @@ def get_scholarship_by_id(request, sch_id):
                       })
     except Scholarship.DoesNotExist:
         return scholarship_list_view(request)
+
+# GCBV
+
+
+class ScholarshipListView(ListView):
+
+    queryset = Scholarship.objects.order_by('-duration__start_date')
+    paginate_by = 5
+    context_object_name = 'scholarship_list'
+
+
+class ConferenceListView(ListView):
+
+    queryset = Conference.objects.order_by('-duration__start_date')
+    paginate_by = 5
+    context_object_name = 'conference_list'
+
+
+class StudentPositionListView(ListView):
+
+    queryset = StudentPosition.objects.order_by('-duration__start_date')
+    paginate_by = 5
+    context_object_name = 'job_list'
+    template_name = 'main/job_list.html'
+
+
+class ConferenceDetailView(DetailView):
+
+    context_object_name = 'conference'
+    template_name = 'main/conference_details.html'
+    model = Conference
+    pk_url_kwarg = 'id'
