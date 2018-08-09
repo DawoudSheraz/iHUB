@@ -43,8 +43,8 @@ urlpatterns = [
         , views.StudentPositionListView.as_view()
         , name="job_listing"),
 
-    url(r'^job_position/(?P<job_id>[0-9a-zA-z_]+)/$'
-        , views.get_job_by_id
+    url(r'^job_position/(?P<id>[0-9a-zA-z_]+)/$'
+        , views.StudentPositionDetailView.as_view()
         , name="job_details"),
 
     url(r'^scholarships/$'
@@ -55,8 +55,8 @@ urlpatterns = [
         , views.add_scholarship
         , name="add_scholarship"),
 
-    url(r'^scholarship/(?P<sch_id>[0-9a-zA-z_]+)/$'
-        , views.get_scholarship_by_id
+    url(r'^scholarship/(?P<id>[0-9a-zA-z_]+)/$'
+        , views.ScholarshipDetailView.as_view()
         , name="scholarship_details"),
 
     # API Urls

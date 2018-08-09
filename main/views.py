@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect, render_to_response
 from django.contrib import auth
+from django.http import Http404
 from django.views.generic import ListView, DetailView
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
@@ -288,90 +289,7 @@ def user_logout(request):
     return redirect('/main/')
 
 
-def job_position_list_view(request):
-    job_list = StudentPosition.objects.order_by('-duration__start_date')
-
-    return render(request, 'main/job_list.html', context={
-        'job_list': job_list
-    })
-
-
-def conference_list_view(request):
-    """
-    gets all conferences, sorted by date and pass them to HTML
-    """
-    conference_list = Conference.objects.order_by('-duration__start_date')
-
-    return render(request, "main/conference_list.html", context={
-        'conference_list': conference_list
-    })
-
-
-def scholarship_list_view(request):
-    """
-    Gets all scholarships and sort them by date
-    """
-    scholarship_list = Scholarship.objects.order_by('-duration__start_date')
-
-    return render(request, 'main/scholarship_list.html', context={
-        'scholarship_list': scholarship_list
-    })
-
-
-def get_conference_by_id(request, id):
-    """
-    Get conference using id.
-
-    :param request: HTTP request
-    :param id: the id against which conference is searched
-    :return: detail page, or redirects if not found
-    """
-    try:
-        conference = Conference.objects.get(pk=id)
-
-        return render(request
-                      , "main/conference_details.html"
-                      , {'conference': conference}
-                      )
-
-    except Conference.DoesNotExist:
-        return conference_list_view(request)
-
-
-def get_job_by_id(request, job_id):
-    """
-    Get Student Job Position using id.
-    """
-    try:
-        student_job_position = StudentPosition.objects.get(pk=job_id)
-
-        return render(request
-                      , "main/job_details.html"
-                      , {'student_job_position': student_job_position}
-                      )
-
-    except StudentPosition.DoesNotExist:
-        return job_position_list_view(request)
-
-
-def get_scholarship_by_id(request, sch_id):
-    """
-    Get Scholarship based on id.
-    """
-
-    try:
-        scholarship = Scholarship.objects.get(pk=sch_id)
-
-        request.session['conf'] = scholarship.id
-
-        return render(request, 'main/scholarship_details.html'
-                      , {
-                          'scholarship': scholarship
-                      })
-    except Scholarship.DoesNotExist:
-        return scholarship_list_view(request)
-
-# GCBV
+# Listing and Details done via Class Based Views
 
 
 class ScholarshipListView(ListView):
@@ -402,3 +320,52 @@ class ConferenceDetailView(DetailView):
     template_name = 'main/conference_details.html'
     model = Conference
     pk_url_kwarg = 'id'
+
+    # To redirect in case the object is not found
+    def get(self, request, *args, **kwargs):
+
+        try:
+            self.object = self.get_object()
+        except Http404:
+            return redirect('/main/conferences/')
+
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
+
+
+class ScholarshipDetailView(DetailView):
+
+    context_object_name = 'scholarship'
+    template_name = 'main/scholarship_details.html'
+    model = Scholarship
+    pk_url_kwarg = 'id'
+
+    # To redirect in case the object is not found
+    def get(self, request, *args, **kwargs):
+
+        try:
+            self.object = self.get_object()
+        except Http404:
+            return redirect('/main/scholarships/')
+
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
+
+
+class StudentPositionDetailView(DetailView):
+
+    context_object_name = 'student_job_position'
+    template_name = 'main/job_details.html'
+    model = StudentPosition
+    pk_url_kwarg = 'id'
+
+    # To redirect in case the object is not found
+    def get(self, request, *args, **kwargs):
+
+        try:
+            self.object = self.get_object()
+        except Http404:
+            return redirect('/main/job_positions/')
+
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
