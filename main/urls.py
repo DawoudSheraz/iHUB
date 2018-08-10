@@ -62,15 +62,15 @@ urlpatterns = [
     # API Urls
 
     url(r'^api/conferences/'
-        , ListConferencesView.as_view()
+        , ListConferencesApiView.as_view()
         , name='get_conferences'),
 
     url(r'^api/scholarships/'
-        , ListScholarshipView.as_view()
+        , ListScholarshipApiView.as_view()
         , name='get_scholarships'),
 
     url(r'^api/student_positions/'
-        , ListStudentPositionView.as_view()
+        , ListStudentPositionApiView.as_view()
         , name='get_student_positions'),
 
 ]

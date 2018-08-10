@@ -125,46 +125,6 @@ class Qualifications(models.Model):
         return self.minimum
 
 
-# class Department(models.Model):
-#
-#     """
-#     Modelling department inside a University
-#     """
-#
-#     id = CharField(max_length=50, primary_key=True)
-#     name = CharField(max_length=50)
-#     university = ForeignKey(to=Location
-#                             , on_delete=models.CASCADE
-#                             , related_name="university"
-#                             , blank=True
-#                             , null=True)
-#
-#     class Meta:
-#         db_table = "department"
-#
-#     def __unicode__(self):
-#         return self.name
-#
-#
-# class Field(models.Model):
-#
-#     """
-#     Modelling a specialization inside a University Department.
-#     """
-#
-#     id = CharField(max_length=50, primary_key=True)
-#     name = CharField(max_length=50)
-#     department = ForeignKey(to=Department
-#                             , on_delete=models.CASCADE
-#                             , related_name="department")
-#
-#     class Meta:
-#         db_table = "field"
-#
-#     def __unicode__(self):
-#         return self.name
-
-
 class SubmissionForm(models.Model):
 
     """
@@ -258,18 +218,6 @@ class Contact(models.Model):
 
     def __unicode__(self):
         return self.email
-
-
-# class ProfileUserAdapter(models.Model):
-#
-#     """
-#     Acts as adapter between User Auth and Profile class
-#     """
-#
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#
-#     class Meta:
-#         db_table = "profile_user_adapter"
 
 
 class Profile(models.Model):

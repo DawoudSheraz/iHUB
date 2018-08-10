@@ -121,6 +121,14 @@ AUTHENTICATION_BACKENDS = [
 
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        'main.renderer.CommaSeparatedValuesRenderer',
+    )
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
