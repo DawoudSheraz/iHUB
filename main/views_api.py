@@ -3,19 +3,19 @@ from .models import *
 from .serializers import *
 
 
-class ListConferencesView(generics.ListAPIView):
+class ListConferencesApiView(generics.ListAPIView):
 
     serializer_class = ConferenceSerializer
     queryset = Conference.objects.order_by('-duration__start_date')
 
 
-class ListScholarshipView(generics.ListAPIView):
+class ListScholarshipApiView(generics.ListAPIView):
 
     serializer_class = ScholarshipSerializer
     queryset = Scholarship.objects.order_by('-duration__start_date')
 
 
-class ListStudentPositionView(generics.ListAPIView):
+class ListStudentPositionApiView(generics.ListAPIView):
 
     serializer_class = StudentPositionSerializer
     queryset = StudentPosition.objects.order_by('-duration__start_date')
