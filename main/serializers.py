@@ -118,6 +118,7 @@ class SalarySerializer(ModelSerializer):
         model = Salary
         fields = ('amount',)
 
+
 class JobSerializer(ModelSerializer):
 
     class Meta:

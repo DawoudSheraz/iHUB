@@ -158,10 +158,6 @@ def add_conference(request):
                                                    , country=location_form.cleaned_data.get('country')
                                                    , city=location_form.cleaned_data.get('city'))[0]
 
-            # About instance is created, populated with id
-            # and then passed to form to save the object
-            # about = About()
-            # about_form = AboutForm(instance=about, data=request.POST)
             about = about_form.save()
 
             # Conference object created, the relationship objects are defined
@@ -216,9 +212,6 @@ def add_scholarship(request):
                 , preferred=requirements_form.cleaned_data.get('preferred')
             )[0]
 
-            # about = About()
-            # about.id = about_form.cleaned_data.get('title')
-            # about_form = AboutForm(instance=about, data=request.POST)
             about = about_form.save()
 
             application = SubmissionForm()

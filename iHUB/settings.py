@@ -34,14 +34,15 @@ INSTALLED_APPS = [
 
     'django.contrib.admin',
     'django.contrib.auth',
-    'main.apps.MainConfig',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'customAuth.apps.CustomauthConfig',
     'django.contrib.admindocs',
+
     'rest_framework',
+
+    'main.apps.MainConfig',
 ]
 
 MIDDLEWARE = [
