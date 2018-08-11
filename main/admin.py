@@ -214,6 +214,9 @@ class ScholarshipAdmin(ModelAdmin):
 
     list_display = ('scholarship_title', 'start_date')
 
+    filter_horizontal = ('contacts', 'sponsors'
+                         , 'fields_of_interest')
+
 
 @admin.register(StudentPosition)
 class StudentPositionAdmin(ModelAdmin):
@@ -225,6 +228,8 @@ class StudentPositionAdmin(ModelAdmin):
 
     search_fields = ('job__title', 'job_location__name'
                      , 'skills_covered__title')
+
+    filter_horizontal = ('contacts', 'skills_covered')
 
     actions = ['change_experience_required']
 
