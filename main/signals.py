@@ -54,4 +54,21 @@ def check_tenure_duration(sender, instance, **kwargs):
                                       =abs(instance.duration.total_seconds()))
 
 
+@receiver(pre_save, sender=Tenure, dispatch_uid='tenure_end_date_setting')
+def update_end_date(sender, instance, **kwargs):
+    """
+    Create Tenure end time based on start date and duration.
+    """
+    instance.end_date = instance.start_date + instance.duration
+
+
+@receiver(pre_save, sender=Specialization, dispatch_uid='save_name_lowercase')
+def save_skill_as_lowercase(sender, instance, **kwargs):
+    """
+    Save Specialization object with title in small alphabets.
+    """
+    instance.title = instance.title.lower()
+
+
+
 

@@ -10,7 +10,7 @@ class TenureSerializer(ModelSerializer):
 
     class Meta:
         model = Tenure
-        fields = ('start_date', 'get_end_date')
+        fields = ('start_date', 'end_date')
 
 
 class LocationSerializer(ModelSerializer):
