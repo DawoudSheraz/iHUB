@@ -49,16 +49,18 @@ class ListConferencesApiView(generics.ListAPIView):
         queryset = Conference.objects.order_by('-duration__start_date')
 
         # Possible Query Parameters that can be mentioned in the URL
+
         skills = self.request.query_params.get('skills', False)
         start_date = self.request.query_params.get('start_date', False)
 
         # If skills param mentioned in the url
-        if skills is not False and skills != '':
 
+        if skills is not False and skills != '':
             filter_content_dict['fields_of_interest__title__in'] = \
                 filter_specialization_from_input(skills)
 
         # IF start date parameter mentioned
+
         if start_date is not False and start_date != '':
 
             month, year = get_date_as_month_year(start_date)
@@ -68,6 +70,7 @@ class ListConferencesApiView(generics.ListAPIView):
 
         # If No parameter has been mentioned in the URL,
         # return the main queryset
+
         if filter_content_dict is None:
             return queryset
 
@@ -80,19 +83,38 @@ class ListScholarshipApiView(generics.ListAPIView):
     serializer_class = ScholarshipSerializer
 
     def get_queryset(self):
+
+        filter_content_dict = {}
+
         queryset = Scholarship.objects.order_by('-duration__start_date')
 
+        # Possible Query Parameters that can be mentioned in the URL
+
         skills = self.request.query_params.get('skills', False)
+        start_date = self.request.query_params.get('start_date', False)
 
         # If skills param mentioned in the url
+
         if skills is not False and skills != '':
+            filter_content_dict['fields_of_interest__title__in'] = \
+                filter_specialization_from_input(skills)
 
-            # Scholarship objects filter based on the filtered Specialization
-            queryset = queryset\
-                .filter(fields_of_interest__in=filter_specialization_from_input(skills))\
-                .distinct()
+        # IF start date parameter mentioned
 
-        return queryset
+        if start_date is not False and start_date != '':
+            month, year = get_date_as_month_year(start_date)
+
+            filter_content_dict['duration__start_date__month'] = month
+            filter_content_dict['duration__start_date__year'] = year
+
+        # If No parameter has been mentioned in the URL,
+        # return the main queryset
+
+        if filter_content_dict is None:
+            return queryset
+
+        return Scholarship.objects.filter(**filter_content_dict) \
+            .order_by('-duration__start_date')
 
 
 class ListStudentPositionApiView(generics.ListAPIView):
@@ -100,16 +122,35 @@ class ListStudentPositionApiView(generics.ListAPIView):
     serializer_class = StudentPositionSerializer
 
     def get_queryset(self):
+
+        filter_content_dict = {}
+
         queryset = StudentPosition.objects.order_by('-duration__start_date')
 
+        # Possible Query Parameters that can be mentioned in the URL
+
         skills = self.request.query_params.get('skills', False)
+        start_date = self.request.query_params.get('start_date', False)
 
         # If skills param mentioned in the url
+
         if skills is not False and skills != '':
+            filter_content_dict['skills_covered__title__in'] = \
+                filter_specialization_from_input(skills)
 
-            # Scholarship objects filter based on the filtered Specialization
-            queryset = queryset\
-                .filter(skills_covered__in=filter_specialization_from_input(skills))\
-                .distinct()
+        # IF start date parameter mentioned
 
-        return queryset
+        if start_date is not False and start_date != '':
+            month, year = get_date_as_month_year(start_date)
+
+            filter_content_dict['duration__start_date__month'] = month
+            filter_content_dict['duration__start_date__year'] = year
+
+        # If No parameter has been mentioned in the URL,
+        # return the main queryset
+
+        if filter_content_dict is None:
+            return queryset
+
+        return StudentPosition.objects.filter(**filter_content_dict) \
+            .order_by('-duration__start_date')

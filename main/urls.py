@@ -4,6 +4,8 @@ from . import views
 from views_api import *
 
 app_name = "main"
+
+api_param_url = '(?P<skills>[a-zA-z0-9,+_]+)(?P<start_date>[0-9]{4}-[0-9]{2})'
 urlpatterns = [
 
     url(r'^$', TemplateView.as_view(template_name='main/index.html')
@@ -66,8 +68,7 @@ urlpatterns = [
         , ListConferencesApiView.as_view()
         , name='get_conferences'),
 
-    url(r'^api/conferences/(?P<skills>[a-zA-z0-9,+_]+)'
-        r'(?P<start_date>[0-9]{4}-[0-9]{2})/'
+    url(r'^api/conferences/%s/' % api_param_url
         , ListConferencesApiView.as_view()
         , name='get_conferences_by_skill'),
 
@@ -75,7 +76,7 @@ urlpatterns = [
         , ListScholarshipApiView.as_view()
         , name='get_scholarships'),
 
-    url(r'^api/scholarships/(?P<skills>[a-zA-z0-9,+_]+)/'
+    url(r'^api/scholarships/%s/' % api_param_url
         , ListScholarshipApiView.as_view()
         , name='get_scholarships_by_skill'),
 
@@ -83,7 +84,7 @@ urlpatterns = [
         , ListStudentPositionApiView.as_view()
         , name='get_student_positions'),
 
-    url(r'^api/student_positions/(?P<skills>[a-zA-z0-9,+_]+)/'
+    url(r'^api/student_positions/%s/' % api_param_url
         , ListStudentPositionApiView.as_view()
         , name='get_student_positions_by_skill'),
 
