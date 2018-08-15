@@ -52,6 +52,8 @@ class ListConferencesApiView(generics.ListAPIView):
 
         skills = self.request.query_params.get('skills', False)
         start_date = self.request.query_params.get('start_date', False)
+        country = self.request.query_params.get('country', False)
+        paper_deadline = self.request.query_params.get('paper_deadline', False)
 
         # If skills param mentioned in the url
 
@@ -68,9 +70,21 @@ class ListConferencesApiView(generics.ListAPIView):
             filter_content_dict['duration__start_date__month'] = month
             filter_content_dict['duration__start_date__year'] = year
 
+        # If country mentioned
+        if country is not False and country != '':
+
+            filter_content_dict['conference_venue__country__iexact'] = country
+
+        # If call for paper deadline mentioned in the URL
+
+        if paper_deadline is not False and country != '':
+
+            month, year = get_date_as_month_year(paper_deadline)
+            filter_content_dict['call_for_paper_deadline__month'] = month
+            filter_content_dict['call_for_paper_deadline__year'] = year
+
         # If No parameter has been mentioned in the URL,
         # return the main queryset
-
         if filter_content_dict is None:
             return queryset
 

@@ -68,7 +68,8 @@ urlpatterns = [
         , ListConferencesApiView.as_view()
         , name='get_conferences'),
 
-    url(r'^api/conferences/%s/' % api_param_url
+    url(r'^api/conferences/%s(?P<country>[a-zA-z]+)'
+        r'(?P<paper_deadline>[0-9]{4}-[0-9]{2})/' % api_param_url
         , ListConferencesApiView.as_view()
         , name='get_conferences_by_skill'),
 
