@@ -11,10 +11,21 @@ def filter_specialization_from_input(skills):
     :param skills: comma separated skill values
     :return: list of QuerySet containing the related Specialization
     """
-    # The string is first converted to lower case
-    # then , is replaced with | to use with regex
-    # and finally any whitespace is removed
-    skills = skills.lower().replace(',', '|').strip()
+
+    # Change to lower case and handle special case
+    # where c++'s + symbol is omitted by django URL
+    skills = skills.lower().replace('c  ', 'c\+\+')
+
+    # Convert to list and remove trailing and leading whitespaces
+    skill_list = skills.split(',')
+    skill_list = [x.strip() for x in skill_list if x != '']
+
+    # Convert underscore into space as underscores are used instead
+    # of whitespace in the url
+    skill_list = [x.replace('_', ' ') if '_' in x else x for x in skill_list]
+
+    # Create string from list, with | as join character
+    skills = "|".join(skill_list)
 
     # Specialization objects filtered based on passed parameter
     return Specialization.objects.annotate(title_lower=Lower('title')) \

@@ -62,12 +62,11 @@ urlpatterns = [
     # API Urls
 
 
-
     url(r'^api/conferences/'
         , ListConferencesApiView.as_view()
         , name='get_conferences'),
 
-    url(r'^api/conferences/(?P<skills>[a-zA-z0-9,]+)/$'
+    url(r'^api/conferences/(?P<skills>[a-zA-z0-9,+_]+)/'
         , ListConferencesApiView.as_view()
         , name='get_conferences_by_skill'),
 
@@ -75,7 +74,7 @@ urlpatterns = [
         , ListScholarshipApiView.as_view()
         , name='get_scholarships'),
 
-    url(r'^api/scholarships/(?P<skills>[a-zA-z0-9,]+)/$'
+    url(r'^api/scholarships/(?P<skills>[a-zA-z0-9,+_]+)/'
         , ListScholarshipApiView.as_view()
         , name='get_scholarships_by_skill'),
 
@@ -83,7 +82,7 @@ urlpatterns = [
         , ListStudentPositionApiView.as_view()
         , name='get_student_positions'),
 
-    url(r'^api/student_positions/(?P<skills>[a-zA-z0-9,]+)/$'
+    url(r'^api/student_positions/(?P<skills>[a-zA-z0-9,+_]+)/'
         , ListStudentPositionApiView.as_view()
         , name='get_student_positions_by_skill'),
 
