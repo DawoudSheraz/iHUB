@@ -161,6 +161,7 @@ class Tenure(models.Model):
 
     start_date = models.DateTimeField()
     duration = models.DurationField()
+    end_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         db_table = "tenure"

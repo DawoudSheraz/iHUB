@@ -1,5 +1,4 @@
 from rest_framework import generics
-from django.db.models.functions import Lower
 from .models import *
 from .serializers import *
 
@@ -9,7 +8,7 @@ def filter_specialization_from_input(skills):
     Given the Specialization objects matching with the
     fields passed in the URL
     :param skills: comma separated skill values
-    :return: list of QuerySet containing the related Specialization
+    :return: list of Skill titles
     """
 
     # Change to lower case and handle special case
@@ -24,12 +23,19 @@ def filter_specialization_from_input(skills):
     # of whitespace in the url
     skill_list = [x.replace('_', ' ') if '_' in x else x for x in skill_list]
 
-    # Create string from list, with | as join character
-    skills = "|".join(skill_list)
+    return skill_list
 
-    # Specialization objects filtered based on passed parameter
-    return Specialization.objects.annotate(title_lower=Lower('title')) \
-        .filter(title_lower__regex=r'%s' % skills)
+
+def get_date_as_month_year(date_string):
+    """
+    Given string in format 0000-00 (YY-MM), return month and year
+    """
+    date_list = date_string.split('-')
+    year = date_list[0]
+    month = date_list[1]
+
+    if len(year) == 4 and len(month) == 2:
+        return month, year
 
 
 class ListConferencesApiView(generics.ListAPIView):
@@ -37,19 +43,36 @@ class ListConferencesApiView(generics.ListAPIView):
     serializer_class = ConferenceSerializer
 
     def get_queryset(self):
+
+        filter_content_dict = {}
+
         queryset = Conference.objects.order_by('-duration__start_date')
 
+        # Possible Query Parameters that can be mentioned in the URL
         skills = self.request.query_params.get('skills', False)
+        start_date = self.request.query_params.get('start_date', False)
 
         # If skills param mentioned in the url
         if skills is not False and skills != '':
 
-            # Conference objects filter based on the filtered Specialization
-            queryset = queryset\
-                .filter(fields_of_interest__in=filter_specialization_from_input(skills))\
-                .distinct()
+            filter_content_dict['fields_of_interest__title__in'] = \
+                filter_specialization_from_input(skills)
 
-        return queryset
+        # IF start date parameter mentioned
+        if start_date is not False and start_date != '':
+
+            month, year = get_date_as_month_year(start_date)
+
+            filter_content_dict['duration__start_date__month'] = month
+            filter_content_dict['duration__start_date__year'] = year
+
+        # If No parameter has been mentioned in the URL,
+        # return the main queryset
+        if filter_content_dict is None:
+            return queryset
+
+        return Conference.objects.filter(**filter_content_dict)\
+            .order_by('-duration__start_date')
 
 
 class ListScholarshipApiView(generics.ListAPIView):
