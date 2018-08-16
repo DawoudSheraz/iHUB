@@ -70,5 +70,12 @@ def save_skill_as_lowercase(sender, instance, **kwargs):
     instance.title = instance.title.lower()
 
 
+@receiver(pre_save, sender=Grant, dispatch_uid='get_amount_number')
+def get_amount_number_from_string(sender, instance, **kwargs):
+
+    instance.numeric_value = float(instance.amount[1:])
+
+
+
 
 

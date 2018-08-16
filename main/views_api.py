@@ -26,6 +26,15 @@ def filter_specialization_from_input(skills):
     return skill_list
 
 
+def filter_countries(countries):
+
+    countries = countries.lower().split(',')
+
+    countries = [x.strip() for x in countries if x != '']
+
+    return countries
+
+
 def get_date_as_month_year(date_string):
     """
     Given string in format 0000-00 (YY-MM), return month and year
@@ -89,7 +98,7 @@ class ListConferencesApiView(generics.ListAPIView):
             return queryset
 
         return Conference.objects.filter(**filter_content_dict)\
-            .order_by('-duration__start_date')
+            .distinct().order_by('-duration__start_date')
 
 
 class ListScholarshipApiView(generics.ListAPIView):
@@ -106,29 +115,65 @@ class ListScholarshipApiView(generics.ListAPIView):
 
         skills = self.request.query_params.get('skills', False)
         start_date = self.request.query_params.get('start_date', False)
+        locations = self.request.query_params.get('locations', False)
+        deadline = self.request.query_params.get('deadline', False)
+        position_min = self.request.query_params.get('position_min', False)
+        position_max = self.request.query_params.get('position_max', False)
+        amount_min = self.request.query_params.get('amount_min', False)
+        amount_max = self.request.query_params.get('amount_max', False)
 
         # If skills param mentioned in the url
-
         if skills is not False and skills != '':
+
             filter_content_dict['fields_of_interest__title__in'] = \
                 filter_specialization_from_input(skills)
 
         # IF start date parameter mentioned
-
         if start_date is not False and start_date != '':
+
             month, year = get_date_as_month_year(start_date)
 
             filter_content_dict['duration__start_date__month'] = month
             filter_content_dict['duration__start_date__year'] = year
 
+        # If locations (countries) mentioned
+        if locations is not False and locations != '':
+
+            filter_content_dict['host_universities__country__in'] = \
+                filter_countries(locations)
+
+        # If deadline parameter is mentioned
+        if deadline is not False and deadline != '':
+
+            month, year = get_date_as_month_year(deadline)
+
+            filter_content_dict['deadline__month'] = month
+            filter_content_dict['deadline__year'] = year
+
+        # Number of position range
+        if position_min is not False:
+            filter_content_dict['number_of_positions__gte'] = position_min
+
+        if position_max is not False:
+            filter_content_dict['number_of_positions__lte'] = position_max
+
+        # Amount granted Range
+        
+        if amount_min is not False:
+            filter_content_dict['amount_granted__numeric_value__gte'] = \
+                float(amount_min[1:])
+
+        if amount_max is not False:
+            filter_content_dict['amount_granted__numeric_value__lte'] = \
+                float(amount_max[1:])
+
         # If No parameter has been mentioned in the URL,
         # return the main queryset
-
         if filter_content_dict is None:
             return queryset
 
         return Scholarship.objects.filter(**filter_content_dict) \
-            .order_by('-duration__start_date')
+            .distinct().order_by('-duration__start_date')
 
 
 class ListStudentPositionApiView(generics.ListAPIView):

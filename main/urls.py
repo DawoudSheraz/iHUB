@@ -77,7 +77,11 @@ urlpatterns = [
         , ListScholarshipApiView.as_view()
         , name='get_scholarships'),
 
-    url(r'^api/scholarships/%s/' % api_param_url
+    url(r'^api/scholarships/%s(?P<locations>[a-zA-z]+)'
+        r'(?P<deadline>[0-9]{4}-[0-9]{2})'
+        r'(?P<position_min>[0-9]+)(?P<position_max>[0-9]+)'
+        r'(?P<amount_min>^\$[0-9]+?.[0-9]+$)'
+        r'(?P<amount_max>^\$[0-9]+?.[0-9]+$)/' % api_param_url
         , ListScholarshipApiView.as_view()
         , name='get_scholarships_by_skill'),
 
