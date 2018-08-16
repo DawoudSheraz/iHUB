@@ -89,7 +89,11 @@ urlpatterns = [
         , ListStudentPositionApiView.as_view()
         , name='get_student_positions'),
 
-    url(r'^api/student_positions/%s/' % api_param_url
+    url(r'^api/student_positions/%s(?P<country>[a-zA-z]+)'
+        r'(?P<deadline>[0-9]{4}-[0-9]{2})'
+        r'(?P<experience>.*)'
+        r'(?P<salary_min>^\$[0-9]+?.[0-9]+$)'
+        r'(?P<salary_max>^\$[0-9]+?.[0-9]+$)/' % api_param_url
         , ListStudentPositionApiView.as_view()
         , name='get_student_positions_by_skill'),
 

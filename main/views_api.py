@@ -47,6 +47,13 @@ def get_date_as_month_year(date_string):
         return month, year
 
 
+def validate_experience_input(experience):
+
+    if '5  ' in experience:
+        experience = '5+ Years'
+    return experience
+
+
 class ListConferencesApiView(generics.ListAPIView):
 
     serializer_class = ConferenceSerializer
@@ -158,7 +165,7 @@ class ListScholarshipApiView(generics.ListAPIView):
             filter_content_dict['number_of_positions__lte'] = position_max
 
         # Amount granted Range
-        
+
         if amount_min is not False:
             filter_content_dict['amount_granted__numeric_value__gte'] = \
                 float(amount_min[1:])
@@ -190,6 +197,11 @@ class ListStudentPositionApiView(generics.ListAPIView):
 
         skills = self.request.query_params.get('skills', False)
         start_date = self.request.query_params.get('start_date', False)
+        country = self.request.query_params.get('country', False)
+        deadline = self.request.query_params.get('deadline', False)
+        experience = self.request.query_params.get('experience', False)
+        salary_min = self.request.query_params.get('salary_min', False)
+        salary_max = self.request.query_params.get('salary_max', False)
 
         # If skills param mentioned in the url
 
@@ -204,6 +216,33 @@ class ListStudentPositionApiView(generics.ListAPIView):
 
             filter_content_dict['duration__start_date__month'] = month
             filter_content_dict['duration__start_date__year'] = year
+
+        # If country param in URL
+
+        if country is not False:
+            filter_content_dict['job_location__country__iexact'] = country
+
+        # If deadline parameter in URL
+
+        if deadline is not False and deadline != '':
+            month, year = get_date_as_month_year(deadline)
+
+            filter_content_dict['deadline__month'] = month
+            filter_content_dict['deadline__year'] = year
+
+        if experience is not False:
+
+            filter_content_dict['experience_required__iexact'] = \
+                validate_experience_input(experience)
+
+        # If salary params mentioned
+        if salary_min is not False:
+            filter_content_dict['salary__numeric_value__gte'] = \
+                float(salary_min[1:])
+
+        if salary_max is not False:
+            filter_content_dict['salary__numeric_value__lte'] = \
+                float(salary_max[1:])
 
         # If No parameter has been mentioned in the URL,
         # return the main queryset

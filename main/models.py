@@ -68,6 +68,7 @@ class Salary(models.Model):
     amount = CharField(max_length=30, validators=[
         validators.check_currency_format]
                        )
+    numeric_value = models.FloatField(default=0)
 
     class Meta:
         db_table = "salary"
