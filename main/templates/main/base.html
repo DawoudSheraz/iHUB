@@ -6,58 +6,39 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="{% static 'main/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'main/styles.css' %}">
 
     <!-- React and Babel Script-->
-      <!-- <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
-      <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script> -->
-      <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-      <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+      <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+      <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/1.0.7/purify.min.js"></script>
       <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
-    <!--Adding the logout state and login state component through external file-->
+    <!--Adding the Header and its related components through external files -->
     <script type='text/jsx' src="{% static 'main/js/components/logout_state_component.js'%}"></script>
     <script type='text/jsx' src="{% static 'main/js/components/login_state_component.js'%}"></script>
+    <script type='text/jsx' src="{% static 'main/js/components/header_component.js'%}"></script>
 
-    {% block javascript %}
+
     <script type="text/jsx" >
-
-        ReactDOM.render(<LogOutStateComponent login_url="{% url 'main:login'%}"/>
-        ,document.getElementById('logout_state'));
-
-        let login_state_json = {
-        'edit_url' : "{% url 'main:edit_user'%}"
-        , 'logout_url': "{% url 'main:logout'%}"
-      };
-
-        ReactDOM.render( <LoginStateComponent username="{{ user.username }}" data_json= {login_state_json} />
-        , document.getElementById('logout_state'));
+      // Django specific parts, that require evaluation inside the template
+        let header_data_json = {
+          'edit_url': "{% url 'main:edit_user'%}"
+          , 'logout_url': "{% url 'main:logout'%}"
+          , 'login_url': "{% url 'main:login'%}"
+          , 'index_url': "{% url 'main:index'%}"
+        }
+        ReactDOM.render( <HeaderComponent username='{{user.username}}' data_json={header_data_json}/>
+        ,document.getElementById('header_component'))
     </script>
 
-    {% endblock %}
-
+{% block javascript %}{% endblock %}
 
 </head>
 
 <body >
 
-    <header>
-
-            <nav class="navbar navbar-default">
-
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="{% url 'main:index'%}"><strong>iHUB</strong></a>
-                </div>
-
-            <div class="container-fluid">
-                    <ul class="nav navbar-nav navbar-right">
-
-                        <div id="logout_state"> </div>
-                        
-                    </ul>
-            </div>
-        </nav>
+    <header id='header_component'>
 
     </header>
 

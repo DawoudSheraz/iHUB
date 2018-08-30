@@ -6,7 +6,9 @@
 function LogOutStateComponent(props){
 
     return(
-    <a href={props.login_url}>  <span className="glyphicon glyphicon-log-in"></span>  Login</a>
-    )
+      <ul className="nav navbar-nav navbar-right">
+    <li><a href={props.login_url}>  <span className="glyphicon glyphicon-log-in"></span>  Login</a></li>
 
+    </ul>
+    )
 }
