@@ -1,7 +1,8 @@
 
 // This component renders actions that can be performed
 // when there is no logged in user
-// Will be used inside the header
+
+// Will be used alongside the header component
 
 function LogOutStateComponent(props){
 
