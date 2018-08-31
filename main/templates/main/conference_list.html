@@ -10,9 +10,9 @@
 
     <script type='text/jsx' src="{% static 'main/js/components/conference_row.js'%}"></script>
     <script type='text/jsx' src="{% static 'main/js/components/conference_table.js'%}"></script>
-
+    <script type='text/jsx' src="{% static 'main/js/components/search_bar.js'%}"></script>
     <script type="text/jsx">
-    // Test Data 
+    // Test Data
     let conference_list =
     [
       {
@@ -65,13 +65,14 @@
   ]
 
     ReactDOM.render(<ConferenceList conference_list = {conference_list}/> , document.getElementById('conference_row'))
-
+    ReactDOM.render(<ControlledSearchBar/>, document.getElementById('search_bar'))
     </script>
 {% endblock %}
 
 
 {%block body%}
 
+    <div id='search_bar'></div>
     <div id='conference_row'></div>
     {% if conference_list %}
 
