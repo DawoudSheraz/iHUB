@@ -1,0 +1,42 @@
+
+// Displays the conferences as a table
+class ConferenceList extends React.Component{
+
+  constructor(props){
+
+    super(props);
+  }
+
+
+  render(){
+    const data = this.props.conference_list
+    let out_row = []
+
+    // Create ConferenceRow component for each entry in list
+    data.forEach( (conference) => {
+
+      // key is required by React to uniquely identify each row
+      out_row.push( <ConferenceRow conference= {conference} key={conference['info']['title']}/>)
+    }
+    );
+
+  return(
+    <table border="1" className="centerTable">
+      <thead>
+        <tr>
+          <td>Title</td>
+          <td>Skills</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        {out_row}
+      </tbody>
+
+    </table>
+
+  )
+
+  }
+
+}

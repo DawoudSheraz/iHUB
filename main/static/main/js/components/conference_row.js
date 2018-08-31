@@ -25,12 +25,10 @@ class ConferenceRow extends React.Component{
     const skills = this.get_comma_separated_skills(conference['fields_of_interest'])
 
     return(
-      <tbody>
       <tr>
         <td>{title}</td>
         <td>{skills}</td>
       </tr>
-      </tbody>
     );
   }
 

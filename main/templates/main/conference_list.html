@@ -9,9 +9,13 @@
 {% block javascript %}
 
     <script type='text/jsx' src="{% static 'main/js/components/conference_row.js'%}"></script>
+    <script type='text/jsx' src="{% static 'main/js/components/conference_table.js'%}"></script>
 
     <script type="text/jsx">
-    let conference_data = {
+    // Test Data 
+    let conference_list =
+    [
+      {
       'info' : {
         'title' : 'Hello'
       },
@@ -29,9 +33,38 @@
                 "title": "django"
             }
         ]
-    }
+    },
+    {
+    'info' : {
+      'title' : 'Pokemon'
+    },
+    "fields_of_interest": [
+          {
+              "title": "dragon"
+          },
+          {
+              "title": "assassin"
+          },
 
-    ReactDOM.render(<ConferenceRow conference = {conference_data}/> , document.getElementById('conference_row'))
+      ]
+  },
+  {
+  'info' : {
+    'title' : 'Hakan'
+  },
+  "fields_of_interest": [
+        {
+            "title": "fighter"
+        },
+        {
+            "title": "street"
+        },
+
+    ]
+}
+  ]
+
+    ReactDOM.render(<ConferenceList conference_list = {conference_list}/> , document.getElementById('conference_row'))
 
     </script>
 {% endblock %}
@@ -39,7 +72,7 @@
 
 {%block body%}
 
-    <table id='conference_row'></table>
+    <div id='conference_row'></div>
     {% if conference_list %}
 
     <table border="1" class="centerTable">
