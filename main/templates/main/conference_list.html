@@ -1,13 +1,45 @@
 
 {%extends 'main/base.html'%}
+{% load static %}
 
 {%block title %}
     Conferences
 {% endblock %}
 
+{% block javascript %}
+
+    <script type='text/jsx' src="{% static 'main/js/components/conference_row.js'%}"></script>
+
+    <script type="text/jsx">
+    let conference_data = {
+      'info' : {
+        'title' : 'Hello'
+      },
+      "fields_of_interest": [
+            {
+                "title": "magic"
+            },
+            {
+                "title": "potions"
+            },
+            {
+                "title": "skill 71"
+            },
+            {
+                "title": "django"
+            }
+        ]
+    }
+
+    ReactDOM.render(<ConferenceRow conference = {conference_data}/> , document.getElementById('conference_row'))
+
+    </script>
+{% endblock %}
+
 
 {%block body%}
 
+    <table id='conference_row'></table>
     {% if conference_list %}
 
     <table border="1" class="centerTable">
@@ -37,4 +69,3 @@
 <a class="link" href="{%url 'main:index'%}">Back</a>
 
 {% endblock %}
-
