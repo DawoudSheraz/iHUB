@@ -1,4 +1,6 @@
 
+// Custom Search bar implemented keeping re-usability in mind
+// The action will be provided by parent as a prop
 class ControlledSearchBar extends React.Component{
 
   constructor(props){
@@ -19,7 +21,7 @@ class ControlledSearchBar extends React.Component{
   render(){
 
     return(
-      <div style = {{margin: '0 50%' }}>
+      <div >
       <input  type='input' placeholder='Search' onChange={this.updateState}></input>
       <p>
         {this.state.input}
