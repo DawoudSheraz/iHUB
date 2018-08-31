@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf3a7876-eff6-45ab-82cd-dfd4c19e52cd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/filterable_conference_table" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/filterable_conference_table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/search_bar.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/search_bar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/main/conference_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/conference_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/filterable_conference_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/filterable_conference_table.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
