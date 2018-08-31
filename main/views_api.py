@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, pagination
 from .models import *
 from .serializers import *
 from .api_functions import *
