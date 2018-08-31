@@ -83,7 +83,8 @@ def identify_data_type(value):
         return "str"
 
 
-def get_model_dict_from_query_dict(query_dict, mapping_dict):
+def get_model_dict_from_query_dict(query_dict, mapping_dict
+                                   , ignore_list=['format', 'page']):
 
     """
     Given QueryDict and mapping dict (from query params to model attributes)
@@ -95,17 +96,25 @@ def get_model_dict_from_query_dict(query_dict, mapping_dict):
     and function that might be required to be called on the input. The format is
     {'key' : ('model_column_name', function/None)}
 
+    :param ignore_list: defines list of parameters mentioned in URL to be ignored
+
     :return: regular dictionary to be used with filter command
     """
 
     out_dict = {}
 
     # Remove the format parameter that is specified by the browsable api
-    if 'format' in query_dict.keys():
-        del query_dict['format']
+    # if 'format' in query_dict.keys():
+    #     del query_dict['format']
+    #
+    # if 'page' in query_dict.keys():
+    #     del query_dict['page']
 
     # For every input
     for key, value in query_dict.iteritems():
+
+        if key in ignore_list:
+            continue
 
         # Identify data type from the query param
         data_type = identify_data_type(key)
