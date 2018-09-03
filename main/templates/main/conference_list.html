@@ -11,6 +11,7 @@
     <script type='text/jsx' src="{% static 'main/js/components/conference_row.js'%}"></script>
     <script type='text/jsx' src="{% static 'main/js/components/conference_table.js'%}"></script>
     <script type='text/jsx' src="{% static 'main/js/components/search_bar.js'%}"></script>
+    <script type='text/jsx' src="{% static 'main/js/components/pagination_component.js'%}"></script>
     <script type='text/jsx' src="{% static 'main/js/components/filterable_conference_table.js'%}"></script>
     <script type="text/jsx">
     // Test Data
@@ -85,7 +86,13 @@
 }
   ]
 
-    ReactDOM.render(<FilterableConferenceTable conference_list = {conference_list}/> , document.getElementById('conference_table'))
+  let pagination_data= {
+    'current_page':6,
+    'pages':6,
+    'next':null,
+    'previous':5,
+  }
+    ReactDOM.render(<FilterableConferenceTable conference_list = {conference_list} base_url="{% url 'main:get_conferences'%}" pagination_data={pagination_data} load_img='{%static "main/loading.gif"%}'/> , document.getElementById('conference_table'))
 
     </script>
 {% endblock %}
