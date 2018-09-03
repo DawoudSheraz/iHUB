@@ -86,9 +86,14 @@
 }
   ]
 
-    ReactDOM.render(<FilterableConferenceTable conference_list = {conference_list}/> , document.getElementById('conference_table'))
+  let pagination_data= {
+    'current_page':6,
+    'pages':6,
+    'next':null,
+    'previous':5,
+  }
+    ReactDOM.render(<FilterableConferenceTable conference_list = {conference_list} base_url="{% url 'main:get_conferences'%}" pagination_data={pagination_data}/> , document.getElementById('conference_table'))
 
-    ReactDOM.render(<Pagination/>, document.getElementById('pag_com'))
     </script>
 {% endblock %}
 
@@ -96,7 +101,6 @@
 {%block body%}
 
     <div id='conference_table'></div>
-    <div id="pag_com"></div>
 
 
 <a class="link" href="{%url 'main:index'%}">Back</a>

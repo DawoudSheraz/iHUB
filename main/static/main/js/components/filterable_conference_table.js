@@ -22,12 +22,15 @@ class FilterableConferenceTable extends React.Component{
 //    console.log(this.state.search_text)
     return(
 
-      <div style = {{margin: '0 40%' }}>
+      <div >
         {/*  Custom search bar component */}
         <ControlledSearchBar onEditAction={this.handleTextChange}/>
 
         {/*  ConferenceList component, where data is passed by parent as prop*/}
         <ConferenceList conference_list = {this.props.conference_list} search_text={this.state.search_text}/>
+
+        <Pagination base_url = {this.props.base_url} pagination_data = {this.props.pagination_data}/>
+
       </div>
     )
 

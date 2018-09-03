@@ -43,7 +43,7 @@ class ConferenceList extends React.Component{
     );
 
   return(
-    <table border="1" className="centerTable">
+    <table border='1'>
       <thead>
         <tr>
           <td>Title</td>
