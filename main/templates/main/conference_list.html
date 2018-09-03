@@ -11,6 +11,7 @@
     <script type='text/jsx' src="{% static 'main/js/components/conference_row.js'%}"></script>
     <script type='text/jsx' src="{% static 'main/js/components/conference_table.js'%}"></script>
     <script type='text/jsx' src="{% static 'main/js/components/search_bar.js'%}"></script>
+    <script type='text/jsx' src="{% static 'main/js/components/pagination_component.js'%}"></script>
     <script type='text/jsx' src="{% static 'main/js/components/filterable_conference_table.js'%}"></script>
     <script type="text/jsx">
     // Test Data
@@ -87,6 +88,7 @@
 
     ReactDOM.render(<FilterableConferenceTable conference_list = {conference_list}/> , document.getElementById('conference_table'))
 
+    ReactDOM.render(<Pagination/>, document.getElementById('pag_com'))
     </script>
 {% endblock %}
 
@@ -94,6 +96,7 @@
 {%block body%}
 
     <div id='conference_table'></div>
+    <div id="pag_com"></div>
 
 
 <a class="link" href="{%url 'main:index'%}">Back</a>
