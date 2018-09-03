@@ -35,8 +35,8 @@ class FilterableConferenceTable extends React.Component{
 
   // If component receives an update
   componentDidUpdate(prevProps, prevState){
-    // If there is change in the data, get the data through API call
-    if(prevState.data != this.state.data){
+    // If change in request url, get new data through that URL
+    if(prevState.req_url !== this.state.req_url){
     this.get_data_by_ajax_call();
   }
   }
