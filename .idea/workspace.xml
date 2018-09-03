@@ -7,6 +7,7 @@
     <list default="true" id="cf3a7876-eff6-45ab-82cd-dfd4c19e52cd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/main/static/main/js/components/filterable_conference_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/filterable_conference_table.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/static/main/js/components/pagination_component.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/pagination_component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/main/conference_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/conference_list.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -276,13 +277,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="iHUB" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iHUB" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -321,7 +315,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1377" height="912" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49935317" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" sideWeight="0.5006468" side_tool="true" weight="0.25" />

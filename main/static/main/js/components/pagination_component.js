@@ -83,7 +83,7 @@ class Pagination extends React.Component{
           {prev_button}
 
           <li className="page-item">
-            <span>Page <input type='number' defaultValue={current} onBlur={this.checkInput}  min='1' max={max_page}></input> of {max_page}</span>
+            <span>Page <input type='number' value={current} onChange={this.checkInput}  min='1' max={max_page}></input> of {max_page}</span>
           </li>
 
           {next_button}
