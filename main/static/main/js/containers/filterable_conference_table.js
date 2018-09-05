@@ -1,7 +1,11 @@
-
+import React, {Component} from 'react'
+import ReactDOM from 'react-dom'
+import {ControlledSearchBar} from '../components/search_bar'
+import {Pagination} from '../components/pagination_component'
+import {ConferenceList} from '../components/conference_table'
 // FilterableConferenceTable component which will
 // filter/get the related conferences based on the search query
-class FilterableConferenceTable extends React.Component{
+class FilterableConferenceTable extends Component{
 
   constructor(props){
     super(props);
@@ -84,3 +88,5 @@ class FilterableConferenceTable extends React.Component{
   }
 
 }
+
+export const FilterableConferenceTable
