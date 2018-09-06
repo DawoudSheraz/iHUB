@@ -1,5 +1,4 @@
-
-// Displays the title and fields_of_interest of a conference
+//import React, {Component} from 'react'// Displays the title and fields_of_interest of a conference
 class ConferenceRow extends React.Component{
 
   constructor(props){

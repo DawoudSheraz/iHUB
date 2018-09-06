@@ -3,6 +3,7 @@
 // The action will be provided by parent as a prop
 class ControlledSearchBar extends React.Component{
 
+
   constructor(props){
     super(props);
     this.updateState = this.updateState.bind(this)

@@ -1,11 +1,18 @@
-import React, {Component} from 'react'
-import ReactDOM from 'react-dom'
-import {ControlledSearchBar} from '../components/search_bar'
-import {Pagination} from '../components/pagination_component'
-import {ConferenceList} from '../components/conference_table'
+//define(function (require) {
+//     ControlledSearchBar = require('../components/search_bar');
+//     Pagination = require('../components/pagination_component');
+//     ConferenceList = require('../components/conference_table');
+//
+//     console.log(ControlledSearchBar)
+//});
+
+//import ControlledSearchBar from '../components/search_bar'
+//import Pagination from '../components/pagination_component'
+//import ConferenceList from '../components/conference_table'
 // FilterableConferenceTable component which will
 // filter/get the related conferences based on the search query
-class FilterableConferenceTable extends Component{
+// import {initial_state} from '../reducers/initial_state'
+class FilterableConferenceTable extends React.Component{
 
   constructor(props){
     super(props);
@@ -13,22 +20,27 @@ class FilterableConferenceTable extends Component{
       'search_text': '',
       'req_url': this.props.base_url,
       'data_received': false,
-      'data': this.props.conference_list,
+      'data': [],
     }
     this.handleTextChange = this.handleTextChange.bind(this)
     this.new_request_url = this.new_request_url.bind(this)
+
   }
 
   // AJAX call to the API to get the data
   get_data_by_ajax_call(){
     $.ajax({
-      'url':this.state.req_url,
+      'url': this.state.req_url,
+      method:'GET',
       success: function(data){
         this.setState({
           'data_received': true,
           'data': data
         })
       }.bind(this)
+      , error:function(error){
+        console.log(error)
+      }
     })
   }
 
@@ -46,6 +58,7 @@ class FilterableConferenceTable extends Component{
   }
 
   handleTextChange(value){
+  console.log(window)
     this.setState({
       'search_text': value,
     })
@@ -73,8 +86,10 @@ class FilterableConferenceTable extends Component{
       , 'previous': this.state.data['previous']
       , 'pages': this.state.data['pages']
     }
+
   return (
       <div >
+        <br/><br/>
       <ControlledSearchBar onEditAction={this.handleTextChange}/>
 
       <ConferenceList conference_list = {this.state.data['results']} search_text={this.state.search_text}/>
@@ -88,5 +103,3 @@ class FilterableConferenceTable extends Component{
   }
 
 }
-
-export const FilterableConferenceTable
