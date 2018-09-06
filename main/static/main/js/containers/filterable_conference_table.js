@@ -58,7 +58,7 @@ class FilterableConferenceTable extends React.Component{
   }
 
   handleTextChange(value){
-  console.log(window)
+//  console.log(window)
     this.setState({
       'search_text': value,
     })

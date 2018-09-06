@@ -92,6 +92,7 @@
     'next':null,
     'previous':5,
   }
+
     ReactDOM.render(<FilterableConferenceTable conference_list = {conference_list} base_url="{% url 'main:get_conferences'%}" pagination_data={pagination_data} load_img='{%static "main/loading.gif"%}'/> , document.getElementById('conference_table'))
 
     </script>
