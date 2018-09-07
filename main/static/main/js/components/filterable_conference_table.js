@@ -1,4 +1,3 @@
-
 class FilterableConferenceTable extends React.Component{
 
   constructor(props){
@@ -14,7 +13,7 @@ class FilterableConferenceTable extends React.Component{
 
   // AJAX call to the API to get the data
   get_data_by_ajax_call(){
-      request_conference_data(this.state.req_url, store.dispatch, store)
+      request_conference_data(this.state.req_url, store.dispatch)
   }
 
 // When component first mounts
@@ -75,10 +74,3 @@ class FilterableConferenceTable extends React.Component{
   }
 
 }
-
-const mapStateToProps = state => ({
-  data: state.conference_reducer.conference_data,
-  data_received: state.conference_reducer.conference_data_received
-})
-
-var FilterableConferenceTable_Connected =  window.ReactRedux.connect(mapStateToProps,null)(FilterableConferenceTable)

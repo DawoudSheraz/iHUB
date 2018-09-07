@@ -13,10 +13,12 @@
 
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
       <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
       <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/1.0.7/purify.min.js"></script>
       <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
       <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
       <script src="https://unpkg.com/react-redux@latest/dist/react-redux.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.3.0/redux-thunk.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js"></script>
 
     <!-- Reducers and combinedReducer link -->
@@ -25,6 +27,7 @@
 
      <!--  actions link -->
      <script type="text/javascript" src="{% static 'main/js/actions/get-paginated-conference-data.js'%}"></script>
+
 
 
     <!--Adding the Header and its related components through external files -->
@@ -43,8 +46,7 @@
           , 'index_url': "{% url 'main:index'%}"
         }
 
-        var store = window.Redux.createStore(window.combinedReducerOut, {'conference_data':'',})
-
+        var store = Redux.createStore(window.combinedReducerOut, {'conference_data':'',})
         ReactDOM.render( <HeaderComponent username='{{user.username}}' data_json={header_data_json}/>
         ,document.getElementById('header_component'))
     </script>

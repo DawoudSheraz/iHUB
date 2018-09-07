@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf3a7876-eff6-45ab-82cd-dfd4c19e52cd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/static/main/js/actions/get-paginated-conference-data.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/actions/get-paginated-conference-data.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/static/main/js/containers/filterable_conference_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/containers/filterable_conference_table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/reducers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/reducers/reducer-update-conference-page.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/reducers/reducer-update-conference-page.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/templates/main/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/main/conference_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/conference_list.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -107,7 +103,7 @@
         <entry file="file://$PROJECT_DIR$/main/templates/main/base.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="495">
-              <caret line="53" column="7" lean-forward="true" selection-start-line="53" selection-start-column="7" selection-end-line="53" selection-end-column="7" />
+              <caret line="55" column="7" lean-forward="true" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -133,8 +129,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/templates/main/conference_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1410">
-              <caret line="94" selection-start-line="94" selection-end-line="94" />
+            <state relative-caret-position="1455">
+              <caret line="97" selection-start-line="97" selection-end-line="97" />
             </state>
           </provider>
         </entry>
@@ -727,15 +723,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/templates/main/conference_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1410">
-          <caret line="94" selection-start-line="94" selection-end-line="94" />
+        <state relative-caret-position="1455">
+          <caret line="97" selection-start-line="97" selection-end-line="97" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/templates/main/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
-          <caret line="53" column="7" lean-forward="true" selection-start-line="53" selection-start-column="7" selection-end-line="53" selection-end-column="7" />
+          <caret line="55" column="7" lean-forward="true" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="7" />
         </state>
       </provider>
     </entry>
