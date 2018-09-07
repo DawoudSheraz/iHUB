@@ -7,7 +7,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{% static 'main/styles.css' %}">
-    <script> var exports = {};</script>
+    <script> var exports = {}; </script>
 
     <!-- React and related Scripts-->
 
@@ -20,12 +20,12 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js"></script>
 
     <!-- Reducers and combinedReducer link -->
-    <!-- <script  type="text/javascript" src='{% static "main/js/reducers/reducer-update-conference-page.js"%}'></script> -->
+
      <script type="module" src='{% static "main/js/reducers/index.js"%}'></script>
 
-     <!-- <script>
-      console.log(combinedReducerOut)
-     </script> -->
+     <!--  actions link -->
+     <script type="text/javascript" src="{% static 'main/js/actions/get-paginated-conference-data.js'%}"></script>
+
 
     <!--Adding the Header and its related components through external files -->
     <script type='text/jsx' src="{% static 'main/js/components/logout_state_component.js'%}"></script>
@@ -42,6 +42,8 @@
           , 'login_url': "{% url 'main:login'%}"
           , 'index_url': "{% url 'main:index'%}"
         }
+
+        var store = window.Redux.createStore(window.combinedReducerOut, {'conference_data':'',})
 
         ReactDOM.render( <HeaderComponent username='{{user.username}}' data_json={header_data_json}/>
         ,document.getElementById('header_component'))

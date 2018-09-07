@@ -13,6 +13,9 @@
     <script type='text/jsx' src="{% static 'main/js/components/search_bar.js'%}"></script>
     <script type='text/jsx' src="{% static 'main/js/components/pagination_component.js'%}"></script>
     <script type='text/jsx' src="{% static 'main/js/containers/filterable_conference_table.js'%}"></script>
+
+
+
     <script type="text/jsx">
     // Test Data
     let conference_list =
@@ -93,7 +96,16 @@
     'previous':5,
   }
 
-    ReactDOM.render(<FilterableConferenceTable conference_list = {conference_list} base_url="{% url 'main:get_conferences'%}" pagination_data={pagination_data} load_img='{%static "main/loading.gif"%}'/> , document.getElementById('conference_table'))
+  var Provider = window.ReactRedux.Provider
+
+    ReactDOM.render(
+      <Provider store = {store} >
+        <FilterableConferenceTable_Connected
+        base_url="{% url 'main:get_conferences'%}"
+        pagination_data={pagination_data}
+        load_img='{%static "main/loading.gif"%}'/>
+      </Provider>
+      , document.getElementById('conference_table'))
 
     </script>
 {% endblock %}
