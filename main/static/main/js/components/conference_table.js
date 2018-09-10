@@ -1,10 +1,11 @@
 
+
+
 // Displays the conferences as a table
 class ConferenceList extends React.Component{
 
   constructor(props){
     super(props);
-
   }
 
   // Given the search text from FilterableConferenceTable

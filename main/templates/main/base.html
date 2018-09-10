@@ -7,19 +7,34 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{% static 'main/styles.css' %}">
+    <script> var exports = {}; </script>
 
-    <!-- React and Babel Script-->
-      <!--<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>-->
-      <!--<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>-->
-      <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <!-- React and related Scripts-->
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
       <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
       <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/1.0.7/purify.min.js"></script>
       <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+      <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
+      <script src="https://unpkg.com/react-redux@latest/dist/react-redux.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.3.0/redux-thunk.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js"></script>
+
+    <!-- Reducers and combinedReducer link -->
+
+     <script type="module" src='{% static "main/js/reducers/index.js"%}'></script>
+
+     <!--  actions link -->
+     <script type="text/javascript" src="{% static 'main/js/actions/get-paginated-conference-data.js'%}"></script>
+     <script type="text/javascript" src="{% static 'main/js/actions/search-bar-action.js'%}"></script>
+
 
     <!--Adding the Header and its related components through external files -->
     <script type='text/jsx' src="{% static 'main/js/components/logout_state_component.js'%}"></script>
     <script type='text/jsx' src="{% static 'main/js/components/login_state_component.js'%}"></script>
     <script type='text/jsx' src="{% static 'main/js/components/header_component.js'%}"></script>
+
 
 
     <script type="text/jsx" >
@@ -30,6 +45,8 @@
           , 'login_url': "{% url 'main:login'%}"
           , 'index_url': "{% url 'main:index'%}"
         }
+
+        var store = Redux.createStore(window.combinedReducerOut, {'conference_data':'','search_text':''})
         ReactDOM.render( <HeaderComponent username='{{user.username}}' data_json={header_data_json}/>
         ,document.getElementById('header_component'))
     </script>

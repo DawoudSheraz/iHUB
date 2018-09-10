@@ -1,7 +1,7 @@
 
 // Custom Search bar implemented keeping re-usability in mind
-// The action will be provided by parent as a prop
 class ControlledSearchBar extends React.Component{
+
 
   constructor(props){
     super(props);

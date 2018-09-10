@@ -1,36 +1,22 @@
-
-// FilterableConferenceTable component which will
-// filter/get the related conferences based on the search query
 class FilterableConferenceTable extends React.Component{
 
   constructor(props){
     super(props);
     this.state = {
-      'search_text': '',
       'req_url': this.props.base_url,
-      'data_received': false,
-      'data': this.props.conference_list,
     }
-    this.handleTextChange = this.handleTextChange.bind(this)
     this.new_request_url = this.new_request_url.bind(this)
+
   }
 
   // AJAX call to the API to get the data
   get_data_by_ajax_call(){
-    $.ajax({
-      'url':this.state.req_url,
-      success: function(data){
-        this.setState({
-          'data_received': true,
-          'data': data
-        })
-      }.bind(this)
-    })
+      request_conference_data(this.state.req_url, store.dispatch)
   }
 
 // When component first mounts
   componentDidMount(){
-      this.get_data_by_ajax_call();
+  this.get_data_by_ajax_call()
   }
 
   // If component receives an update
@@ -41,11 +27,6 @@ class FilterableConferenceTable extends React.Component{
   }
   }
 
-  handleTextChange(value){
-    this.setState({
-      'search_text': value,
-    })
-  }
 
   new_request_url(value){
     this.setState({
@@ -54,8 +35,7 @@ class FilterableConferenceTable extends React.Component{
   }
 
   render(){
-
-  if(!this.state.data_received){
+  if(!this.props.data_received){
 
     return(
       <img src={this.props.load_img} style={{width:'25%', height:'25%',}}></img>
@@ -64,16 +44,18 @@ class FilterableConferenceTable extends React.Component{
   else{
     // create pagination json from returned data
     let pagination_json = {
-      'current_page': this.state.data['current_page']
-      , 'next': this.state.data['next']
-      , 'previous': this.state.data['previous']
-      , 'pages': this.state.data['pages']
+      'current_page': this.props.data['current_page']
+      , 'next': this.props.data['next']
+      , 'previous': this.props.data['previous']
+      , 'pages': this.props.data['pages']
     }
+
   return (
       <div >
-      <ControlledSearchBar onEditAction={this.handleTextChange}/>
+        <br/><br/>
+      {/* <ControlledSearchBar onEditAction={this.handleTextChange}/> */}
 
-      <ConferenceList conference_list = {this.state.data['results']} search_text={this.state.search_text}/>
+      <ConferenceList conference_list = {this.props.data['results']} search_text={this.props.search_text}/>
 
       <Pagination base_url = {this.props.base_url} pagination_data = {pagination_json} NewRequestUrl={this.new_request_url}/>
 
