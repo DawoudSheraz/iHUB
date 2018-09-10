@@ -3,10 +3,8 @@ class FilterableConferenceTable extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      'search_text': '',
       'req_url': this.props.base_url,
     }
-    this.handleTextChange = this.handleTextChange.bind(this)
     this.new_request_url = this.new_request_url.bind(this)
 
   }
@@ -29,12 +27,6 @@ class FilterableConferenceTable extends React.Component{
   }
   }
 
-  handleTextChange(value){
-//  console.log(window)
-    this.setState({
-      'search_text': value,
-    })
-  }
 
   new_request_url(value){
     this.setState({
@@ -61,9 +53,9 @@ class FilterableConferenceTable extends React.Component{
   return (
       <div >
         <br/><br/>
-      <ControlledSearchBar onEditAction={this.handleTextChange}/>
+      {/* <ControlledSearchBar onEditAction={this.handleTextChange}/> */}
 
-      <ConferenceList conference_list = {this.props.data['results']} search_text={this.state.search_text}/>
+      <ConferenceList conference_list = {this.props.data['results']} search_text={this.props.search_text}/>
 
       <Pagination base_url = {this.props.base_url} pagination_data = {pagination_json} NewRequestUrl={this.new_request_url}/>
 

@@ -27,7 +27,7 @@
 
      <!--  actions link -->
      <script type="text/javascript" src="{% static 'main/js/actions/get-paginated-conference-data.js'%}"></script>
-
+     <script type="text/javascript" src="{% static 'main/js/actions/search-bar-action.js'%}"></script>
 
 
     <!--Adding the Header and its related components through external files -->
@@ -46,7 +46,7 @@
           , 'index_url': "{% url 'main:index'%}"
         }
 
-        var store = Redux.createStore(window.combinedReducerOut, {'conference_data':'',})
+        var store = Redux.createStore(window.combinedReducerOut, {'conference_data':'','search_text':''})
         ReactDOM.render( <HeaderComponent username='{{user.username}}' data_json={header_data_json}/>
         ,document.getElementById('header_component'))
     </script>
