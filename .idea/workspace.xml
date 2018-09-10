@@ -4,7 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/main/management/commands/generateConferences.py" line="59" mnemonic="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cf3a7876-eff6-45ab-82cd-dfd4c19e52cd" name="Default" comment="" />
+    <list default="true" id="cf3a7876-eff6-45ab-82cd-dfd4c19e52cd" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/scholarship_row.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/scholarship_row.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +92,7 @@
         <entry file="file://$PROJECT_DIR$/main/templates/main/base.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
-              <caret line="50" column="23" lean-forward="true" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
+              <caret line="51" column="23" lean-forward="true" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -665,7 +667,7 @@
     <entry file="file://$PROJECT_DIR$/main/templates/main/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="50" column="23" lean-forward="true" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
+          <caret line="51" column="23" lean-forward="true" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
         </state>
       </provider>
     </entry>
