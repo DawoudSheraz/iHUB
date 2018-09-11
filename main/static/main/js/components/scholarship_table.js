@@ -9,7 +9,7 @@ class ScholarshipList extends React.Component{
 
       let out_rows = []
       const scholarships = this.props.scholarship_list
-      
+
       scholarships.forEach( (scholarship) => {
 
         if(this.props.search_text!='' &&
@@ -24,7 +24,6 @@ class ScholarshipList extends React.Component{
           <thead>
             <tr>
               <td>Title</td>
-              <td>Skills</td>
             </tr>
           </thead>
 

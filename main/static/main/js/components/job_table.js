@@ -33,7 +33,6 @@ class JobList extends React.Component{
       <thead>
         <tr>
           <td>Title</td>
-          <td>Skills</td>
         </tr>
       </thead>
 

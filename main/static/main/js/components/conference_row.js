@@ -1,9 +1,35 @@
-//import React, {Component} from 'react'// Displays the title and fields_of_interest of a conference
+
+
 class ConferenceRow extends React.Component{
 
   constructor(props){
     super(props);
+    this.state = {
+      'content':''
+    }
   }
+
+  //
+  // componentDidMount(){
+  //   this.get_template_html(this.props.template_path)
+  // }
+  //
+  // get_template_html(file_path){
+  //   var rawFile = new XMLHttpRequest();
+  //   rawFile.open("GET", file_path, true);
+  //   rawFile.onreadystatechange = function ()
+  //   {
+  //       if(rawFile.readyState === 4)
+  //       {
+  //           if(rawFile.status === 200 || rawFile.status == 0)
+  //           {
+  //               this.setState ({
+  //                 content: rawFile.responseText});
+  //           }
+  //       }
+  //   }.bind(this)
+  //   rawFile.send(null);
+  
 
   render(){
     const conference = this.props.conference;
@@ -14,10 +40,11 @@ class ConferenceRow extends React.Component{
     const venue = get_formatted_venue(conference['conference_venue'])
     const paper_deadline = get_format_date(conference['call_for_paper_deadline'])
 
+
     return(
       <tr>
-        <td><a className='btn btn-link' data-toggle="modal" data-target={data_target}>{title}</a></td>
-        <td>{skills}
+        <td><a className='btn btn-link' data-toggle="modal" data-target={data_target}>{title}</a>
+
           <div className="modal fade" id={modal_id} role="dialog">
             <div className="modal-dialog">
 
@@ -72,9 +99,7 @@ class ConferenceRow extends React.Component{
 
         </td>
 
-
       </tr>
-
 
     );
   }

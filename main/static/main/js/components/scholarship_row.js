@@ -25,8 +25,8 @@ class ScholarshipRow extends React.Component{
 
     return(
       <tr>
-        <td><a className='btn btn-link' data-toggle="modal" data-target={data_target}>{title}</a></td>
-        <td>{skills}
+        <td><a className='btn btn-link' data-toggle="modal" data-target={data_target}>{title}</a>
+
 
           <div className="modal fade" id={modal_id} role="dialog">
             <div className="modal-dialog">

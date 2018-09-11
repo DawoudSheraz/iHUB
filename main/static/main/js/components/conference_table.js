@@ -26,7 +26,7 @@ class ConferenceList extends React.Component{
         }
 
       // key is required by React to uniquely identify each row
-      out_row.push( <ConferenceRow conference= {conference} key={conference['info']['title']}/>)
+      out_row.push( <ConferenceRow template_path={this.props.template_path} conference= {conference} key={conference['info']['title']}/>)
     }
     );
 
@@ -35,7 +35,6 @@ class ConferenceList extends React.Component{
       <thead>
         <tr>
           <td>Title</td>
-          <td>Skills</td>
         </tr>
       </thead>
 
