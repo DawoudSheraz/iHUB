@@ -6,7 +6,7 @@
  export default function paginated_job_reducer(state, action){
 
    if(typeof state == 'undefined'){
-     return {'':'', 'job_data_received': false}
+     return {'job_data':'', 'job_data_received': false}
    }
 
     switch (action.type) {

@@ -8,7 +8,6 @@ class JobRow extends React.Component{
 
 render(){
   const job = this.props.job_data
-
   const data_target = '#' + job['job']['title'].replace(' ','_')
   const modal_id = job['job']['title'].replace(' ','_')
   const title = job['job']['title']
@@ -82,7 +81,7 @@ render(){
                 {/*  Provided by*/}
                 <h4 className='text-primary'>Provided by</h4>
                 <p>{job['job_provider']['name']}</p>
-                
+
                 {/*  Original Source */}
                 <h4 className='text-primary'>Source </h4>
                 <p>{job['source']}</p>
