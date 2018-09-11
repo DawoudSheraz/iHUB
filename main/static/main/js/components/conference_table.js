@@ -8,20 +8,7 @@ class ConferenceList extends React.Component{
     super(props);
   }
 
-  // Given the search text from FilterableConferenceTable
-  // display only those conferences whose fields_of_interest has that search_text
-  check_text_inside_json_list(search_query, json_list){
 
-    let record_found = false
-    for(var count=0; count< json_list.length; count++){
-      if(json_list[count]['title'].toLowerCase().includes(search_query)){
-        record_found = true
-        break;
-      }
-    }
-
-    return record_found;
-  }
 
   render(){
 
@@ -34,12 +21,12 @@ class ConferenceList extends React.Component{
         // if search_text is not empty and text is not found inside any field_of_interest,
         // do not render that conference
         if(this.props.search_text!='' &&
-        !this.check_text_inside_json_list(this.props.search_text.toLowerCase(), conference['fields_of_interest'])){
+        !check_text_inside_json_list(this.props.search_text.toLowerCase(), conference['fields_of_interest'])){
           return;
         }
 
       // key is required by React to uniquely identify each row
-      out_row.push( <ConferenceRow conference= {conference} key={conference['info']['title']}/>)
+      out_row.push( <ConferenceRow template_path={this.props.template_path} conference= {conference} key={conference['info']['title']}/>)
     }
     );
 
@@ -48,7 +35,6 @@ class ConferenceList extends React.Component{
       <thead>
         <tr>
           <td>Title</td>
-          <td>Skills</td>
         </tr>
       </thead>
 

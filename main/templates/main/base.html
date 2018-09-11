@@ -6,7 +6,7 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="{% static 'main/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'main/stylesheets/styles.css' %}">
     <script> var exports = {}; </script>
 
     <!-- React and related Scripts-->
@@ -21,12 +21,16 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.3.0/redux-thunk.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js"></script>
 
+      <script src="{% static 'main/js/utils/util-general-functions.js'%}"></script>
+
     <!-- Reducers and combinedReducer link -->
 
      <script type="module" src='{% static "main/js/reducers/index.js"%}'></script>
 
      <!--  actions link -->
      <script type="text/javascript" src="{% static 'main/js/actions/get-paginated-conference-data.js'%}"></script>
+     <script type="text/javascript" src="{% static 'main/js/actions/get-paginated-job-action.js'%}"></script>
+     <script type="text/javascript" src="{% static 'main/js/actions/get-paginated-scholarship-action.js'%}"></script>
      <script type="text/javascript" src="{% static 'main/js/actions/search-bar-action.js'%}"></script>
 
 
@@ -46,12 +50,15 @@
           , 'index_url': "{% url 'main:index'%}"
         }
 
-        var store = Redux.createStore(window.combinedReducerOut, {'conference_data':'','search_text':''})
+        var store = Redux.createStore(window.combinedReducerOut)
         ReactDOM.render( <HeaderComponent username='{{user.username}}' data_json={header_data_json}/>
         ,document.getElementById('header_component'))
     </script>
 
-{% block javascript %}{% endblock %}
+{% block javascript %}
+
+
+{% endblock %}
 
 </head>
 
@@ -64,6 +71,7 @@
     <br> <br>
 
 {%block body%}
+
 {%endblock%}
 </body>
 

@@ -1,33 +1,37 @@
 {% extends 'main/base.html'%}
-
+{% load static %}
 {% block title%}
     Scholarships
 {% endblock %}
 
+{% block javascript%}
+<script type='text/jsx' src="{% static 'main/js/components/scholarship_row.js'%}"></script>
+<script type='text/jsx' src="{% static 'main/js/components/scholarship_table.js'%}"></script>
+<script type='text/jsx' src="{% static 'main/js/components/pagination_component.js'%}"></script>
+<script type='text/jsx' src="{% static 'main/js/components/search_bar.js'%}"></script>
+<script type='text/jsx' src="{% static 'main/js/components/filterable_scholarship_table.js'%}"></script>
+<script type='text/jsx' src="{% static 'main/js/containers/container-filterable_scholarship_table.js'%}"></script>
+<script type='text/jsx' src='{% static "main/js/containers/container-search-bar.js"%}'></script>
+
+
+<script type="text/jsx">
+var Provider = window.ReactRedux.Provider
+ReactDOM.render(
+  <Provider store = {store} >
+    <div>
+    <window.ContainerSearchBar/>
+    <FilterableScholarshipTable_Connected
+    base_url="{% url 'main:get_scholarships'%}"
+    load_img='{%static "main/images/loading.gif"%}'/>
+    </div>
+  </Provider>
+  , document.getElementById('scholarship_data'))
+</script>
+{% endblock %}
 
 {% block body %}
 
-
-    {% if scholarship_list %}
-
-    <table border="1" class="centerTable">
-
-        {% for each in scholarship_list%}
-
-        <tr >
-            <td class="row_space"><a href="{% url 'main:scholarship_details' each.id %}" class="link align_center" id="{{each.id}}"> {{each.information.title}}</a> </td>
-            <td class="align_center row_space"> {{each.duration.start_date | date}}</td>
-
-        </tr>
-
-        {% endfor %}
-
-
-    </table>
-
-    {% include 'includes/pagination.html' %}
-
-    {% endif %}
+  <div id='scholarship_data'></div>
 
 <a class="link" href="{%url 'main:index'%}">Back</a>
 {% endblock %}

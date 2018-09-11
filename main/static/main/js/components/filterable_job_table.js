@@ -1,4 +1,4 @@
-class FilterableConferenceTable extends React.Component{
+class FilterableJobTable extends React.Component{
 
   constructor(props){
     super(props);
@@ -11,7 +11,7 @@ class FilterableConferenceTable extends React.Component{
 
   // AJAX call to the API to get the data
   get_data_by_ajax_call(){
-      request_conference_data(this.state.req_url, store.dispatch)
+      request_job_data(this.state.req_url, store.dispatch)
   }
 
 // When component first mounts
@@ -26,7 +26,6 @@ class FilterableConferenceTable extends React.Component{
     this.get_data_by_ajax_call();
   }
   }
-
 
   new_request_url(value){
     this.setState({
@@ -49,13 +48,12 @@ class FilterableConferenceTable extends React.Component{
       , 'previous': this.props.data['previous']
       , 'pages': this.props.data['pages']
     }
-  
+
   return (
       <div >
         <br/><br/>
-      {/* <ControlledSearchBar onEditAction={this.handleTextChange}/> */}
 
-      <ConferenceList conference_list = {this.props.data['results']} template_path={this.props.template_path} search_text={this.props.search_text}/>
+      <JobList job_list = {this.props.data['results']} search_text={this.props.search_text}/>
 
       <Pagination base_url = {this.props.base_url} pagination_data = {pagination_json} NewRequestUrl={this.new_request_url}/>
 

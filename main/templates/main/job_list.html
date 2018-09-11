@@ -1,35 +1,39 @@
 
 {%extends 'main/base.html'%}
-
+{% load static %}
 {%block title %}
     Student Job Positions
 {% endblock %}
 
+  {% block javascript%}
+  <script type='text/jsx' src="{% static 'main/js/components/job_row.js'%}"></script>
+  <script type='text/jsx' src="{% static 'main/js/components/job_table.js'%}"></script>
+  <script type='text/jsx' src="{% static 'main/js/components/pagination_component.js'%}"></script>
+  <script type='text/jsx' src="{% static 'main/js/components/search_bar.js'%}"></script>
+  <script type='text/jsx' src="{% static 'main/js/components/filterable_job_table.js'%}"></script>
+  <script type='text/jsx' src="{% static 'main/js/containers/container-filterable_job_table.js'%}"></script>
+  <script type='text/jsx' src='{% static "main/js/containers/container-search-bar.js"%}'></script>
+
+
+  <script type="text/jsx">
+  var Provider = window.ReactRedux.Provider
+  ReactDOM.render(
+    <Provider store = {store} >
+      <div>
+      <window.ContainerSearchBar/>
+      <FilterableJobTable_Connected
+      base_url="{% url 'main:get_student_positions'%}"
+      load_img='{%static "main/images/loading.gif"%}'/>
+      </div>
+    </Provider>
+    , document.getElementById('job_data'))
+  </script>
+  {% endblock %}
 
 {%block body%}
 
-    {% if job_list %}
-
-    <table border="1" class="centerTable">
-
-        {% for each in job_list%}
-
-        <tr >
-            <td class="row_space"><a href="{% url 'main:job_details' each.id %}" class="link align_center" id="{{each.id}}"> {{each.job.title}}</a> </td>
-            <td class="align_center row_space"> {{each.duration.start_date | date}}</td>
-
-        </tr>
-
-        {% endfor %}
-
-
-    </table>
-
-    {% include 'includes/pagination.html' %}
-
-    {% endif %}
+  <div id='job_data'></div>
 
 <a class="link" href="{%url 'main:index'%}">Back</a>
 
 {% endblock %}
-
