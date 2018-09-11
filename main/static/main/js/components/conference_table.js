@@ -34,7 +34,7 @@ class ConferenceList extends React.Component{
     <table border='1'>
       <thead>
         <tr>
-          <td>Title</td>
+          <td>Conferences</td>
         </tr>
       </thead>
 

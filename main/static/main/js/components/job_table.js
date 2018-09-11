@@ -32,7 +32,7 @@ class JobList extends React.Component{
     <table border='1'>
       <thead>
         <tr>
-          <td>Title</td>
+          <td>Student Positions</td>
         </tr>
       </thead>
 

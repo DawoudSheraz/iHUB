@@ -23,7 +23,7 @@ class ScholarshipList extends React.Component{
         <table border='1'>
           <thead>
             <tr>
-              <td>Title</td>
+              <td>Scholarships</td>
             </tr>
           </thead>
 
