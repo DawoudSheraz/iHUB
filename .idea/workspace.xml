@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf3a7876-eff6-45ab-82cd-dfd4c19e52cd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/conference_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/conference_table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/filterable_conference_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/filterable_conference_table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/filterable_job_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/filterable_job_table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/job_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/job_table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/filterable_scholarship_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/filterable_scholarship_table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/scholarship_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/scholarship_table.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +51,7 @@
           <entry key="filterable_conference_table" value="1" />
           <entry key="html" value="66" />
           <entry key="js" value="54" />
-          <entry key="py" value="206" />
+          <entry key="py" value="208" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -63,7 +60,7 @@
           <entry key="HTML" value="66" />
           <entry key="JavaScript" value="52" />
           <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Python" value="206" />
+          <entry key="Python" value="208" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -110,7 +107,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/views_api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
+            <state relative-caret-position="319">
               <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
             </state>
           </provider>
@@ -475,13 +472,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/api_functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1515">
-          <caret line="101" column="7" lean-forward="true" selection-start-line="101" selection-start-column="7" selection-end-line="101" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -654,9 +644,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main/api_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-26">
+          <caret line="101" column="7" lean-forward="true" selection-start-line="101" selection-start-column="7" selection-end-line="101" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main/views_api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
+        <state relative-caret-position="319">
           <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
         </state>
       </provider>

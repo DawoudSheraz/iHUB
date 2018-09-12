@@ -4,7 +4,7 @@ class FilterableScholarshipTable extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      'req_url': this.props.base_url,
+      'req_url': this.props.base_url + '?page=1',
     }
     this.new_request_url = this.new_request_url.bind(this)
 
@@ -12,7 +12,15 @@ class FilterableScholarshipTable extends React.Component{
 
   // AJAX call to the API to get the data
   get_data_by_ajax_call(){
-      request_scholarship_data(this.state.req_url, store.dispatch)
+
+    // Building up the params to be passed to the API url
+    let ajax_query_param=''
+
+    // If there is some search text, pass it via skills_list param
+    if(this.props.search_text!=''){
+    ajax_query_param+='&skills_list=' + this.props.search_text
+    }
+      request_scholarship_data(this.state.req_url + ajax_query_param, store.dispatch)
   }
 
 // When component first mounts
@@ -22,8 +30,10 @@ class FilterableScholarshipTable extends React.Component{
 
   // If component receives an update
   componentDidUpdate(prevProps, prevState){
+
     // If change in request url, get new data through that URL
-    if(prevState.req_url !== this.state.req_url){
+    if(prevState.req_url !== this.state.req_url ||
+      prevProps.search_text!== this.props.search_text){
     this.get_data_by_ajax_call();
   }
   }
@@ -53,7 +63,7 @@ class FilterableScholarshipTable extends React.Component{
       <div >
         <br/><br/>
 
-      <ScholarshipList scholarship_list = {this.props.data['results']} search_text={this.props.search_text}/>
+      <ScholarshipList scholarship_list = {this.props.data['results']} />
 
       <Pagination base_url = {this.props.base_url} pagination_data = {pagination_json} NewRequestUrl={this.new_request_url}/>
 
