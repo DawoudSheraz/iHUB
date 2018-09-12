@@ -67,7 +67,7 @@ class ListStudentPositionApiView(generics.ListAPIView):
 
         filter_content_dict = get_model_dict_from_query_dict(self.request.query_params.dict(), {
 
-            'skills_list': ('fields_of_interest__title'
+            'skills_list': ('skills_covered__title'
                             , filter_specialization_from_input)
             , 'start_date': ('duration__start_date', None)
             , 'country': ('job_location__country', None)

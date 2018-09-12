@@ -66,7 +66,7 @@ class FilterableConferenceTable extends React.Component{
         <br/><br/>
       {/* <ControlledSearchBar onEditAction={this.handleTextChange}/> */}
 
-      <ConferenceList conference_list = {this.props.data['results']} template_path={this.props.template_path} />
+      <ConferenceList conference_list = {this.props.data['results']} />
 
       <Pagination base_url = {this.props.base_url} pagination_data = {pagination_json} NewRequestUrl={this.new_request_url}/>
 

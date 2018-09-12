@@ -15,7 +15,6 @@ class ConferenceList extends React.Component{
 
     // Create ConferenceRow component for each entry in list
     data.forEach( (conference) => {
-
       // key is required by React to uniquely identify each row
       out_row.push( <ConferenceRow template_path={this.props.template_path} conference= {conference} key={conference['info']['title']}/>)
     }
