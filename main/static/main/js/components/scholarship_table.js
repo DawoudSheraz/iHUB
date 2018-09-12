@@ -12,10 +12,6 @@ class ScholarshipList extends React.Component{
 
       scholarships.forEach( (scholarship) => {
 
-        if(this.props.search_text!='' &&
-      !check_text_inside_json_list(this.props.search_text.toLowerCase(), scholarship['fields_of_interest'])){
-        return;
-      }
       out_rows.push(<ScholarshipRow scholarship = {scholarship} key={scholarship['information']['title']}/>)
       });
 
