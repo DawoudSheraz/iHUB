@@ -21,7 +21,7 @@ class JobList extends React.Component{
     );
 
   return(
-    <table border='1'>
+    <table border='1' className='table table-striped table-hover'>
       <thead>
         <tr>
           <td>Student Positions</td>
