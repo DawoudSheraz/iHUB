@@ -61,8 +61,7 @@ class FilterableScholarshipTable extends React.Component{
     }
   return (
       <div >
-        <br/><br/>
-
+        <br/>
       <ScholarshipList scholarship_list = {this.props.data['results']} />
 
       <Pagination base_url = {this.props.base_url} pagination_data = {pagination_json} NewRequestUrl={this.new_request_url}/>

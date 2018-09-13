@@ -21,8 +21,8 @@ class ConferenceList extends React.Component{
     );
 
   return(
-    <table border='1'>
-      <thead>
+    <table border='1' className='table table-striped table-hover'>
+      <thead >
         <tr>
           <td>Conferences</td>
         </tr>
