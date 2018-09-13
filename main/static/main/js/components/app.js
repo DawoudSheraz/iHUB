@@ -48,12 +48,17 @@ render(){
 
   return(
     <div>
+      {/*  Selection of the Feature .i.e conferece,job or scholarship*/}
       <div>
         <FeatureNavBar current={this.state.current} updateOnClick={this.updateOnClick}/>
       </div>
+
+      {/*  Setting up the search bar */}
       <div className='text-center'>
         <window.ContainerSearchBar/>
       </div>
+
+      {/*  The feature selected according to the clicked link*/}
       <div className='container'>
           <div className='row'>
             <div className='col-lg-12 text-center table-responsive'>
@@ -61,6 +66,7 @@ render(){
             </div>
           </div>
       </div>
+      
     </div>
   )
 }
