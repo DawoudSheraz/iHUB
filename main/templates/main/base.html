@@ -18,7 +18,9 @@
       <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
       <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
       <script src="https://unpkg.com/react-redux@latest/dist/react-redux.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.3.0/redux-thunk.min.js"></script>
+      <script src="https://unpkg.com/react-router/umd/react-router.min.js"></script>
+      <script src="https://unpkg.com/react-router-dom@latest/umd/react-router-dom.min.js"></script>
+      <script src="https://unpkg.com/redux-thunk@latest/dist/redux-thunk.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js"></script>
 
       <script src="{% static 'main/js/utils/util-general-functions.js'%}"></script>
@@ -37,6 +39,7 @@
     <!--Adding the Header and its related components through external files -->
     <script type='text/jsx' src="{% static 'main/js/components/logout_state_component.js'%}"></script>
     <script type='text/jsx' src="{% static 'main/js/components/login_state_component.js'%}"></script>
+    <script type='text/jsx' src="{% static 'main/js/components/router-links-list.js'%}"></script>
     <script type='text/jsx' src="{% static 'main/js/components/header_component.js'%}"></script>
 
 
@@ -50,8 +53,13 @@
           , 'index_url': "{% url 'main:index'%}"
         }
 
+        var BrowserRouter = ReactRouterDOM.BrowserRouter
+
         var store = Redux.createStore(window.combinedReducerOut)
-        ReactDOM.render( <HeaderComponent username='{{user.username}}' data_json={header_data_json}/>
+        ReactDOM.render(
+          <BrowserRouter>
+            <HeaderComponent username='{{user.username}}' data_json={header_data_json}/>
+          </BrowserRouter>
         ,document.getElementById('header_component'))
     </script>
 

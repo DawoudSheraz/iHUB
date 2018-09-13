@@ -61,6 +61,7 @@ class FilterableScholarshipTable extends React.Component{
     }
   return (
       <div >
+        {/* <window.ContainerSearchBar/> */}
         <br/>
       <ScholarshipList scholarship_list = {this.props.data['results']} />
 

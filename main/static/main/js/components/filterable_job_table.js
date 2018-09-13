@@ -63,6 +63,7 @@ class FilterableJobTable extends React.Component{
 
   return (
       <div >
+        {/* <window.ContainerSearchBar/> */}
         <br/>
       <JobList job_list = {this.props.data['results']} />
 
