@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cf3a7876-eff6-45ab-82cd-dfd4c19e52cd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/final.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/app.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,17 +49,17 @@
           <entry key="css" value="2" />
           <entry key="filterable_conference_table" value="1" />
           <entry key="html" value="66" />
-          <entry key="js" value="54" />
-          <entry key="py" value="208" />
+          <entry key="js" value="55" />
+          <entry key="py" value="209" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="2" />
           <entry key="HTML" value="66" />
-          <entry key="JavaScript" value="52" />
+          <entry key="JavaScript" value="53" />
           <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Python" value="208" />
+          <entry key="Python" value="209" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -91,25 +89,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/static/main/js/components/filterable_conference_table.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/static/main/js/components/filterable_job_table.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main/views_api.py">
+        <entry file="file://$PROJECT_DIR$/main/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="68" selection-start-line="68" selection-end-line="68" />
+            <state relative-caret-position="-1576">
+              <caret line="273" column="7" selection-start-line="273" selection-start-column="7" selection-end-line="273" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -243,23 +227,6 @@
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="iHUB" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iHUB" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="iHUB" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iHUB" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -347,9 +314,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main/tests.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/iHUB/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -427,13 +391,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4020">
-          <caret line="273" column="7" selection-start-line="273" selection-start-column="7" selection-end-line="273" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -642,9 +599,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/static/main/js/components/filterable_conference_table.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/static/main/js/components/filterable_job_table.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -656,6 +610,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="321">
           <caret line="68" selection-start-line="68" selection-end-line="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/static/main/js/components/filterable_conference_table.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/static/main/js/components/select-feature.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1576">
+          <caret line="273" column="7" selection-start-line="273" selection-start-column="7" selection-end-line="273" selection-end-column="7" />
         </state>
       </provider>
     </entry>

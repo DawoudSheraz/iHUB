@@ -29,7 +29,7 @@ class ConferenceRow extends React.Component{
   //       }
   //   }.bind(this)
   //   rawFile.send(null);
-  
+
 
   render(){
     const conference = this.props.conference;
@@ -54,6 +54,7 @@ class ConferenceRow extends React.Component{
                   <button type="button" className="close" data-dismiss="modal">&times;</button>
                   <h4 className="modal-title">{title}</h4>
                 </div>
+
                 <div className="modal-body">
 
                   {/*  Details */}
@@ -83,12 +84,47 @@ class ConferenceRow extends React.Component{
                   <h4 className='text-primary'>Source </h4>
                   <p>{conference['source']}</p>
 
-                  {/*  Sponsors */}
-                  <h4 className='text-primary'>Sponsors </h4>
-                  <p>{get_comma_separated_value(conference['sponsors'], 'name')}</p>
+                  <div className="container-fluid">
+                    <div className="panel-group" id="accordion">
 
+                      {/*  Sponsor Collapse*/}
+                      <div className="panel panel-default">
+                        <div className="panel-heading">
+                          <h4 className="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Sponsors</a>
+                          </h4>
+                        </div>
+                        <div id="collapse1" className="panel-collapse collapse">
+                          <div className="panel-body">{get_comma_separated_value(conference['sponsors'], 'name')}</div>
+                        </div>
+                      </div>
+
+                      {/* Covered Expenses  */}
+                      <div className="panel panel-default">
+                        <div className="panel-heading">
+                          <h4 className="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Covered Expenses</a>
+                          </h4>
+                        </div>
+                        <div id="collapse2" className="panel-collapse collapse">
+                          <div className="panel-body">
+
+                            {conference['covered_expenses'].map(
+                              (expense, index) => (<p key={index}>{expense['amount']}</p>)
+                            )
+                          }
+
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
 
                 </div>
+
+
                 <div className="modal-footer">
                   <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
