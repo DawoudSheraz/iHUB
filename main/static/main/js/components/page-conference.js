@@ -11,7 +11,7 @@ function ConferencePage(props){
                 base_url={props.app_data['conf_base_url']}
                 load_img={props.app_data['load_img']}
                   />
-                </div>
+            </div>
           </div>
     </div>
   )

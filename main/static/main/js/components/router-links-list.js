@@ -7,14 +7,22 @@ class PageSelectionNavbar extends React.Component{
 
   render(){
       const NavLink = ReactRouterDOM.NavLink
-
       return(
+        <div className='container-fluid'>
+          <div className='row'>
 
-        <ul className="nav navbar-nav navbar-left">
-            <li ><NavLink to='/conferences'  activeStyle={{'color':'red'}}>Conferences</NavLink></li>
-            <li ><NavLink to='/job_positions'  activeStyle={{'color':'red'}}>Job Positions</NavLink></li>
-            <li ><NavLink to='/scholarship'  activeStyle={{'color':'red'}}>Scholarships</NavLink></li>
-        </ul>
+            <NavLink className='btn btn-link col-md-4 col-xs-12' to='/conferences'  activeClassName='active'>
+              Conferences
+            </NavLink>
+            <NavLink className='btn btn-link col-md-4 col-xs-12' to='/job_positions'  activeClassName='active'>
+              Job Positions
+            </NavLink>
+            <NavLink className='btn btn-link col-md-4 col-xs-12' to='/scholarship'  activeClassName='active'>
+              Scholarships
+            </NavLink>
+
+        </div>
+        </div>
       )
   }
 }
