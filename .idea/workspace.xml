@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf3a7876-eff6-45ab-82cd-dfd4c19e52cd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/filterable_conference_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/filterable_conference_table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/filterable_job_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/filterable_job_table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/filterable_scholarship_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/filterable_scholarship_table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/header_component.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/header_component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/page-conference.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/page-conference.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/page-job.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/page-job.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/page-scholarship.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/page-scholarship.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/router-links-list.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/router-links-list.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/js/actions/get-paginated-conference-data.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/actions/get-paginated-conference-data.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/templates/main/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/main/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
