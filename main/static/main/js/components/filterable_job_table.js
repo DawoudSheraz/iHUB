@@ -49,7 +49,7 @@ class FilterableJobTable extends React.Component{
   if(!this.props.data_received){
 
     return(
-      <img src={this.props.load_img} style={{width:'25%', height:'25%',}}></img>
+      <img src={this.props.load_img} style={{width:'25%', height:'25%',}} alt='Loading'></img>
     )
   }
   else{
@@ -75,4 +75,8 @@ class FilterableJobTable extends React.Component{
 
   }
 
+}
+
+FilterableJobTable.defaultProps = {
+  base_url: 'http://127.0.0.1:8000/main/api/student_positions/',
 }

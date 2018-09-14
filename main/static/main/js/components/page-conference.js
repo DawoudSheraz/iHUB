@@ -8,7 +8,7 @@ function ConferencePage(props){
 
               <window.ContainerSearchBar/>
               <FilterableConferenceTable_Connected
-                base_url={props.app_data['conf_base_url']}
+                
                 load_img={props.app_data['load_img']}
                   />
             </div>
