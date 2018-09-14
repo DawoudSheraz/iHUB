@@ -17,7 +17,7 @@ class ControlledSearchBar extends React.Component{
 
     return(
       <div >
-      <input  type='input' placeholder='Search' onChange={this.updateState}></input>
+      <input  type='input' placeholder='Search' onChange={this.updateState} value={this.props.search_text}></input>
       </div>
     )
 

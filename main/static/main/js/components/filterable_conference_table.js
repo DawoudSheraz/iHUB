@@ -49,7 +49,7 @@ class FilterableConferenceTable extends React.Component{
   if(!this.props.data_received){
 
     return(
-      <img src={this.props.load_img} style={{width:'25%', height:'25%',}}></img>
+      <img src={this.props.load_img} style={{width:'25%', height:'25%',}} alt='Loading'></img>
     )
   }
   else{
@@ -63,8 +63,8 @@ class FilterableConferenceTable extends React.Component{
 
   return (
       <div >
-      {/* <ControlledSearchBar onEditAction={this.handleTextChange}/> */}
-      <br/>
+        {/* <window.ContainerSearchBar/> */}
+        <br/>
       <ConferenceList conference_list = {this.props.data['results']} />
 
       <Pagination base_url = {this.props.base_url} pagination_data = {pagination_json} NewRequestUrl={this.new_request_url}/>
@@ -75,4 +75,8 @@ class FilterableConferenceTable extends React.Component{
 
   }
 
+}
+
+FilterableConferenceTable.defaultProps = {
+  base_url : 'http://127.0.0.1:8000/main/api/conferences/'
 }

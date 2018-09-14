@@ -6,43 +6,18 @@
 
 {% block javascript%}
 
-<!-- Conference Component  -->
-<script type='text/jsx' src="{% static 'main/js/components/conference_row.js'%}"></script>
-<script type='text/jsx' src="{% static 'main/js/components/conference_table.js'%}"></script>
-<script type='text/jsx' src="{% static 'main/js/components/pagination_component.js'%}"></script>
-<script type='text/jsx' src="{% static 'main/js/components/search_bar.js'%}"></script>
-<script type='text/jsx' src="{% static 'main/js/components/filterable_conference_table.js'%}"></script>
-<script type='text/jsx' src="{% static 'main/js/containers/container-filterable_conference_table.js'%}"></script>
-<script type='text/jsx' src='{% static "main/js/containers/container-search-bar.js"%}'></script>
-
-<!--  Job table component -->
-<script type='text/jsx' src="{% static 'main/js/components/job_row.js'%}"></script>
-<script type='text/jsx' src="{% static 'main/js/components/job_table.js'%}"></script>
-<script type='text/jsx' src="{% static 'main/js/components/filterable_job_table.js'%}"></script>
-<script type='text/jsx' src="{% static 'main/js/containers/container-filterable_job_table.js'%}"></script>
-<!--  Scholarship Component -->
-<script type='text/jsx' src="{% static 'main/js/components/scholarship_row.js'%}"></script>
-<script type='text/jsx' src="{% static 'main/js/components/scholarship_table.js'%}"></script>
-<script type='text/jsx' src="{% static 'main/js/components/filterable_scholarship_table.js'%}"></script>
-<script type='text/jsx' src="{% static 'main/js/containers/container-filterable_scholarship_table.js'%}"></script>
-
-<!--  Main app component containing all the stuff-->
-<script type='text/jsx' src="{% static 'main/js/components/select-feature.js'%}"></script>
-<script type='text/jsx' src="{% static 'main/js/components/app.js'%}"></script>
 
 <script type="text/jsx">
-  var Provider = window.ReactRedux.Provider
 
   let app_data = {
     'load_img': '{%static "main/images/loading.gif"%}'
-    , 'conf_base_url': "{% url 'main:get_conferences'%}"
-    , 'job_base_url': "{% url 'main:get_student_positions'%}"
-    , 'sch_base_url': "{% url 'main:get_scholarships'%}"
   }
   ReactDOM.render(
-    <Provider store = {store} >
-      <App app_data = {app_data}/>
-    </Provider>
+    <BrowserRouter>
+      <Provider store = {store} >
+        <App app_data = {app_data}/>
+      </Provider>
+    </BrowserRouter>
     , document.getElementById('root'))
 </script>
 {% endblock%}

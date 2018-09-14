@@ -11,14 +11,15 @@
 
     <!-- React and related Scripts-->
 
-    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+      <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
       <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-
       <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/1.0.7/purify.min.js"></script>
       <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
       <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
       <script src="https://unpkg.com/react-redux@latest/dist/react-redux.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.3.0/redux-thunk.min.js"></script>
+      <script src="https://unpkg.com/react-router/umd/react-router.min.js"></script>
+      <script src="https://unpkg.com/react-router-dom@latest/umd/react-router-dom.min.js"></script>
+      <script src="https://unpkg.com/redux-thunk@latest/dist/redux-thunk.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js"></script>
 
       <script src="{% static 'main/js/utils/util-general-functions.js'%}"></script>
@@ -33,26 +34,67 @@
      <script type="text/javascript" src="{% static 'main/js/actions/get-paginated-scholarship-action.js'%}"></script>
      <script type="text/javascript" src="{% static 'main/js/actions/search-bar-action.js'%}"></script>
 
+     <!--  Pagination -->
+     <script type='text/jsx' src="{% static 'main/js/components/pagination_component.js'%}"></script>
+     <!--  Search Bar -->
+     <script type='text/jsx' src="{% static 'main/js/components/search_bar.js'%}"></script>
+     <script type='text/jsx' src='{% static "main/js/containers/container-search-bar.js"%}'></script>
+
+     <!-- Conference Component  -->
+     <script type='text/jsx' src="{% static 'main/js/components/conference_row.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/conference_table.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/filterable_conference_table.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/containers/container-filterable_conference_table.js'%}"></script>
+
+     <!--  Job table component -->
+     <script type='text/jsx' src="{% static 'main/js/components/job_row.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/job_table.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/filterable_job_table.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/containers/container-filterable_job_table.js'%}"></script>
+     <!--  Scholarship Component -->
+     <script type='text/jsx' src="{% static 'main/js/components/scholarship_row.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/scholarship_table.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/filterable_scholarship_table.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/containers/container-filterable_scholarship_table.js'%}"></script>
+
+     <!--  Page components to be used by the router to render page accordingly -->
+     <script type='text/jsx' src="{% static 'main/js/components/page-conference.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/page-job.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/page-scholarship.js'%}"></script>
+
+     <!--  Main app component containing all the stuff-->
+     <script type='text/jsx' src="{% static 'main/js/components/select-feature.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/app-body.js'%}"></script>
 
     <!--Adding the Header and its related components through external files -->
     <script type='text/jsx' src="{% static 'main/js/components/logout_state_component.js'%}"></script>
     <script type='text/jsx' src="{% static 'main/js/components/login_state_component.js'%}"></script>
+    <script type='text/jsx' src="{% static 'main/js/components/router-links-list.js'%}"></script>
     <script type='text/jsx' src="{% static 'main/js/components/header_component.js'%}"></script>
+
+    <script type='text/jsx' src="{% static 'main/js/components/app.js'%}"></script>
 
 
 
     <script type="text/jsx" >
+
       // Django specific parts, that require evaluation inside the template
-        let header_data_json = {
+        var header_data_json = {
           'edit_url': "{% url 'main:edit_user'%}"
           , 'logout_url': "{% url 'main:logout'%}"
           , 'login_url': "{% url 'main:login'%}"
-          , 'index_url': "{% url 'main:index'%}"
         }
 
+        var BrowserRouter = ReactRouterDOM.BrowserRouter
+        var Provider = window.ReactRedux.Provider
         var store = Redux.createStore(window.combinedReducerOut)
-        ReactDOM.render( <HeaderComponent username='{{user.username}}' data_json={header_data_json}/>
-        ,document.getElementById('header_component'))
+        // ReactDOM.render(
+        //   <BrowserRouter>
+        //     <Provider store={store}>
+        //       <HeaderComponent/>
+        //     </Provider>
+        //   </BrowserRouter>
+        // ,document.getElementById('header'))
     </script>
 
 {% block javascript %}
@@ -64,9 +106,6 @@
 
 <body >
 
-    <header id='header_component'>
-
-    </header>
 
 {%block body%}
 

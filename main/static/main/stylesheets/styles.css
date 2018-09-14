@@ -63,8 +63,12 @@ input[type=number]::-webkit-outer-spin-button {
         font-size: 15px;
         font-weight: bold;
   }
-
 /* Don't let the word overflow */
   .word_wrapper {
       word-wrap: break-word;
+  }
+
+  .active{
+    color: rgb(123,45,226);
+    font-size:16px;
   }

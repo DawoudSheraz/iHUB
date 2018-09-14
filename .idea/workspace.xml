@@ -5,7 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf3a7876-eff6-45ab-82cd-dfd4c19e52cd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/filterable_conference_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/filterable_conference_table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/filterable_job_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/filterable_job_table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/filterable_scholarship_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/filterable_scholarship_table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/header_component.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/header_component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/page-conference.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/page-conference.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/page-job.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/page-job.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/page-scholarship.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/page-scholarship.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/router-links-list.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/router-links-list.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/main/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/main/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,7 +27,7 @@
     <session id="-1196136483">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="34" />
+          <entry key="project.closed" value="35" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.12" value="1" />
@@ -34,14 +44,14 @@
           <entry key="project.open.time.34" value="1" />
           <entry key="project.open.time.35" value="2" />
           <entry key="project.open.time.36" value="2" />
-          <entry key="project.open.time.38" value="1" />
+          <entry key="project.open.time.38" value="2" />
           <entry key="project.open.time.39" value="1" />
           <entry key="project.open.time.4" value="6" />
           <entry key="project.open.time.43" value="1" />
           <entry key="project.open.time.48" value="2" />
           <entry key="project.open.time.57" value="1" />
           <entry key="project.open.time.66" value="1" />
-          <entry key="project.opened" value="39" />
+          <entry key="project.opened" value="40" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -50,7 +60,7 @@
           <entry key="filterable_conference_table" value="1" />
           <entry key="html" value="66" />
           <entry key="js" value="55" />
-          <entry key="py" value="209" />
+          <entry key="py" value="214" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -59,7 +69,7 @@
           <entry key="HTML" value="66" />
           <entry key="JavaScript" value="53" />
           <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Python" value="209" />
+          <entry key="Python" value="214" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -89,11 +99,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1576">
+            <state relative-caret-position="4020">
               <caret line="273" column="7" selection-start-line="273" selection-start-column="7" selection-end-line="273" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/views_api.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/api_functions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1506">
+              <caret line="101" column="7" lean-forward="true" selection-start-line="101" selection-start-column="7" selection-end-line="101" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -212,6 +240,11 @@
             <path>
               <item name="iHUB" type="b2602c69:ProjectViewProjectNode" />
               <item name="iHUB" type="462c0819:PsiDirectoryNode" />
+              <item name="iHUB" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="iHUB" type="b2602c69:ProjectViewProjectNode" />
+              <item name="iHUB" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -314,13 +347,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/iHUB/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" column="15" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/management/commands/updateTenureEndTime.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -413,13 +439,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
           <caret line="304" column="19" lean-forward="true" selection-start-line="304" selection-start-column="19" selection-end-line="304" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="68" column="19" lean-forward="true" selection-start-line="68" selection-start-column="16" selection-end-line="68" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -592,24 +611,10 @@
     <entry file="file://$PROJECT_DIR$/main/templates/main/index.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/api_functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-26">
-          <caret line="101" column="7" lean-forward="true" selection-start-line="101" selection-start-column="7" selection-end-line="101" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/static/main/js/components/filterable_job_table.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/views_api.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="68" selection-start-line="68" selection-end-line="68" />
         </state>
       </provider>
     </entry>
@@ -621,8 +626,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1576">
+        <state relative-caret-position="4020">
           <caret line="273" column="7" selection-start-line="273" selection-start-column="7" selection-end-line="273" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views_api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iHUB/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="18" column="15" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="975">
+          <caret line="68" column="19" lean-forward="true" selection-start-line="68" selection-start-column="16" selection-end-line="68" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/api_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1506">
+          <caret line="101" column="7" lean-forward="true" selection-start-line="101" selection-start-column="7" selection-end-line="101" selection-end-column="7" />
         </state>
       </provider>
     </entry>
