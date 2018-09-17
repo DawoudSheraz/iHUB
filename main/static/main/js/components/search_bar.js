@@ -8,7 +8,7 @@ class ControlledSearchBar extends React.Component{
     this.updateState = this.updateState.bind(this)
   }
 
-  // Pass data to the parent, which is FilterableConferenceTable
+  // Dispatch the new value to Store
   updateState(e){
     this.props.onEditAction(e.target.value)
   }
@@ -17,7 +17,7 @@ class ControlledSearchBar extends React.Component{
 
     return(
       <div >
-      <input  type='input' placeholder='Search' onChange={this.updateState} value={this.props.search_text}></input>
+      <input  type='input' placeholder='Search on Skills' onChange={this.updateState} value={this.props.search_text}></input>
       </div>
     )
 

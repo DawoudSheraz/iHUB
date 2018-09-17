@@ -4,10 +4,8 @@ class FilterableConferenceTable extends React.Component{
     super(props);
     this.state = {
       'req_url': this.props.base_url +'?page=1',
-      'paper_deadline':''
     }
     this.new_request_url = this.new_request_url.bind(this)
-    this.paper_deadline_date = this.paper_deadline_date.bind(this)
 
   }
 
@@ -22,11 +20,11 @@ class FilterableConferenceTable extends React.Component{
     ajax_query_param+='&skills_list=' + this.props.search_text
     }
 
-    if(this.state.paper_deadline!=''){
-      ajax_query_param+='&paper_deadline_date=' + this.state.paper_deadline.format('YYYY-MM')
+    if(this.props.paper_deadline!=''){
+      ajax_query_param+='&paper_deadline_date=' + this.props.paper_deadline.format('YYYY-MM')
     }
 
-    if(this.props.start_date != ''){
+    if(this.props.start_date!=''){
       ajax_query_param+='&start_date=' + this.props.start_date.format('YYYY-MM')
     }
 
@@ -44,7 +42,7 @@ class FilterableConferenceTable extends React.Component{
     // If change in request url, get new data through that URL
     if(prevState.req_url !== this.state.req_url ||
       prevProps.search_text!== this.props.search_text
-    || prevState.paper_deadline !==this.state.paper_deadline
+    || prevProps.paper_deadline !==this.props.paper_deadline
   || prevProps.start_date !== this.props.start_date){
     this.get_data_by_ajax_call();
   }
@@ -57,11 +55,6 @@ class FilterableConferenceTable extends React.Component{
     })
   }
 
-  paper_deadline_date(value){
-    this.setState({
-      paper_deadline:value
-    })
-  }
 
   render(){
   if(!this.props.data_received){
@@ -82,7 +75,7 @@ class FilterableConferenceTable extends React.Component{
   return (
       <div >
         <br/>
-      <CustomDatePicker bubble_date={this.paper_deadline_date} date_description={'Call for Papers Deadline(Month & Year)'}/>
+
       <ConferenceList conference_list = {this.props.data['results']} />
       <Pagination base_url = {this.props.base_url} pagination_data = {pagination_json} NewRequestUrl={this.new_request_url}/>
 

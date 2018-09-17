@@ -7,14 +7,13 @@ class startDatePicker extends React.Component{
     this.updateState = this.updateState.bind(this)
   }
 
-
+// new value is dispatched to the store
   updateState(e){
-
+    // If date is cleared, the Date var becomes null
     if(e==null){
       this.props.update_date('')
     }
     else{
-      // let out_str = (e.format('YYYY-MM'))
       this.props.update_date(e)
     }
   }
@@ -22,7 +21,7 @@ class startDatePicker extends React.Component{
 render(){
   return(
     <div>
-      Start Date(Month & Year)
+      Starting Period
       <DatePicker
         isClearable={true}
         placeholderText='YYYY-MM'
