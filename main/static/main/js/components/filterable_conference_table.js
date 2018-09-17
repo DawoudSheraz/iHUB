@@ -4,9 +4,10 @@ class FilterableConferenceTable extends React.Component{
     super(props);
     this.state = {
       'req_url': this.props.base_url +'?page=1',
+      'country_text':'',
     }
     this.new_request_url = this.new_request_url.bind(this)
-
+    this.update_country_text = this.update_country_text.bind(this)
   }
 
   // AJAX call to the API to get the data
@@ -28,6 +29,10 @@ class FilterableConferenceTable extends React.Component{
       ajax_query_param+='&start_date=' + this.props.start_date.format('YYYY-MM')
     }
 
+    if(this.state.country_text!=''){
+      ajax_query_param+='&country=' + this.state.country_text
+    }
+
     request_conference_data(this.state.req_url + ajax_query_param, store.dispatch)
   }
 
@@ -43,7 +48,8 @@ class FilterableConferenceTable extends React.Component{
     if(prevState.req_url !== this.state.req_url ||
       prevProps.search_text!== this.props.search_text
     || prevProps.paper_deadline !==this.props.paper_deadline
-  || prevProps.start_date !== this.props.start_date){
+  || prevProps.start_date !== this.props.start_date
+|| prevState.country_text != this.state.country_text){
     this.get_data_by_ajax_call();
   }
   }
@@ -52,6 +58,12 @@ class FilterableConferenceTable extends React.Component{
   new_request_url(value){
     this.setState({
       'req_url': value,
+    })
+  }
+
+  update_country_text(value){
+    this.setState({
+      country_text: value
     })
   }
 
@@ -75,6 +87,11 @@ class FilterableConferenceTable extends React.Component{
   return (
       <div >
         <br/>
+
+        <InternallyControlledSearchBar
+        onEditAction={this.update_country_text}
+        text_val = {this.state.country_text}
+        placeholder_text={'Search on Country'}/>
 
       <ConferenceList conference_list = {this.props.data['results']} />
       <Pagination base_url = {this.props.base_url} pagination_data = {pagination_json} NewRequestUrl={this.new_request_url}/>
