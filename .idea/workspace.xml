@@ -4,10 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/main/management/commands/generateConferences.py" line="59" mnemonic="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cf3a7876-eff6-45ab-82cd-dfd4c19e52cd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/actions/get-paginated-conference-data.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/actions/get-paginated-conference-data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/main/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/base.html" afterDir="false" />
-    </list>
+    <list default="true" id="cf3a7876-eff6-45ab-82cd-dfd4c19e52cd" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +15,7 @@
     <session id="-1196136483">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="35" />
+          <entry key="project.closed" value="36" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.12" value="1" />
@@ -294,7 +291,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1377" height="912" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49935317" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" sideWeight="0.5006468" side_tool="true" weight="0.25" />
