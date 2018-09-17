@@ -20,6 +20,14 @@ class FilterableJobTable extends React.Component{
     ajax_query_param+='&skills_list=' + this.props.search_text
     }
 
+    if(this.props.deadline!=''){
+      ajax_query_param+='&deadline_date=' + this.props.deadline.format('YYYY-MM')
+    }
+
+    if(this.props.start_date!=''){
+      ajax_query_param+='&start_date=' + this.props.start_date.format('YYYY-MM')
+    }
+
     request_job_data(this.state.req_url + ajax_query_param, store.dispatch)
   }
 
@@ -33,7 +41,9 @@ class FilterableJobTable extends React.Component{
 
     // If change in request url or search box text, get new data through that URL
     if(prevState.req_url !== this.state.req_url ||
-      prevProps.search_text!== this.props.search_text){
+      prevProps.search_text!== this.props.search_text
+      || prevProps.deadline !==this.props.deadline
+    || prevProps.start_date !== this.props.start_date){
     this.get_data_by_ajax_call();
   }
   }
