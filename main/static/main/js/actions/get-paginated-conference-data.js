@@ -54,22 +54,32 @@ function request_conference_data(request_url, dispatch){
     // indicate the request has started
     dispatch(request_paginated_conference_data_action(false));
 
-    // console.log('request dispatched')
-
-    $.ajax({
-      'url': request_url,
-      method:'GET',
-      success: function(data){
-        // console.log('successs')
-        // If success, update the data and data_received boolean
-        dispatch(create_paginated_conference_data_action(data));
-        dispatch(successful_request_paginated_conference_data(true));
-      }
-      , error:function(error){
-        // console.log('error')
-        dispatch(unsuccessful_request_paginated_conference_data())
-      }
+    // axios based data fetch
+    axios.get(request_url)
+    // in case of success
+    .then(function (response){
+      dispatch(create_paginated_conference_data_action(response.data));
+      dispatch(successful_request_paginated_conference_data(true));
     })
+    // In case of error
+    .catch(function (error){
+       console.log(error)
+      dispatch(unsuccessful_request_paginated_conference_data())
+    })
+    // $.ajax({
+    //   'url': request_url,
+    //   method:'GET',
+    //   success: function(data){
+    //     // console.log('successs')
+    //     // If success, update the data and data_received boolean
+    //     dispatch(create_paginated_conference_data_action(data));
+    //     dispatch(successful_request_paginated_conference_data(true));
+    //   }
+    //   , error:function(error){
+    //     // console.log('error')
+    //     dispatch(unsuccessful_request_paginated_conference_data())
+    //   }
+    // })
 
 
 

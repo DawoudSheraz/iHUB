@@ -41,17 +41,27 @@ function request_scholarship_data(request_url, dispatch){
 
   dispatch(action_request_data(false));
 
-  $.ajax({
-
-    'url':request_url,
-    method:'GET',
-    success: function(data){
-      dispatch(action_get_data(data))
-      dispatch(action_successful_request(true))
-    },
-    error: function(error){
-      dispatch(action_unsuccessful_request())
-    }
+  axios.get(request_url)
+  .then(function (response){
+    dispatch(action_get_data(response.data))
+    dispatch(action_successful_request(true))
   })
+  .catch(function (error){
+    console.log(error)
+    dispatch(action_unsuccessful_request())
+  })
+
+  // $.ajax({
+  //
+  //   'url':request_url,
+  //   method:'GET',
+  //   success: function(data){
+  //     dispatch(action_get_data(data))
+  //     dispatch(action_successful_request(true))
+  //   },
+  //   error: function(error){
+  //     dispatch(action_unsuccessful_request())
+  //   }
+  // })
 
 }

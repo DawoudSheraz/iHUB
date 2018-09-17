@@ -54,22 +54,34 @@ function request_job_data(request_url, dispatch){
     // indicate the request has started
     dispatch(request_paginated_job_data_action(false));
 
-    // console.log('request dispatched')
-
-    $.ajax({
-      'url': request_url,
-      method:'GET',
-      success: function(data){
-        // console.log('successs')
-        // If success, update the data and data_received boolean
-        dispatch(create_paginated_job_data_action(data));
+    // AJAX through axios
+    axios.get(request_url)
+    // In case of success
+    .then(function (response){
+        // Update state and mark job_data_received boolean as true
+        dispatch(create_paginated_job_data_action(response.data));
         dispatch(successful_request_paginated_job_data(true));
-      }
-      , error:function(error){
-        // console.log('error')
-        dispatch(unsuccessful_request_paginated_job_data())
-      }
     })
+    .catch(function (error){
+      console.log(error)
+      dispatch(unsuccessful_request_paginated_job_data())
+    })
+    // // console.log('request dispatched')
+    //
+    // $.ajax({
+    //   'url': request_url,
+    //   method:'GET',
+    //   success: function(data){
+    //     // console.log('successs')
+    //     // If success, update the data and data_received boolean
+    //     dispatch(create_paginated_job_data_action(data));
+    //     dispatch(successful_request_paginated_job_data(true));
+    //   }
+    //   , error:function(error){
+    //     // console.log('error')
+    //     dispatch(unsuccessful_request_paginated_job_data())
+    //   }
+    // })
 
 
 
