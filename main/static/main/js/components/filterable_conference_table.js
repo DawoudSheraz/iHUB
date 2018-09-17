@@ -23,7 +23,11 @@ class FilterableConferenceTable extends React.Component{
     }
 
     if(this.state.paper_deadline!=''){
-      ajax_query_param+='&paper_deadline_date=' + this.state.paper_deadline
+      ajax_query_param+='&paper_deadline_date=' + this.state.paper_deadline.format('YYYY-MM')
+    }
+
+    if(this.props.start_date != ''){
+      ajax_query_param+='&start_date=' + this.props.start_date.format('YYYY-MM')
     }
 
     request_conference_data(this.state.req_url + ajax_query_param, store.dispatch)
@@ -40,7 +44,8 @@ class FilterableConferenceTable extends React.Component{
     // If change in request url, get new data through that URL
     if(prevState.req_url !== this.state.req_url ||
       prevProps.search_text!== this.props.search_text
-    || prevState.paper_deadline !==this.state.paper_deadline){
+    || prevState.paper_deadline !==this.state.paper_deadline
+  || prevProps.start_date !== this.props.start_date){
     this.get_data_by_ajax_call();
   }
   }
@@ -76,11 +81,9 @@ class FilterableConferenceTable extends React.Component{
 
   return (
       <div >
-        {/* <window.ContainerSearchBar/> */}
         <br/>
-      <CustomDatePicker bubble_date={this.paper_deadline_date} date_description={'Call for Papers Deadline'}/>
+      <CustomDatePicker bubble_date={this.paper_deadline_date} date_description={'Call for Papers Deadline(Month & Year)'}/>
       <ConferenceList conference_list = {this.props.data['results']} />
-
       <Pagination base_url = {this.props.base_url} pagination_data = {pagination_json} NewRequestUrl={this.new_request_url}/>
 
     </div>

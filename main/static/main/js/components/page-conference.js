@@ -7,6 +7,7 @@ function ConferencePage(props){
             <div className='col-lg-12 text-center table-responsive'>
 
               <window.ContainerSearchBar/>
+              <window.ContainerStartDate />
               <FilterableConferenceTable_Connected
 
                 load_img={props.app_data['load_img']}

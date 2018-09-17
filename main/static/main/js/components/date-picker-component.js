@@ -9,22 +9,20 @@ class CustomDatePicker extends React.Component{
     this.date_selected = this.date_selected.bind(this)
   }
 
-  date_selected(e){
+  date_selected(date){
 
     this.setState({
-      new_date:e
+      new_date:date
     })
-
-    if(e==null){
+    // If cleared, update the parent state with empty value
+    if(date==null){
       this.props.bubble_date('')
     }
     else{
-      let out_str = (e.format('YYYY-MM'))
-      this.props.bubble_date(out_str)
+      this.props.bubble_date(date)
     }
 
   }
-
 
   render(){
 
@@ -34,7 +32,7 @@ class CustomDatePicker extends React.Component{
         <DatePicker
           isClearable={true}
           placeholderText='YYYY-MM'
-          dateFormat="YYYY/MM/DD"
+          dateFormat="YYYY/MM"
           selected={this.state.new_date}
           onChange={this.date_selected} />
     </div>
