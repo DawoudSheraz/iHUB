@@ -6,12 +6,14 @@
 
       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <link rel="stylesheet" href="{% static 'main/stylesheets/styles.css' %}">
       <script> var exports = {}; </script>
 
-    <!-- React and related Scripts-->
+      <!-- React and related Scripts-->
 
       <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
       <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
@@ -23,9 +25,20 @@
       <script src="https://unpkg.com/react-router-dom@latest/umd/react-router-dom.min.js"></script>
       <script src="https://unpkg.com/redux-thunk@latest/dist/redux-thunk.min.js"></script>
 
+      <!-- React DatePicker Dependencies -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.1/prop-types.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/react-onclickoutside@6.7.1/dist/react-onclickoutside.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/classnames/2.2.5/index.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react-popper/0.10.4/umd/react-popper.js"></script>
+
+<!-- React DatePicker CDN -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/1.4.1/react-datepicker-cssmodules.css" /> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/1.4.1/react-datepicker.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/1.4.1/react-datepicker.js"></script>
+
       <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js"></script> -->
-
-
       <script src="{% static 'main/js/utils/util-general-functions.js'%}"></script>
 
     <!-- Reducers and combinedReducer link -->
@@ -37,12 +50,22 @@
      <script type="text/javascript" src="{% static 'main/js/actions/get-paginated-job-action.js'%}"></script>
      <script type="text/javascript" src="{% static 'main/js/actions/get-paginated-scholarship-action.js'%}"></script>
      <script type="text/javascript" src="{% static 'main/js/actions/search-bar-action.js'%}"></script>
+     <script type="text/javascript" src="{% static 'main/js/actions/start-date-action.js'%}"></script>
+     <script type="text/javascript" src="{% static 'main/js/actions/end-date-action.js'%}"></script>
+
+     <!--  Custom Date Picker-->
+     <script type='text/jsx' src="{% static 'main/js/components/end-date.js' %}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/start-date.js' %}"></script>
+     <script type='text/jsx' src='{% static "main/js/containers/container-start-date.js"%}'></script>
+      <script type='text/jsx' src='{% static "main/js/containers/container-end-date.js"%}'></script>
 
      <!--  Pagination -->
      <script type='text/jsx' src="{% static 'main/js/components/pagination_component.js'%}"></script>
+
      <!--  Search Bar -->
      <script type='text/jsx' src="{% static 'main/js/components/search_bar.js'%}"></script>
      <script type='text/jsx' src='{% static "main/js/containers/container-search-bar.js"%}'></script>
+     <script type='text/jsx' src="{% static 'main/js/components/controlled-search-bar.js'%}"></script>
 
      <!-- Conference Component  -->
      <script type='text/jsx' src="{% static 'main/js/components/conference_row.js'%}"></script>
