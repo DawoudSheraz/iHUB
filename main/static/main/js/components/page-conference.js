@@ -8,7 +8,7 @@ function ConferencePage(props){
 
               <window.ContainerSearchBar/>
               <FilterableConferenceTable_Connected
-                
+
                 load_img={props.app_data['load_img']}
                   />
             </div>
