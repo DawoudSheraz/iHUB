@@ -4,10 +4,8 @@ class FilterableConferenceTable extends React.Component{
     super(props);
     this.state = {
       'req_url': this.props.base_url +'?page=1',
-      'country_text':'',
     }
     this.new_request_url = this.new_request_url.bind(this)
-    this.update_country_text = this.update_country_text.bind(this)
   }
 
   // AJAX call to the API to get the data
@@ -58,12 +56,6 @@ class FilterableConferenceTable extends React.Component{
   new_request_url(value){
     this.setState({
       'req_url': value,
-    })
-  }
-
-  update_country_text(value){
-    this.setState({
-      country_text: value
     })
   }
 

@@ -4,8 +4,10 @@ class FilterableJobTable extends React.Component{
     super(props);
     this.state = {
       'req_url': this.props.base_url + '?page=1',
+      'experience_required':''
     }
     this.new_request_url = this.new_request_url.bind(this)
+    this.experience_req = this.experience_req.bind(this)
 
   }
 
@@ -27,6 +29,9 @@ class FilterableJobTable extends React.Component{
     if(this.props.start_date!=''){
       ajax_query_param+='&start_date=' + this.props.start_date.format('YYYY-MM')
     }
+    if(this.state.experience_required!=''){
+      ajax_query_param+='&experience=' + this.state.experience_required
+    }
 
     request_job_data(this.state.req_url + ajax_query_param, store.dispatch)
   }
@@ -43,11 +48,18 @@ class FilterableJobTable extends React.Component{
     if(prevState.req_url !== this.state.req_url ||
       prevProps.search_text!== this.props.search_text
       || prevProps.deadline !==this.props.deadline
-    || prevProps.start_date !== this.props.start_date){
+    || prevProps.start_date !== this.props.start_date
+  || prevState.experience_required != this.state.experience_required){
     this.get_data_by_ajax_call();
   }
   }
 
+
+experience_req(e){
+  this.setState({
+    experience_required: e.target.value
+  })
+}
 
   new_request_url(value){
     this.setState({
@@ -75,6 +87,15 @@ class FilterableJobTable extends React.Component{
       <div >
         {/* <window.ContainerSearchBar/> */}
         <br/>
+        <div>
+          <select onChange={this.experience_req} value={this.state.experience_required}>
+            <option value=''>-- Select Experience Required --</option>
+            <option value='0-1 Years'>{'0-1 Years'}</option>
+            <option value='2-3 Years'>{'2-3 Years'}</option>
+            <option value='4-5 Years'>{'4-5 Years'}</option>
+            <option value='5+ Years'>{'5+ Years'}</option>
+          </select>
+        </div>
       <JobList job_list = {this.props.data['results']} />
 
       <Pagination base_url = {this.props.base_url} pagination_data = {pagination_json} NewRequestUrl={this.new_request_url}/>

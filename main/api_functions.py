@@ -50,6 +50,7 @@ def get_date_as_month_year(date_string):
 
 def validate_experience_input(experience):
 
+    experience = experience.replace('%20', ' ')
     if '5  ' in experience:
         experience = '5+ Years'
     return experience

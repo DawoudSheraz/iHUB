@@ -41,7 +41,6 @@ class  ConferencePage extends React.Component{
 
             <div className='col-lg-12 text-center table-responsive'>
 
-
               <FilterableConferenceTable_Connected
                 load_img={this.props.app_data['load_img']}
                 country_search_text={this.state.country_search_text}/>
