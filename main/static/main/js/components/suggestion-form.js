@@ -25,31 +25,15 @@ class SuggestionForm extends React.Component{
 
         {/*  Problematic Service*/}
         <div>
-            <label htmlFor='problem_area'>Problematic Service</label>
-            <div>
-              <div>
-                <label>
-                  <Field name='problem_area' component='input' type='radio' value='Conference'/>
-                  {' '}
-                  Conference
-                </label>
-              </div>
-              <div>
-                <label>
-                  <Field name='problem_area' component='input' type='radio' value='Student_Position'/>
-                  {' '}
-                  Student Position
-                </label>
-              </div>
-              <div>
-                <label>
-                  <Field name='problem_area' component='input' type='radio' value='Scholarship'/>
-                  {' '}
-                  Scholarship
-                </label>
-              </div>
-            </div>
-
+            <Field name='problem_area'
+            component={renderRadioGroup}
+            label='Problem Area'
+            validate={[required]}
+            options = {[
+              {'display':'Conference', 'value':'conference'}
+              , {'display': 'Student Position', 'value':'student_position'}
+              , {'display': 'Scholarship', 'value':'scholarship'}
+            ]}/>
         </div>
 
         {/*  Complaint Nature*/}
@@ -62,8 +46,8 @@ class SuggestionForm extends React.Component{
               options = {[
                 {'value': '', 'display': '-- Select the Complaint Type --'}
                 , {'value': 'performance', 'display': 'Performance'}
-                , {'value':'data', 'display' : 'Incorrect Data'}
-                , {'value': 'source', 'display': 'Invalid Information Source'}
+                , {'value':'incorrect_data', 'display' : 'Incorrect Data'}
+                , {'value': 'invalid_data_source', 'display': 'Invalid Information Source'}
               ]}>
             </Field>
 
@@ -71,7 +55,9 @@ class SuggestionForm extends React.Component{
 
         <div>
           <label>Description</label>
-          <Field component='textarea' type='textarea' name='description'/>
+          <div>
+            <Field component='textarea' type='textarea' name='description'/>
+          </div>
         </div>
 
         <button type="submit">Submit</button>
@@ -86,16 +72,10 @@ const form_sync_validate = values =>{
 
   const errors = {}
 
-  if(!values.fullName){
-    errors.fullName = 'Required!'
-  }
-  else if (values.fullName.length <5){
-    errors.fullName = 'Must be atleast 5 characters'
+  if(!values.problem_area){
+    errors.problem_area = 'Required!'
   }
 
-  if(!values.email){
-    errors.email = 'Email Required'
-  }
 
   return errors
 }
