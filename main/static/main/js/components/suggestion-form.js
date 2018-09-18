@@ -17,10 +17,10 @@ class SuggestionForm extends React.Component{
       <form onSubmit={handleSubmit(this.submitted_values)}>
 
         {/*  Full name */}
-        <Field name='fullName' component={renderField} type='text' label='Name'/>
+        <Field name='fullName' validate = {[required, minLength5]} component={renderField} type='text' label='Name'/>
 
         {/*  Email */}
-        <Field name='email' component={renderField} type='email' label='Email'/>
+        <Field name='email' validate = {[required]} component={renderField} type='email' label='Email'/>
 
 
         {/*  Problematic Service*/}
@@ -54,15 +54,19 @@ class SuggestionForm extends React.Component{
 
         {/*  Complaint Nature*/}
         <div>
-          <label htmlFor='complaint_nature'>Complaint Nature</label>
-          <div>
-            <Field name='complaint_nature' component='select'>
-              <option value=''> -- Select the Complaint Type -- </option>
-              <option value='performance'>Performance</option>
-              <option value='data'>Incorrect Data</option>
-              <option value='source'>Invalid Source</option>
+            <Field name='complaint_nature'
+              component={renderSelectField}
+              type='select'
+              validate={[required]}
+              label='Complaint Nature'
+              options = {[
+                {'value': '', 'display': '-- Select the Complaint Type --'}
+                , {'value': 'performance', 'display': 'Performance'}
+                , {'value':'data', 'display' : 'Incorrect Data'}
+                , {'value': 'source', 'display': 'Invalid Information Source'}
+              ]}>
             </Field>
-          </div>
+
         </div>
 
         <div>
@@ -98,5 +102,5 @@ const form_sync_validate = values =>{
 
 var ConnectedSuggestionForm = ReduxForm.reduxForm({
   form:'suggestion',
-  validate: form_sync_validate
+  //validate: form_sync_validate
 })(SuggestionForm)
