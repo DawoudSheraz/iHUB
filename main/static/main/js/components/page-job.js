@@ -6,9 +6,12 @@ function JobPage(props){
     <div className='container'>
           <div className='row'>
             <div className='col-lg-12 text-center table-responsive'>
+
               <window.ContainerSearchBar/>
+              <window.ContainerStartDate />
+              <window.ContainerEndDate date_description={'Submission Deadline'}/>
               <FilterableJobTable_Connected
-              
+
               load_img={props.app_data['load_img']}/>
             </div>
           </div>

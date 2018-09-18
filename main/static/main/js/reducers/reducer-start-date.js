@@ -4,7 +4,7 @@ export default function start_date_reducer(state, action){
 
 
   if(typeof state == 'undefined'){
-    return {'start_date':moment() }
+    return {'start_date': '' }
   }
 
   switch (action.type) {
