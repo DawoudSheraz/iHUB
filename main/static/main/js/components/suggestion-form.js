@@ -11,10 +11,11 @@ class SuggestionForm extends React.Component{
   }
   render(){
 
+    const {registered_user} = this.props
     const Field = ReduxForm.Field
     const {handleSubmit} = this.props
     return(
-      <form onSubmit={handleSubmit(this.submitted_values)}>
+      <form onSubmit={handleSubmit(this.submitted_values)} className='container centerForm'>
 
         {/*  Full name */}
         <Field name='fullName' validate = {[required, minLength5]} component={renderField} type='text' label='Name'/>
@@ -60,7 +61,39 @@ class SuggestionForm extends React.Component{
           </div>
         </div>
 
-        <button type="submit">Submit</button>
+        <div>
+          <Field component={renderField} type='checkbox' name='registered_user' label='Registered User?'/>
+        </div>
+
+        {registered_user && (
+          <div>
+            <div>
+              <Field name='profile_category'
+              component={renderRadioGroup}
+              label='User Type'
+              options = {[
+                {'display':'Student', 'value':'student'}
+                , {'display': 'Professor', 'value':'professor'}
+              ]}/>
+            </div>
+
+            <div>
+              <Field name='website_source'
+                component={renderSelectField}
+                type='select'
+                label='How did you learn about this website?'
+                options = {[
+                   {'value': 'ads', 'display': 'Ads'}
+                  , {'value':'friend', 'display' : 'From a Friend'}
+                  , {'value': 'google', 'display': 'Google Search'}
+                ]}>
+              </Field>
+            </div>
+      </div>)}
+
+        <div>
+          <button type="submit">Submit</button>
+        </div>
       </form>
     )
 
@@ -76,7 +109,6 @@ const form_sync_validate = values =>{
     errors.problem_area = 'Required!'
   }
 
-
   return errors
 }
 
@@ -84,3 +116,16 @@ var ConnectedSuggestionForm = ReduxForm.reduxForm({
   form:'suggestion',
   //validate: form_sync_validate
 })(SuggestionForm)
+
+// changing form based on the checkbox selections
+const selector = ReduxForm.formValueSelector('suggestion')
+
+ConnectedSuggestionForm = ReactRedux.connect(
+  state =>{
+    const registered_user = selector(state, 'registered_user')
+
+    return {
+      registered_user
+    }
+  }
+)(ConnectedSuggestionForm)

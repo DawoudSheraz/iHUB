@@ -16,6 +16,11 @@ color: red;
 margin: 0px auto;
 }
 
+.centerForm {
+margin: 0px auto;
+width: 60%;
+}
+
 .row_space{
 padding: 1%;
 }
