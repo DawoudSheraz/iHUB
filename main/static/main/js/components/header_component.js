@@ -6,6 +6,7 @@ function HeaderComponent(props){
   let output_component = null
   const Route = ReactRouterDOM.Route
   const Link = ReactRouterDOM.Link
+  const Switch = ReactRouterDOM.Switch
 
   // // If there is logged in user, use LoginStateComponent
   // if(props.username){
@@ -31,9 +32,15 @@ return(
       <div className="navbar-header">
           <Link className="navbar-brand" to='/'><strong>iHUB</strong></Link>
       </div>
+      <ul className="nav navbar-nav navbar-right">
+        <li><Link to='/suggestion'><strong>Suggestions</strong></Link></li>
+      </ul>
   </nav>
 
+<Switch>
   <Route exact path='/' component={AppBody}/>
+  <Route exact path='/suggestion' component={ConnectedSuggestionForm}/>
+</Switch>
 </div>
 )
 };

@@ -17,4 +17,5 @@
   end_date_picker:end_date_reducer,
   job_reducer: paginated_job_reducer,
   scholarship_reducer: paginated_scholarship_reducer,
+  form: ReduxForm.reducer,
   })
