@@ -16,20 +16,14 @@ class SuggestionForm extends React.Component{
     return(
       <form onSubmit={handleSubmit(this.submitted_values)}>
 
-        <div>
-          <label htmlFor='fullName'>Name</label>
-          <div>
-            <Field name='fullName' component='input' type='text' placeholder='Name'/>
-          </div>
-        </div>
+        {/*  Full name */}
+        <Field name='fullName' component={renderField} type='text' label='Name'/>
 
-        <div>
-          <label htmlFor='email'>Email</label>
-          <div>
-            <Field name='email' component='input' type='email' placeholder='Email'/>
-          </div>
-        </div>
+        {/*  Email */}
+        <Field name='email' component={renderField} type='email' label='Email'/>
 
+
+        {/*  Problematic Service*/}
         <div>
             <label htmlFor='problem_area'>Problematic Service</label>
             <div>
@@ -54,11 +48,28 @@ class SuggestionForm extends React.Component{
                   Scholarship
                 </label>
               </div>
-
             </div>
 
-
         </div>
+
+        {/*  Complaint Nature*/}
+        <div>
+          <label htmlFor='complaint_nature'>Complaint Nature</label>
+          <div>
+            <Field name='complaint_nature' component='select'>
+              <option value=''> -- Select the Complaint Type -- </option>
+              <option value='performance'>Performance</option>
+              <option value='data'>Incorrect Data</option>
+              <option value='source'>Invalid Source</option>
+            </Field>
+          </div>
+        </div>
+
+        <div>
+          <label>Description</label>
+          <Field component='textarea' type='textarea' name='description'/>
+        </div>
+
         <button type="submit">Submit</button>
       </form>
     )
@@ -66,6 +77,26 @@ class SuggestionForm extends React.Component{
   }
 }
 
+
+const form_sync_validate = values =>{
+
+  const errors = {}
+
+  if(!values.fullName){
+    errors.fullName = 'Required!'
+  }
+  else if (values.fullName.length <5){
+    errors.fullName = 'Must be atleast 5 characters'
+  }
+
+  if(!values.email){
+    errors.email = 'Email Required'
+  }
+
+  return errors
+}
+
 var ConnectedSuggestionForm = ReduxForm.reduxForm({
-  form:'suggestion'
+  form:'suggestion',
+  validate: form_sync_validate
 })(SuggestionForm)
