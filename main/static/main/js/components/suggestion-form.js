@@ -56,7 +56,7 @@ class SuggestionForm extends React.Component{
         <div>
           <label>Description</label>
           <div>
-            <Field component='textarea' type='textarea' name='description'/>
+            <Field component='textarea' type='textarea' rows='10' cols='60' name='description'/>
           </div>
         </div>
 
