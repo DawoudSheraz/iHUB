@@ -5,11 +5,12 @@ function renderRadioGroup({ input, label ,options, type, meta: { touched, error 
 
   return(
     <div>
-        <label>{label}</label>
-        {touched && (error && <span>{error}</span>)}
+        <label>{label} &nbsp;</label>
+        {touched && (error && <span className='error-style'>{error}</span>)}
         {options.map(current => (
           <div key={current.value}>
-            <label>
+            <label className='radio-style'>
+
               <input
 
                 type='radio'
@@ -19,6 +20,7 @@ function renderRadioGroup({ input, label ,options, type, meta: { touched, error 
                 onClick={value => {input.onChange(value);}}
                 />
                 {current.display}
+
             </label>
 
           </div>

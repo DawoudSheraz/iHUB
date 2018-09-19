@@ -15,7 +15,7 @@ class SuggestionForm extends React.Component{
     const Field = ReduxForm.Field
     const {handleSubmit} = this.props
     return(
-      <form onSubmit={handleSubmit(this.submitted_values)} className='container centerForm'>
+      <form onSubmit={handleSubmit(this.submitted_values)} className='container login-form'>
 
         {/*  Full name */}
         <Field name='fullName' validate = {[required, minLength5]} component={renderField} type='text' label='Name'/>
@@ -54,15 +54,21 @@ class SuggestionForm extends React.Component{
 
         </div>
 
+
         <div>
-          <label>Description</label>
-          <div>
-            <Field component='textarea' type='textarea' rows='10' cols='60' name='description'/>
-          </div>
+            <Field
+              component={renderTextArea}
+              rows='10'
+              cols='60'
+              name='description'
+              label='Description'
+             validate={[required, minLength(20)]}/>
         </div>
 
         <div>
-          <Field component={renderField} type='checkbox' name='registered_user' label='Registered User?'/>
+          <Field component='input' type='checkbox' name='registered_user' />
+          <label>Registered User?</label>
+
         </div>
 
         {registered_user && (
@@ -92,7 +98,7 @@ class SuggestionForm extends React.Component{
       </div>)}
 
         <div>
-          <button type="submit">Submit</button>
+          <button type="submit" className="btn btn-primary">Submit</button>
         </div>
       </form>
     )

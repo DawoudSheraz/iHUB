@@ -4,14 +4,14 @@ function renderSelectField({ input, label, options, type, meta: { touched, error
   return(
   <div>
     {/*  Label */}
-    <label>{label}</label>
-
-    <div>
+    <label>{label} &nbsp;</label>
+    {touched && (error && <span className='error-style'>{error}</span>)}
+    <div className='form-group'>
     {/*  For reach value in options array, create option tag*/}
-      <select {...input}>
+      <select {...input} className='form-control select-style'>
         {options.map( current => (<option value={current.value} key={current.value}>{current.display}</option>) )}
       </select>
-      {touched && (error && <span>{error}</span>)}
+
     </div>
   </div>
 )
