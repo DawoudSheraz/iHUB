@@ -8,25 +8,9 @@ function HeaderComponent(props){
   const Link = ReactRouterDOM.Link
   const Switch = ReactRouterDOM.Switch
 
-  // // If there is logged in user, use LoginStateComponent
-  // if(props.username){
-  //
-  //   // Only passing the attributes that LoginStateComponent requires
-  //   let login_state_json = {
-  //     'edit_url': props.data_json['edit_url']
-  //     , 'logout_url': props.data_json['logout_url']
-  //   }
-  //
-  //   output_component = <LoginStateComponent username={props.username} data_json={login_state_json}/>
-  // }
-  // // For LogOutStateComponent component
-  // else{
-  //   output_component = <LogOutStateComponent login_url = {props.data_json['login_url']}/>
-  // }
-
 // Returns the header, with index/logo and corresponding component
 return(
-
+<div>
   <div>
   <nav className="navbar navbar-default">
       <div className="navbar-header">
@@ -36,11 +20,8 @@ return(
         <li><Link to='/suggestion'><strong>Suggestions</strong></Link></li>
       </ul>
   </nav>
+</div>
 
-<Switch>
-  <Route exact path='/' component={AppBody}/>
-  <Route exact path='/suggestion' component={ConnectedSuggestionForm}/>
-</Switch>
 </div>
 )
 };

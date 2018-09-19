@@ -93,4 +93,5 @@ class FilterableConferenceTable extends React.Component{
 
 FilterableConferenceTable.defaultProps = {
   base_url : 'http://127.0.0.1:8000/main/api/conferences/'
+  , load_img:''
 }
