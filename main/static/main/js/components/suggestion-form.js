@@ -7,8 +7,16 @@ class SuggestionForm extends React.Component{
   }
 
   submitted_values(values){
-    console.log(values)
+    axios.post(this.props.post_url, values)
+    .then(function (response){
+      alert('Thanks for your Feedback!')
+      
+    })
+    .catch(function (error){
+      alert(error)
+    })
   }
+
   render(){
 
     const {registered_user} = this.props
@@ -106,6 +114,9 @@ class SuggestionForm extends React.Component{
   }
 }
 
+SuggestionForm.defaultProps = {
+  post_url: 'http://127.0.0.1:8000/main/api/suggestions',
+}
 
 const form_sync_validate = values =>{
 
