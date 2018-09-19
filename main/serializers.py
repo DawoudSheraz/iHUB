@@ -13,6 +13,13 @@ class TenureSerializer(ModelSerializer):
         fields = ('start_date', 'end_date')
 
 
+class SuggestionSerializer(ModelSerializer):
+
+    class Meta:
+        model = Suggestion
+        exclude = ('id',)
+
+
 class LocationSerializer(ModelSerializer):
     class Meta:
         model = Location
