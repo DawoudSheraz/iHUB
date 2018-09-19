@@ -97,5 +97,9 @@ urlpatterns = [
         , ListStudentPositionApiView.as_view()
         , name='get_student_positions_by_skill'),
 
+    url(r'^api/suggestions'
+        , PostSuggestionView.as_view()
+        , name='post_suggestion')
+
 
 ]

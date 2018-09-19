@@ -455,3 +455,42 @@ class Schedule(models.Model):
             return self.related_conference.info.title
         except AttributeError:
             return ""
+
+
+class Suggestion(models.Model):
+
+    """
+    To save the user feedback
+    """
+    fullName = CharField(max_length=100)
+    email = models.EmailField()
+    problem_area = CharField(max_length=50, choices=(
+        ('conference', 'conference')
+        , ('student_position', 'student_position')
+        , ('scholarship', 'scholarship')
+    ))
+    complaint_nature = CharField(max_length=50, choices=(
+        ('performance', 'performance')
+        , ('incorrect_data', 'incorrect_data')
+        , ('invalid_data_source', 'invalid_data_source')
+    ))
+    description = CharField(max_length=200)
+    registered_user = models.BooleanField(default=False)
+    profile_category = CharField(max_length=50, blank=True, null=True
+                                 , choices=(
+            ('student', 'student')
+            , ('professor', 'professor')
+        ))
+    website_source = CharField(max_length=50, blank=True, null=True
+                                 , choices=(
+            ('ads', 'ads')
+            , ('friend', 'friend')
+            , ('google', 'google')
+        ))
+
+    class Meta:
+        db_table = 'suggestion'
+
+    def __unicode__(self):
+        return self.fullName + ' ==> ' + self.email
+

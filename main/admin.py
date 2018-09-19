@@ -14,6 +14,7 @@ admin.site.register(Salary)
 admin.site.register(Grant)
 admin.site.register(Expense)
 admin.site.register(SubmissionForm)
+admin.site.register(Suggestion)
 
 
 @admin.register(Location)

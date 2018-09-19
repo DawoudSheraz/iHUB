@@ -87,3 +87,8 @@ class ListStudentPositionApiView(generics.ListAPIView):
 
         return StudentPosition.objects.filter(**filter_content_dict) \
             .distinct().order_by('-duration__start_date')
+
+
+class PostSuggestionView(generics.CreateAPIView):
+
+    serializer_class = SuggestionSerializer

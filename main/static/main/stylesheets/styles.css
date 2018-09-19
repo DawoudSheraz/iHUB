@@ -16,6 +16,11 @@ color: red;
 margin: 0px auto;
 }
 
+.centerForm {
+margin: 0px auto;
+width: 60%;
+}
+
 .row_space{
 padding: 1%;
 }
@@ -72,3 +77,29 @@ input[type=number]::-webkit-outer-spin-button {
     color: rgb(123,45,226);
     font-size:16px;
   }
+
+.error-style{
+  font-size:16px;
+  color:red;
+
+}
+
+.radio-style
+{
+  font-size:16px;
+  color:rgba(73,42,45,0.9);
+  border-radius: 25px;
+
+}
+
+.select-style {
+    padding: 9px;
+    border: solid 1px #515B97;
+    outline: 0;
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #CAD9E3), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #FFFFFF, #CAD9E3 1px, #FFFFFF 25px);
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+
+    }

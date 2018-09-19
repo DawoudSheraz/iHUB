@@ -11,19 +11,20 @@
        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <link rel="stylesheet" href="{% static 'main/stylesheets/styles.css' %}">
-      <script> var exports = {}; </script>
+      <!-- <script> var exports = {}; </script> -->
 
       <!-- React and related Scripts-->
 
       <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
       <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/1.0.7/purify.min.js"></script>
       <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
       <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
       <script src="https://unpkg.com/react-redux@latest/dist/react-redux.min.js"></script>
+      <script src="https://unpkg.com/redux-form@latest/dist/redux-form.min.js"></script>
       <script src="https://unpkg.com/react-router/umd/react-router.min.js"></script>
       <script src="https://unpkg.com/react-router-dom@latest/umd/react-router-dom.min.js"></script>
       <script src="https://unpkg.com/redux-thunk@latest/dist/redux-thunk.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/1.0.7/purify.min.js"></script>
 
       <!-- React DatePicker Dependencies -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.1/prop-types.min.js"></script>
@@ -33,6 +34,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react-popper/0.10.4/umd/react-popper.js"></script>
 
+
 <!-- React DatePicker CDN -->
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/1.4.1/react-datepicker-cssmodules.css" /> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/1.4.1/react-datepicker.css" />
@@ -40,6 +42,7 @@
 
       <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js"></script> -->
       <script src="{% static 'main/js/utils/util-general-functions.js'%}"></script>
+      <script src="{% static 'main/js/utils/form-validations.js'%}"></script>
 
     <!-- Reducers and combinedReducer link -->
 
@@ -84,10 +87,18 @@
      <script type='text/jsx' src="{% static 'main/js/components/filterable_scholarship_table.js'%}"></script>
      <script type='text/jsx' src="{% static 'main/js/containers/container-filterable_scholarship_table.js'%}"></script>
 
+     <!--  Suggestion Form Component-->
+     <script type='text/jsx' src="{% static 'main/js/components/form-field.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/form-select-field.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/form-radio-group.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/form-textarea.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/suggestion-form.js'%}"></script>
      <!--  Page components to be used by the router to render page accordingly -->
      <script type='text/jsx' src="{% static 'main/js/components/page-conference.js'%}"></script>
      <script type='text/jsx' src="{% static 'main/js/components/page-job.js'%}"></script>
      <script type='text/jsx' src="{% static 'main/js/components/page-scholarship.js'%}"></script>
+
+
 
      <!--  Main app component containing all the stuff-->
      <script type='text/jsx' src="{% static 'main/js/components/select-feature.js'%}"></script>
