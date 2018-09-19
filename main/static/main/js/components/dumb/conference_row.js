@@ -4,32 +4,7 @@ class ConferenceRow extends React.Component{
 
   constructor(props){
     super(props);
-    this.state = {
-      'content':''
-    }
   }
-
-  //
-  // componentDidMount(){
-  //   this.get_template_html(this.props.template_path)
-  // }
-  //
-  // get_template_html(file_path){
-  //   var rawFile = new XMLHttpRequest();
-  //   rawFile.open("GET", file_path, true);
-  //   rawFile.onreadystatechange = function ()
-  //   {
-  //       if(rawFile.readyState === 4)
-  //       {
-  //           if(rawFile.status === 200 || rawFile.status == 0)
-  //           {
-  //               this.setState ({
-  //                 content: rawFile.responseText});
-  //           }
-  //       }
-  //   }.bind(this)
-  //   rawFile.send(null);
-
 
   render(){
     const conference = this.props.conference;
@@ -85,16 +60,16 @@ class ConferenceRow extends React.Component{
                   <p>{conference['source']}</p>
 
                   <div className="container-fluid">
-                    <div className="panel-group" id="accordion">
+                    <div className="panel-group" id={modal_id + 'accordian'}>
 
                       {/*  Sponsor Collapse*/}
                       <div className="panel panel-default">
                         <div className="panel-heading">
                           <h4 className="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Sponsors</a>
+                            <a data-toggle="collapse" data-parent={data_target+ 'accordian'} href={"#" + modal_id + '1'}>Sponsors</a>
                           </h4>
                         </div>
-                        <div id="collapse1" className="panel-collapse collapse">
+                        <div id={modal_id + '1'} className="panel-collapse collapse">
                           <div className="panel-body">{get_comma_separated_value(conference['sponsors'], 'name')}</div>
                         </div>
                       </div>
@@ -103,10 +78,10 @@ class ConferenceRow extends React.Component{
                       <div className="panel panel-default">
                         <div className="panel-heading">
                           <h4 className="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Covered Expenses</a>
+                            <a data-toggle="collapse" data-parent={data_target+ 'accordian'} href={"#" + modal_id + '2'}>Covered Expenses</a>
                           </h4>
                         </div>
-                        <div id="collapse2" className="panel-collapse collapse">
+                        <div id={modal_id + '2'} className="panel-collapse collapse">
                           <div className="panel-body">
 
                             {conference['covered_expenses'].map(

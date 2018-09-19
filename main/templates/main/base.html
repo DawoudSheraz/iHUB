@@ -57,58 +57,56 @@
      <script type="text/javascript" src="{% static 'main/js/actions/end-date-action.js'%}"></script>
 
      <!--  Custom Date Picker-->
-     <script type='text/jsx' src="{% static 'main/js/components/end-date.js' %}"></script>
-     <script type='text/jsx' src="{% static 'main/js/components/start-date.js' %}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/dumb/end-date.js' %}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/dumb/start-date.js' %}"></script>
      <script type='text/jsx' src='{% static "main/js/containers/container-start-date.js"%}'></script>
       <script type='text/jsx' src='{% static "main/js/containers/container-end-date.js"%}'></script>
 
      <!--  Pagination -->
-     <script type='text/jsx' src="{% static 'main/js/components/pagination_component.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/dumb/pagination_component.js'%}"></script>
 
      <!--  Search Bar -->
-     <script type='text/jsx' src="{% static 'main/js/components/search_bar.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/dumb/search_bar.js'%}"></script>
      <script type='text/jsx' src='{% static "main/js/containers/container-search-bar.js"%}'></script>
-     <script type='text/jsx' src="{% static 'main/js/components/controlled-search-bar.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/dumb/controlled-search-bar.js'%}"></script>
 
      <!-- Conference Component  -->
-     <script type='text/jsx' src="{% static 'main/js/components/conference_row.js'%}"></script>
-     <script type='text/jsx' src="{% static 'main/js/components/conference_table.js'%}"></script>
-     <script type='text/jsx' src="{% static 'main/js/components/filterable_conference_table.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/dumb/conference_row.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/dumb/conference_table.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/smart/filterable_conference_table.js'%}"></script>
      <script type='text/jsx' src="{% static 'main/js/containers/container-filterable_conference_table.js'%}"></script>
 
      <!--  Job table component -->
-     <script type='text/jsx' src="{% static 'main/js/components/job_row.js'%}"></script>
-     <script type='text/jsx' src="{% static 'main/js/components/job_table.js'%}"></script>
-     <script type='text/jsx' src="{% static 'main/js/components/filterable_job_table.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/dumb/job_row.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/dumb/job_table.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/smart/filterable_job_table.js'%}"></script>
      <script type='text/jsx' src="{% static 'main/js/containers/container-filterable_job_table.js'%}"></script>
      <!--  Scholarship Component -->
-     <script type='text/jsx' src="{% static 'main/js/components/scholarship_row.js'%}"></script>
-     <script type='text/jsx' src="{% static 'main/js/components/scholarship_table.js'%}"></script>
-     <script type='text/jsx' src="{% static 'main/js/components/filterable_scholarship_table.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/dumb/scholarship_row.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/dumb/scholarship_table.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/smart/filterable_scholarship_table.js'%}"></script>
      <script type='text/jsx' src="{% static 'main/js/containers/container-filterable_scholarship_table.js'%}"></script>
 
      <!--  Suggestion Form Component-->
-     <script type='text/jsx' src="{% static 'main/js/components/form-field.js'%}"></script>
-     <script type='text/jsx' src="{% static 'main/js/components/form-select-field.js'%}"></script>
-     <script type='text/jsx' src="{% static 'main/js/components/form-radio-group.js'%}"></script>
-     <script type='text/jsx' src="{% static 'main/js/components/form-textarea.js'%}"></script>
-     <script type='text/jsx' src="{% static 'main/js/components/suggestion-form.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/redux-form/form-field.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/redux-form/form-select-field.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/redux-form/form-radio-group.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/redux-form/form-textarea.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/redux-form/suggestion-form.js'%}"></script>
      <!--  Page components to be used by the router to render page accordingly -->
-     <script type='text/jsx' src="{% static 'main/js/components/page-conference.js'%}"></script>
-     <script type='text/jsx' src="{% static 'main/js/components/page-job.js'%}"></script>
-     <script type='text/jsx' src="{% static 'main/js/components/page-scholarship.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/dumb/page-conference.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/dumb/page-job.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/dumb/page-scholarship.js'%}"></script>
 
 
 
      <!--  Main app component containing all the stuff-->
-     <script type='text/jsx' src="{% static 'main/js/components/select-feature.js'%}"></script>
-     <script type='text/jsx' src="{% static 'main/js/components/app-body.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/dumb/select-feature.js'%}"></script>
+     <script type='text/jsx' src="{% static 'main/js/components/smart/app-body.js'%}"></script>
 
     <!--Adding the Header and its related components through external files -->
-    <script type='text/jsx' src="{% static 'main/js/components/logout_state_component.js'%}"></script>
-    <script type='text/jsx' src="{% static 'main/js/components/login_state_component.js'%}"></script>
-    <script type='text/jsx' src="{% static 'main/js/components/router-links-list.js'%}"></script>
-    <script type='text/jsx' src="{% static 'main/js/components/header_component.js'%}"></script>
+    <script type='text/jsx' src="{% static 'main/js/components/dumb/router-links-list.js'%}"></script>
+    <script type='text/jsx' src="{% static 'main/js/components/dumb/header_component.js'%}"></script>
 
     <script type='text/jsx' src="{% static 'main/js/components/app.js'%}"></script>
 
