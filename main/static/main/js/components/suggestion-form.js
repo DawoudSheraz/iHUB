@@ -10,8 +10,8 @@ class SuggestionForm extends React.Component{
     axios.post(this.props.post_url, values)
     .then(function (response){
       alert('Thanks for your Feedback!')
-      
-    })
+      this.props.history.push('/')
+    }.bind(this))
     .catch(function (error){
       alert(error)
     })
@@ -23,7 +23,8 @@ class SuggestionForm extends React.Component{
     const Field = ReduxForm.Field
     const {handleSubmit} = this.props
     return(
-      <form onSubmit={handleSubmit(this.submitted_values)} className='container login-form'>
+      <div className="login-form">
+      <form onSubmit={handleSubmit(this.submitted_values)} className='container login-form row col-lg-12'>
 
         {/*  Full name */}
         <Field name='fullName' validate = {[required, minLength5]} component={renderField} type='text' label='Name'/>
@@ -109,6 +110,7 @@ class SuggestionForm extends React.Component{
           <button type="submit" className="btn btn-primary">Submit</button>
         </div>
       </form>
+    </div>
     )
 
   }
@@ -128,6 +130,8 @@ const form_sync_validate = values =>{
 
   return errors
 }
+
+SuggestionForm = ReactRouterDOM.withRouter(SuggestionForm)
 
 var ConnectedSuggestionForm = ReduxForm.reduxForm({
   form:'suggestion',
