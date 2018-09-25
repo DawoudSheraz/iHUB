@@ -109,5 +109,5 @@ experience_req(e){
 }
 
 FilterableJobTable.defaultProps = {
-  base_url: 'http://127.0.0.1:8000/main/api/student_positions/',
+  base_url: 'http://172.16.12.15:8000/main/api/student_positions/',
 }

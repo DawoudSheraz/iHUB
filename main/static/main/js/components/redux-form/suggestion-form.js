@@ -117,7 +117,7 @@ class SuggestionForm extends React.Component{
 }
 
 SuggestionForm.defaultProps = {
-  post_url: 'http://127.0.0.1:8000/main/api/suggestions',
+  post_url: 'http://172.16.12.15:8000/main/api/suggestions',
 }
 
 const form_sync_validate = values =>{
