@@ -4,15 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/main/management/commands/generateConferences.py" line="59" mnemonic="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cf3a7876-eff6-45ab-82cd-dfd4c19e52cd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/final.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iHUB/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/iHUB/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/redux-form/suggestion-form.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/redux-form/suggestion-form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/smart/filterable_conference_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/smart/filterable_conference_table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/smart/filterable_job_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/smart/filterable_job_table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/smart/filterable_scholarship_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/smart/filterable_scholarship_table.js" afterDir="false" />
-    </list>
+    <list default="true" id="cf3a7876-eff6-45ab-82cd-dfd4c19e52cd" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

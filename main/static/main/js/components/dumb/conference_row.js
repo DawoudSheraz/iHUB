@@ -38,7 +38,14 @@ class ConferenceRow extends React.Component{
 
                   {/*  Fields of Interest*/}
                   <h4 className='text-primary'>Fields of Interest </h4>
-                  <p className='text-default'>{skills}</p>
+                  <ul >
+                    {conference['fields_of_interest'].map((current_skill) => (
+                      <li key={current_skill['title']} >
+                        <span className='customTag'>{current_skill['title']}</span>
+
+                      </li>
+                    ))}
+                  </ul>
 
                   {/*  Venue*/}
                   <h4 className='text-primary'>Venue </h4>
