@@ -70,7 +70,11 @@ class ConferenceRow extends React.Component{
                           </h4>
                         </div>
                         <div id={modal_id + '1'} className="panel-collapse collapse">
-                          <div className="panel-body">{get_comma_separated_value(conference['sponsors'], 'name')}</div>
+                          <div className="panel-body">
+                            <TaggedList
+                              data_list={json_list_to_item_list(conference['sponsors'],'name')}
+                            />
+                          </div>
                         </div>
                       </div>
 

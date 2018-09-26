@@ -78,7 +78,9 @@ class ScholarshipRow extends React.Component{
                   {/*  Sponsors */}
 
                   <h4 className='text-primary'>Sponsors</h4>
-                  <p>{get_comma_separated_value(scholarship['sponsors'],'name')}</p>
+                  <TaggedList
+                    data_list={json_list_to_item_list(scholarship['sponsors'],'name')}
+                  />
 
                 </div>
                 <div className="modal-footer">
