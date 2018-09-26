@@ -59,35 +59,28 @@ class ConferenceRow extends React.Component{
                   <h4 className='text-primary'>Source </h4>
                   <p>{conference['source']}</p>
 
+                  {/*  Accordian to Show various parts of overall data*/}
+                  <Accordian
+                    accordian_id = {modal_id}
+                    options = {
+                      [
+                          {'label': 'Sponsors',
+                          'data': (
+                            <TaggedList
+                              data_list={json_list_to_item_list(conference['sponsors'],'name')}
+                            />
+                          )},
+                          {
+                            'label': 'Covered Expenses',
+                            'data':
+                              conference['covered_expenses'].map(
+                                (expense, index) => (<p key={index}>{expense['amount']}</p>)
+                              )
+                            }
+                      ]
+                    }
+                  />
 
-                  <div className="container-fluid">
-                    <div className="panel-group" id={modal_id + 'accordian'}>
-
-                      {/*  Sponsor Collapse*/}
-                      <AccordianPanel
-                        data_parent={data_target+ 'accordian'}
-                        label={'Sponsors'}
-                        body_id={modal_id + '1'}>
-
-                          <TaggedList
-                            data_list={json_list_to_item_list(conference['sponsors'],'name')}
-                          />
-                      </AccordianPanel>
-
-
-                      {/* Covered Expenses  */}
-                      <AccordianPanel
-                        data_parent={data_target+ 'accordian'}
-                        label={'Covered Expenses'}
-                        body_id={modal_id + '2'}>
-
-                          {conference['covered_expenses'].map(
-                            (expense, index) => (<p key={index}>{expense['amount']}</p>)
-                          )}
-                      </AccordianPanel>
-
-                    </div>
-                  </div>
 
         </div>
                 <div className="modal-footer">
