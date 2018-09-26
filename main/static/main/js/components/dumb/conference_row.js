@@ -59,7 +59,24 @@ class ConferenceRow extends React.Component{
                   <h4 className='text-primary'>Source </h4>
                   <p>{conference['source']}</p>
 
-                  {/*  Accordian to Show various parts of overall data*/}
+                  {/*  If Ranking exist, render it */}
+                  {conference['ranking']?(
+                    <span>
+                      <h5 className='text-primary'>Ranking</h5>
+                      <p >{conference['ranking']}</p>
+                    </span>)
+                  : ''}
+
+                  {/*  IF key speakers exist, render them */}
+                  {conference['key_speakers']?(
+                    <span>
+                      <h5 className='text-primary'>Key Speakers</h5>
+                      <p >{conference['key_speakers']}</p>
+                    </span>)
+                  : ''}
+
+
+                  {/*  Accordian to Show various parts of overall data */}
                   <Accordian
                     accordian_id = {modal_id}
                     options = {
