@@ -59,51 +59,37 @@ class ConferenceRow extends React.Component{
                   <h4 className='text-primary'>Source </h4>
                   <p>{conference['source']}</p>
 
+
                   <div className="container-fluid">
                     <div className="panel-group" id={modal_id + 'accordian'}>
 
                       {/*  Sponsor Collapse*/}
-                      <div className="panel panel-default">
-                        <div className="panel-heading">
-                          <h4 className="panel-title">
-                            <a data-toggle="collapse" data-parent={data_target+ 'accordian'} href={"#" + modal_id + '1'}>Sponsors</a>
-                          </h4>
-                        </div>
-                        <div id={modal_id + '1'} className="panel-collapse collapse">
-                          <div className="panel-body">
-                            <TaggedList
-                              data_list={json_list_to_item_list(conference['sponsors'],'name')}
-                            />
-                          </div>
-                        </div>
-                      </div>
+                      <AccordianPanel
+                        data_parent={data_target+ 'accordian'}
+                        label={'Sponsors'}
+                        body_id={modal_id + '1'}>
+
+                          <TaggedList
+                            data_list={json_list_to_item_list(conference['sponsors'],'name')}
+                          />
+                      </AccordianPanel>
+
 
                       {/* Covered Expenses  */}
-                      <div className="panel panel-default">
-                        <div className="panel-heading">
-                          <h4 className="panel-title">
-                            <a data-toggle="collapse" data-parent={data_target+ 'accordian'} href={"#" + modal_id + '2'}>Covered Expenses</a>
-                          </h4>
-                        </div>
-                        <div id={modal_id + '2'} className="panel-collapse collapse">
-                          <div className="panel-body">
+                      <AccordianPanel
+                        data_parent={data_target+ 'accordian'}
+                        label={'Covered Expenses'}
+                        body_id={modal_id + '2'}>
 
-                            {conference['covered_expenses'].map(
-                              (expense, index) => (<p key={index}>{expense['amount']}</p>)
-                            )
-                          }
-
-                          </div>
-                        </div>
-                      </div>
-
+                          {conference['covered_expenses'].map(
+                            (expense, index) => (<p key={index}>{expense['amount']}</p>)
+                          )}
+                      </AccordianPanel>
 
                     </div>
                   </div>
 
-                </div>
-
-
+        </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
