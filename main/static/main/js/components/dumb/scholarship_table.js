@@ -19,7 +19,7 @@ class ScholarshipList extends React.Component{
         <table border='1' className='table table-striped table-hover'>
           <thead>
             <tr>
-              <td>Scholarships</td>
+              <th>Scholarships</th>
             </tr>
           </thead>
 

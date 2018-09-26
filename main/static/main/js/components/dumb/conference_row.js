@@ -90,10 +90,60 @@ class ConferenceRow extends React.Component{
                           {
                             'label': 'Covered Expenses',
                             'data':
-                              conference['covered_expenses'].map(
-                                (expense, index) => (<p key={index}>{expense['amount']}</p>)
-                              )
-                            }
+                            (
+                              <table className='table table-striped table-hover table-bordered'>
+                                <thead>
+                                  <tr>
+                                    <th>Amount</th>
+                                    <th>Description</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {conference['covered_expenses'].map((current,index)=>(
+                                    <tr key={index}>
+                                      <td>{current['amount']}</td>
+                                      <td>{current['description']}</td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            )
+                            },
+                          {
+                            'label' : 'Contact Information',
+                            'data':   (
+                              <span>
+                                <TaggedList
+                                  data_list={json_optional_key_list_to_item_list(conference['contacts'],'email')}
+                                />
+                                <TaggedList
+                                  data_list={json_optional_key_list_to_item_list(conference['contacts'],'phone')}
+                                />
+                              </span>
+                            )
+                          },
+                        {
+                            'label': 'Schedule',
+                            'data': (conference['schedule_list'].length > 0 )? (
+                              <table className='table table-striped table-hover table-bordered'>
+                                <thead>
+                                  <tr>
+                                    <th>Date</th>
+                                    <th>Event</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {conference['schedule_list'].map((current,index)=>(
+                                    <tr key={index}>
+                                      <td>{formatted_date_time(current['date'])}</td>
+                                      <td>{current['description']}</td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            ) : 'Not Available'
+
+                          }
                       ]
                     }
                   />
