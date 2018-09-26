@@ -112,7 +112,9 @@ ul {
 li {
   display: inline-block;
   white-space: nowrap;
-    }
+}
+
+
 
 .customTag {
       border: 1px solid #FFFFFF;
