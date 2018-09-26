@@ -11,7 +11,6 @@ render(){
   const data_target = '#' + job['job']['title'].replace(' ','_')
   const modal_id = job['job']['title'].replace(' ','_')
   const title = job['job']['title']
-  const skills = get_comma_separated_value(job['skills_covered'], 'title')
 
   return(
     <tr>
@@ -54,7 +53,9 @@ render(){
 
                 {/*  Fields of Interest*/}
                 <h4 className='text-primary'>Fields of Interest </h4>
-                <p className='text-default'>{skills}</p>
+                <TaggedList
+                  data_list={json_list_to_item_list(job['skills_covered'],'title')}
+                />
 
                 {/*  Submission Deadline*/}
                 <h4 className='text-primary'>Submission deadline </h4>

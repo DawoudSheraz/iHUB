@@ -11,10 +11,8 @@ class ConferenceRow extends React.Component{
     const data_target = '#' + conference['info']['title'].replace(' ','_')
     const modal_id = conference['info']['title'].replace(' ','_')
     const title = conference['info']['title']
-    const skills = get_comma_separated_value(conference['fields_of_interest'], 'title')
     const venue = get_formatted_venue(conference['conference_venue'])
     const paper_deadline = get_format_date(conference['call_for_paper_deadline'])
-
 
     return(
       <tr>
@@ -38,14 +36,9 @@ class ConferenceRow extends React.Component{
 
                   {/*  Fields of Interest*/}
                   <h4 className='text-primary'>Fields of Interest </h4>
-                  <ul >
-                    {conference['fields_of_interest'].map((current_skill) => (
-                      <li key={current_skill['title']} >
-                        <span className='customTag'>{current_skill['title']}</span>
-
-                      </li>
-                    ))}
-                  </ul>
+                  <TaggedList
+                    data_list={json_list_to_item_list(conference['fields_of_interest'],'title')}
+                  />
 
                   {/*  Venue*/}
                   <h4 className='text-primary'>Venue </h4>

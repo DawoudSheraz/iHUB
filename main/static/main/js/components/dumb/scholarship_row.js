@@ -21,7 +21,6 @@ class ScholarshipRow extends React.Component{
     const data_target = '#' + scholarship['information']['title'].replace(' ','_')
     const modal_id = scholarship['information']['title'].replace(' ','_')
     const title = scholarship['information']['title']
-    const skills = get_comma_separated_value(scholarship['fields_of_interest'], 'title')
 
     return(
       <tr>
@@ -45,7 +44,9 @@ class ScholarshipRow extends React.Component{
 
                   {/*  Fields of Interest*/}
                   <h4 className='text-primary'>Fields of Interest </h4>
-                  <p className='text-default'>{skills}</p>
+                  <TaggedList
+                    data_list={json_list_to_item_list(scholarship['fields_of_interest'],'title')}
+                  />
 
                   {/*  Positions*/}
                   <p>

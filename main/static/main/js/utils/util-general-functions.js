@@ -12,6 +12,18 @@
 
   }
 
+// Given a key inside a list of json, return list of items related to the key
+function json_list_to_item_list(json_list, key){
+
+    let out_list = []
+
+    json_list.map(current =>(
+      out_list.push(current[key])
+    ))
+
+    return out_list
+}
+
 // capitalize the first letter
   function capitalize(s)
 {
