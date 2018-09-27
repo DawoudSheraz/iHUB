@@ -23,7 +23,7 @@ class  ConferencePage extends React.Component{
 
       <div className='row'>
         <div className='col-md-6'>
-            <window.ContainerSearchBar/>
+            <ContainerSearchBar />
         </div>
         <div className='col-md-6'>
           <InternallyControlledSearchBar

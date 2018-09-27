@@ -1,13 +1,8 @@
 
 
-class ConferenceRow extends React.Component{
+function ConferenceRow(props){
 
-  constructor(props){
-    super(props);
-  }
-
-  render(){
-    const conference = this.props.conference;
+    const conference = props.conference;
     const data_target = '#' + conference['info']['title'].replace(' ','_')
     const modal_id = conference['info']['title'].replace(' ','_')
     const title = conference['info']['title']
@@ -163,6 +158,5 @@ class ConferenceRow extends React.Component{
       </tr>
 
     );
-  }
 
 }

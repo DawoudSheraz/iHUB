@@ -1,14 +1,8 @@
 
-class ScholarshipList extends React.Component{
-
-    constructor(props){
-      super(props);
-    }
-
-    render(){
+function ScholarshipList(props){
 
       let out_rows = []
-      const scholarships = this.props.scholarship_list
+      const scholarships = props.scholarship_list
 
       scholarships.forEach( (scholarship) => {
 
@@ -29,6 +23,4 @@ class ScholarshipList extends React.Component{
 
         </table>
       )
-    }
-
 }

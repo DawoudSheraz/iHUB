@@ -1,13 +1,8 @@
 
 // Component to render information about a single StudentJobPosition
-class JobRow extends React.Component{
+function JobRow(props){
 
-  constructor(props){
-    super(props);
-  }
-
-render(){
-  const job = this.props.job_data
+  const job = props.job_data
   const data_target = '#' + job['job']['title'].replace(' ','_')
   const modal_id = job['job']['title'].replace(' ','_')
   const title = job['job']['title']
@@ -181,5 +176,4 @@ render(){
     </tr>
   )
 
-}
 }

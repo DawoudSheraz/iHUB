@@ -14,4 +14,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 })
 
-window.ContainerSearchBar = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(ControlledSearchBar)
+var ContainerSearchBar = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(ControlledSearchBar)
