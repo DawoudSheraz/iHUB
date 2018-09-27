@@ -8,7 +8,7 @@ class PageSelectionNavbar extends React.Component{
   render(){
       const NavLink = ReactRouterDOM.NavLink
       return(
-        <div className='container-fluid'>
+        <div className='container'>
           <div className='row'>
 
             <NavLink onClick = {this.props.hide_navbar} className='btn btn-link col-md-4 col-xs-12' to='/conferences'  activeClassName='active'>

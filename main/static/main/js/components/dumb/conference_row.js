@@ -11,10 +11,8 @@ class ConferenceRow extends React.Component{
     const data_target = '#' + conference['info']['title'].replace(' ','_')
     const modal_id = conference['info']['title'].replace(' ','_')
     const title = conference['info']['title']
-    const skills = get_comma_separated_value(conference['fields_of_interest'], 'title')
     const venue = get_formatted_venue(conference['conference_venue'])
     const paper_deadline = get_format_date(conference['call_for_paper_deadline'])
-
 
     return(
       <tr>
@@ -38,7 +36,9 @@ class ConferenceRow extends React.Component{
 
                   {/*  Fields of Interest*/}
                   <h4 className='text-primary'>Fields of Interest </h4>
-                  <p className='text-default'>{skills}</p>
+                  <TaggedList
+                    data_list={json_list_to_item_list(conference['fields_of_interest'],'title')}
+                  />
 
                   {/*  Venue*/}
                   <h4 className='text-primary'>Venue </h4>
@@ -59,47 +59,97 @@ class ConferenceRow extends React.Component{
                   <h4 className='text-primary'>Source </h4>
                   <p>{conference['source']}</p>
 
-                  <div className="container-fluid">
-                    <div className="panel-group" id={modal_id + 'accordian'}>
+                  {/*  If Ranking exist, render it */}
+                  {conference['ranking']?(
+                    <span>
+                      <h5 className='text-primary'>Ranking</h5>
+                      <p >{conference['ranking']}</p>
+                    </span>)
+                  : ''}
 
-                      {/*  Sponsor Collapse*/}
-                      <div className="panel panel-default">
-                        <div className="panel-heading">
-                          <h4 className="panel-title">
-                            <a data-toggle="collapse" data-parent={data_target+ 'accordian'} href={"#" + modal_id + '1'}>Sponsors</a>
-                          </h4>
-                        </div>
-                        <div id={modal_id + '1'} className="panel-collapse collapse">
-                          <div className="panel-body">{get_comma_separated_value(conference['sponsors'], 'name')}</div>
-                        </div>
-                      </div>
+                  {/*  IF key speakers exist, render them */}
+                  {conference['key_speakers']?(
+                    <span>
+                      <h5 className='text-primary'>Key Speakers</h5>
+                      <p >{conference['key_speakers']}</p>
+                    </span>)
+                  : ''}
 
-                      {/* Covered Expenses  */}
-                      <div className="panel panel-default">
-                        <div className="panel-heading">
-                          <h4 className="panel-title">
-                            <a data-toggle="collapse" data-parent={data_target+ 'accordian'} href={"#" + modal_id + '2'}>Covered Expenses</a>
-                          </h4>
-                        </div>
-                        <div id={modal_id + '2'} className="panel-collapse collapse">
-                          <div className="panel-body">
 
-                            {conference['covered_expenses'].map(
-                              (expense, index) => (<p key={index}>{expense['amount']}</p>)
+                  {/*  Accordian to Show various parts of overall data */}
+                  <Accordion
+                    accordion_id = {modal_id}
+                    options = {
+                      [
+                          {'label': 'Sponsors',
+                          'data': (
+                            <TaggedList
+                              data_list={json_list_to_item_list(conference['sponsors'],'name')}
+                            />
+                          )},
+                          {
+                            'label': 'Covered Expenses',
+                            'data':
+                            (
+                              <table className='table table-striped table-hover table-bordered'>
+                                <thead>
+                                  <tr>
+                                    <th>Amount</th>
+                                    <th>Description</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {conference['covered_expenses'].map((current,index)=>(
+                                    <tr key={index}>
+                                      <td>{current['amount']}</td>
+                                      <td>{current['description']}</td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
                             )
+                            },
+                          {
+                            'label' : 'Contact Information',
+                            'data':   (
+                              <span>
+                                <TaggedList
+                                  data_list={json_optional_key_list_to_item_list(conference['contacts'],'email')}
+                                />
+                                <TaggedList
+                                  data_list={json_optional_key_list_to_item_list(conference['contacts'],'phone')}
+                                />
+                              </span>
+                            )
+                          },
+                        {
+                            'label': 'Schedule',
+                            'data': (conference['schedule_list'].length > 0 )? (
+                              <table className='table table-striped table-hover table-bordered'>
+                                <thead>
+                                  <tr>
+                                    <th>Date</th>
+                                    <th>Event</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {conference['schedule_list'].map((current,index)=>(
+                                    <tr key={index}>
+                                      <td>{formatted_date_time(current['date'])}</td>
+                                      <td>{current['description']}</td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            ) : 'Not Available'
+
                           }
-
-                          </div>
-                        </div>
-                      </div>
-
-
-                    </div>
-                  </div>
-
-                </div>
+                      ]
+                    }
+                  />
 
 
+        </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
                 </div>

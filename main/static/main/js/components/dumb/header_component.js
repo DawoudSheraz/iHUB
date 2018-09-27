@@ -10,9 +10,7 @@ function HeaderComponent(props){
 
 // Returns the header, with index/logo and corresponding component
 return(
-<div>
-  <div>
-  <nav className="navbar navbar-default">
+  <nav className="navbar navbar-inverse container-fluid">
       <div className="navbar-header">
           <Link className="navbar-brand" to='/'><strong>iHUB</strong></Link>
       </div>
@@ -20,9 +18,7 @@ return(
         <li><Link to='/suggestion'><strong>Suggestions</strong></Link></li>
       </ul>
   </nav>
-</div>
 
-</div>
 )
 };
 

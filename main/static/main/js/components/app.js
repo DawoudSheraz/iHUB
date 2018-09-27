@@ -7,9 +7,6 @@ function App(props){
     <div>
       <HeaderComponent />
 
-      <div>
-        {/* <AppBody app_data = {props.app_data}/> */}
-
       <Switch>
         <Route exact path='/' render={(old_props) => <AppBody {...old_props} app_data={props.app_data}  />}/>
         <Route  path='/suggestion' component={ConnectedSuggestionForm}/>
@@ -18,7 +15,6 @@ function App(props){
         <Route  path='/scholarship' render={(old_props) => <ScholarshipPage {...old_props} app_data={props.app_data}/>}/>
         <ReactRouterDOM.Redirect to='/' from='/main' />
       </Switch>
-      </div>
 
     </div>
   )

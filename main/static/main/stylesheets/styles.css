@@ -102,4 +102,28 @@ input[type=number]::-webkit-outer-spin-button {
     -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
     -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
 
+}
+
+ul {
+      list-style-type: none;
+      /* display:block; */
+}
+
+li {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+
+
+.customTag {
+      border: 1px solid #FFFFFF;
+      background-color: rgb(66,139,202);
+      color:white;
+      border-radius: 5px;
+      padding:2px;
+    }
+
+.customTag:hover {
+      background-color: rgb(91,192,222);
     }
