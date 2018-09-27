@@ -71,18 +71,116 @@ class ScholarshipRow extends React.Component{
                   <p className='text-danger'> {get_format_date(scholarship['deadline'])}
                   </p>
 
-                  {/* Host Locations */}
-                  <h4 className='text-primary'>Host Locations</h4>
-                  {this.get_all_venues(scholarship['host_universities'])}
+                  {/*  Source */}
+                  <h4 className='text-primary'>Source </h4>
+                  <p>{scholarship['source']}</p>
 
-                  {/*  Sponsors */}
+                  {/*  Optional Attributes -- Start*/}
 
-                  <h4 className='text-primary'>Sponsors</h4>
-                  <TaggedList
-                    data_list={json_list_to_item_list(scholarship['sponsors'],'name')}
+                  {scholarship['funding']?
+                  (<span>
+                    <h5 className='text-primary'>Funding</h5>
+                    <p >{scholarship['funding']}</p>
+                  </span>)
+                  : ''
+                  }
+
+                  {scholarship['scholarship_maintenance_criteria']?
+                  (<span>
+                    <h5 className='text-primary'>Maintenance Criteria</h5>
+                    <p >{scholarship['scholarship_maintenance_criteria']}</p>
+                  </span>)
+                  : ''
+                  }
+
+                  {/*  Optional Attribute  -- End */}
+
+
+                  <Accordion
+                  accordion_id = {modal_id}
+                  options = {
+                    [
+                      {
+                        'label' : 'Sponsors',
+                        'data' : (
+                          <TaggedList
+                            data_list={json_list_to_item_list(scholarship['sponsors'],'name')}
+                          />
+                        )
+                      },
+                      {
+                        'label': 'Perks Offered',
+                        'data' : scholarship['perks_offered']
+                      },
+                      {
+                        'label' : 'Host Locations',
+                        'data' : (
+                          this.get_all_venues(scholarship['host_universities'])
+                        )
+                      },
+                      {
+                        'label' : 'Contact',
+                        'data': (
+                          <span>
+                            <TaggedList
+                              data_list={json_optional_key_list_to_item_list(scholarship['contacts'],'email')}
+                            />
+                            <TaggedList
+                              data_list={json_optional_key_list_to_item_list(scholarship['contacts'],'phone')}
+                            />
+                          </span>
+                        )
+                      },
+                      {
+                        'label': 'Application Submission Information',
+                        'data' : (
+                          <table className='table table-striped table-hover table-bordered'>
+                            <tbody>
+                              <tr>
+                                <th>Required Documents</th>
+                                <td>{scholarship['application_form']['required_docs']}</td>
+                              </tr>
+                              <tr>
+                                <th>Procedure</th>
+                                <td>{scholarship['application_form']['steps_to_apply']}</td>
+                              </tr>
+
+                            </tbody>
+                          </table>
+                        )
+                      },
+                      {
+                        'label' : 'Requirements',
+                        'data' : (
+                          <table className='table table-striped table-hover table-bordered'>
+                            <tbody>
+                              <tr>
+                                <th>Minimum</th>
+                                <td>{scholarship['criteria']['minimum']}</td>
+                              </tr>
+
+                              <tr>
+                                <th>Preferred</th>
+                                <td>
+                                  { scholarship['criteria']['preferred'] ?
+                                  scholarship['criteria']['preferred']
+                                  : <strong>{'Not Available'}</strong>
+                                  }
+                                </td>
+                              </tr>
+
+
+                            </tbody>
+                          </table>
+                        )
+                      }
+
+                    ]
+                  }
                   />
 
                 </div>
+
                 <div className="modal-footer">
                   <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
