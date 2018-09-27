@@ -1,7 +1,7 @@
 
 
 // Component for creating a collapsable panel inside an accordian
-function AccordianPanel(props){
+function AccordionPanel(props){
 
   return(
     <div className="panel panel-default">

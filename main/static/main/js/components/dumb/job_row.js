@@ -44,10 +44,15 @@ render(){
                   <span className='text-info'>Function: &nbsp;</span>
                   <span>{job['job']['function']}</span>
                 </p>
+
+              {job['job']['expectations'] ?
                 <p>
                   <span className='text-info'>Expectations: &nbsp;</span>
                   <span>{job['job']['expectations']}</span>
                 </p>
+                : ''
+              }
+
               </div>
 
 
@@ -86,6 +91,81 @@ render(){
                 {/*  Original Source */}
                 <h4 className='text-primary'>Source </h4>
                 <p>{job['source']}</p>
+
+                {/*  IF fee exist, render it */}
+                {job['fee']?(
+                  <span>
+                    <h5 className='text-primary'>Submission Fee</h5>
+                    <p >{job['fee']['amount']}</p>
+                  </span>)
+                : ''}
+
+
+                <Accordion
+                  accordion_id = {modal_id}
+
+                  options = {
+                    [
+                      {
+                        'label' : 'Contact',
+                        'data':   (
+                          <span>
+                            <TaggedList
+                              data_list={json_optional_key_list_to_item_list(job['contacts'],'email')}
+                            />
+                            <TaggedList
+                              data_list={json_optional_key_list_to_item_list(job['contacts'],'phone')}
+                            />
+                          </span>
+                        )
+                      },
+                      {
+                        'label': 'Application Submission Information',
+                        'data' : (
+                          <table className='table table-striped table-hover table-bordered'>
+                            <tbody>
+                              <tr>
+                                <th>Required Documents</th>
+                                <td>{job['submission_form']['required_docs']}</td>
+                              </tr>
+                              <tr>
+                                <th>Procedure</th>
+                                <td>{job['submission_form']['steps_to_apply']}</td>
+                              </tr>
+
+                            </tbody>
+                          </table>
+                        )
+                      },
+                      {
+                        'label' : 'Requirements',
+                        'data' : (
+                          <table className='table table-striped table-hover table-bordered'>
+                            <tbody>
+                              <tr>
+                                <th>Minimum</th>
+                                <td>{job['requirements']['minimum']}</td>
+                              </tr>
+
+                              <tr>
+                                <th>Preferred</th>
+                                <td>
+                                  { job['requirements']['preferred'] ?
+                                  job['requirements']['preferred']
+                                  : <strong>{'Not Available'}</strong>
+                                  }
+                                </td>
+                              </tr>
+
+
+                            </tbody>
+                          </table>
+                        )
+                      }
+
+                    ]
+                  }
+                />
 
 
               </div>

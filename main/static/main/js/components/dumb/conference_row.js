@@ -77,8 +77,8 @@ class ConferenceRow extends React.Component{
 
 
                   {/*  Accordian to Show various parts of overall data */}
-                  <Accordian
-                    accordian_id = {modal_id}
+                  <Accordion
+                    accordion_id = {modal_id}
                     options = {
                       [
                           {'label': 'Sponsors',
