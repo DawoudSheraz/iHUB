@@ -99,7 +99,10 @@ urlpatterns = [
 
     url(r'^api/suggestions'
         , PostSuggestionView.as_view()
-        , name='post_suggestion')
+        , name='post_suggestion'),
 
+    url(r'^api/skills'
+        , SkillsView.as_view()
+        , name='get_all_skills')
 
 ]

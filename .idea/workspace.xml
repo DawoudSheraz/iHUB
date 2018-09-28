@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf3a7876-eff6-45ab-82cd-dfd4c19e52cd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/final.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/dumb/page-conference.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/dumb/page-conference.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/smart/filterable_conference_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/smart/filterable_conference_table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/js/containers/container-search-bar.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/containers/container-search-bar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/api_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/api_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/js/components/dumb/search_bar.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/js/components/dumb/search_bar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views_api.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,7 +20,7 @@
     <session id="-1196136483">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="42" />
+          <entry key="project.closed" value="43" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.12" value="1" />
@@ -55,7 +54,7 @@
           <entry key="filterable_conference_table" value="1" />
           <entry key="html" value="66" />
           <entry key="js" value="56" />
-          <entry key="py" value="219" />
+          <entry key="py" value="221" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -64,7 +63,7 @@
           <entry key="HTML" value="66" />
           <entry key="JavaScript" value="54" />
           <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Python" value="219" />
+          <entry key="Python" value="221" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -73,7 +72,7 @@
           <entry key="dummy" value="21" />
           <entry key="html" value="2312" />
           <entry key="js" value="681" />
-          <entry key="py" value="36783" />
+          <entry key="py" value="37036" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -82,7 +81,7 @@
           <entry key="HTML" value="2312" />
           <entry key="JavaScript" value="623" />
           <entry key="PLAIN_TEXT" value="79" />
-          <entry key="Python" value="36783" />
+          <entry key="Python" value="37036" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -94,11 +93,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="370" column="17" lean-forward="true" selection-start-line="370" selection-start-column="16" selection-end-line="370" selection-end-column="17" />
+            <state relative-caret-position="216">
+              <caret line="361" lean-forward="true" selection-start-line="361" selection-end-line="361" />
             </state>
           </provider>
         </entry>
@@ -115,20 +114,43 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/views_api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="694">
-              <caret line="93" column="43" selection-start-line="93" selection-start-column="43" selection-end-line="93" selection-end-column="43" />
+            <state relative-caret-position="1545">
+              <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
               <folding>
-                <marker date="1537349016235" expanded="true" signature="3433:3434" ph="..." />
+                <marker date="1538051174981" expanded="true" signature="3433:3434" ph="..." />
+                <marker date="1538051174981" expanded="true" signature="3579:3580" ph="..." />
+                <marker date="1538051174981" expanded="true" signature="3717:3739" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="634">
+              <caret line="105" column="32" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/serializers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+              <folding>
+                <marker date="1537349016219" expanded="true" signature="359:432" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/api_functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="694">
-              <caret line="80" column="41" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
+            <state relative-caret-position="195">
+              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
             </state>
           </provider>
         </entry>
@@ -214,13 +236,13 @@
         <option value="$PROJECT_DIR$/main/templates/main/conference_list.html" />
         <option value="$PROJECT_DIR$/main/templates/main/job_list.html" />
         <option value="$PROJECT_DIR$/main/templates/main/base.html" />
-        <option value="$PROJECT_DIR$/main/api_functions.py" />
         <option value="$PROJECT_DIR$/main/admin.py" />
         <option value="$PROJECT_DIR$/main/serializers.py" />
-        <option value="$PROJECT_DIR$/main/views_api.py" />
-        <option value="$PROJECT_DIR$/main/urls.py" />
         <option value="$PROJECT_DIR$/main/models.py" />
         <option value="$PROJECT_DIR$/iHUB/settings.py" />
+        <option value="$PROJECT_DIR$/main/urls.py" />
+        <option value="$PROJECT_DIR$/main/views_api.py" />
+        <option value="$PROJECT_DIR$/main/api_functions.py" />
       </list>
     </option>
   </component>
@@ -274,25 +296,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="iHUB" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iHUB" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="iHUB" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iHUB" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="dumb" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -337,7 +340,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1377" height="912" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49935317" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" sideWeight="0.5006468" side_tool="true" weight="0.25" />
@@ -580,41 +582,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="694">
-          <caret line="101" column="21" selection-start-line="101" selection-start-column="21" selection-end-line="101" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/api_functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="694">
-          <caret line="80" column="41" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/views_api.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="694">
-          <caret line="93" column="43" selection-start-line="93" selection-start-column="43" selection-end-line="93" selection-end-column="43" />
-          <folding>
-            <marker date="1537349016235" expanded="true" signature="3433:3434" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -623,8 +594,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="370" column="17" lean-forward="true" selection-start-line="370" selection-start-column="16" selection-end-line="370" selection-end-column="17" />
+        <state relative-caret-position="216">
+          <caret line="361" lean-forward="true" selection-start-line="361" selection-end-line="361" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+          <folding>
+            <marker date="1537349016219" expanded="true" signature="359:432" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="634">
+          <caret line="105" column="32" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views_api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1545">
+          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
+          <folding>
+            <marker date="1538051174981" expanded="true" signature="3433:3434" ph="..." />
+            <marker date="1538051174981" expanded="true" signature="3579:3580" ph="..." />
+            <marker date="1538051174981" expanded="true" signature="3717:3739" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/api_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>

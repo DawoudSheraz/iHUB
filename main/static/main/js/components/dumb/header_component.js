@@ -1,5 +1,5 @@
 
-// Displays the top header, using LoginStateComponent and LogOutStateComponent
+// Displays the top header
 
 function HeaderComponent(props){
 
@@ -21,7 +21,3 @@ return(
 
 )
 };
-
-HeaderComponent.defaultProps = {
-  username : null,
-}

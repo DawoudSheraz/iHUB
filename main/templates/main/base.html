@@ -10,6 +10,10 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.css" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.min.js"></script>
+
       <link rel="stylesheet" href="{% static 'main/stylesheets/styles.css' %}">
       <!-- <script> var exports = {}; </script> -->
 
@@ -55,6 +59,7 @@
      <script type="text/javascript" src="{% static 'main/js/actions/search-bar-action.js'%}"></script>
      <script type="text/javascript" src="{% static 'main/js/actions/start-date-action.js'%}"></script>
      <script type="text/javascript" src="{% static 'main/js/actions/end-date-action.js'%}"></script>
+     <script type="text/javascript" src="{% static 'main/js/actions/get-skills-action.js'%}"></script>
 
      <!--  Custom Date Picker-->
      <script type='text/jsx' src="{% static 'main/js/components/dumb/end-date.js' %}"></script>
@@ -120,23 +125,9 @@
 
     <script type="text/jsx" >
 
-      // Django specific parts, that require evaluation inside the template
-        var header_data_json = {
-          'edit_url': "{% url 'main:edit_user'%}"
-          , 'logout_url': "{% url 'main:logout'%}"
-          , 'login_url': "{% url 'main:login'%}"
-        }
-
         var BrowserRouter = ReactRouterDOM.BrowserRouter
         var Provider = window.ReactRedux.Provider
         var store = Redux.createStore(window.combinedReducerOut)
-        // ReactDOM.render(
-        //   <BrowserRouter>
-        //     <Provider store={store}>
-        //       <HeaderComponent/>
-        //     </Provider>
-        //   </BrowserRouter>
-        // ,document.getElementById('header'))
     </script>
 
 {% block javascript %}

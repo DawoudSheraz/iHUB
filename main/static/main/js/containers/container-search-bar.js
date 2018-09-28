@@ -2,6 +2,7 @@
 
 const mapStateToProps = state => ({
   search_text: state.search_bar.search_text,
+  autocomplete_data: json_list_to_item_list(state.skills_reducer.skills, 'title'),
 
 })
 
