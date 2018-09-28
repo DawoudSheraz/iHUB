@@ -10,7 +10,7 @@ def filter_specialization_from_input(skills):
 
     # Change to lower case and handle special case
     # where c++'s + symbol is omitted by django URL
-    skills = skills.lower().replace('c  ', 'c\+\+')
+    skills = skills.lower().replace('c  ', 'c++')
 
     # Convert to list and remove trailing and leading whitespaces
     skill_list = skills.split(',')

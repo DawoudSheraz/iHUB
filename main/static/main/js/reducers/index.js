@@ -4,6 +4,7 @@
  import paginated_scholarship_reducer from './reducer-update-scholarship-data.js'
  import start_date_reducer from './reducer-start-date.js'
  import end_date_reducer from './reducer-end-date.js'
+ import get_skills_reducer from './reducer-get-skills.js'
 
 // The main reducer containing all the other reducers
 // will be passed to store
@@ -17,5 +18,6 @@
   end_date_picker:end_date_reducer,
   job_reducer: paginated_job_reducer,
   scholarship_reducer: paginated_scholarship_reducer,
+  skills_reducer:get_skills_reducer,
   form: ReduxForm.reducer,
   })

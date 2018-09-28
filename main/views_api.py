@@ -92,3 +92,16 @@ class ListStudentPositionApiView(generics.ListAPIView):
 class PostSuggestionView(generics.CreateAPIView):
 
     serializer_class = SuggestionSerializer
+
+
+# Get all the skills -- to be used in autocomplete feature
+class SkillsView(generics.ListAPIView):
+
+    serializer_class = SpecializationSerializer
+
+    queryset = Specialization.objects.all()
+
+    def paginate_queryset(self, queryset):
+
+        return None
+

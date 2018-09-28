@@ -12,11 +12,12 @@ class ControlledSearchBar extends React.Component{
 
   componentDidMount(){
     const current = this.searchRef.current
+    const autocomplete_data = this.props.autocomplete_data
 
     // Convert input to TokenField component
     $(current).tokenfield({
       autocomplete: {
-      source: ['python', 'django', 'music'],
+      source: autocomplete_data,
       delay: 100
       }
   })
