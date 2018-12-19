@@ -33,5 +33,5 @@ class App extends React.Component{
 
 
 App.defaultProps =  {
-  skills_api_url : 'http://172.16.12.15:8000/main/api/skills/'
+  skills_api_url : 'http://0.0.0.0:8000/main/api/skills/'
 }
